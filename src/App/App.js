@@ -6,9 +6,9 @@ import { Grid, Segment } from "semantic-ui-react";
 import "./App.css";
 import HeaderUI from "../Header/HeaderComponent";
 import GridUI from "../Grid/GridComponent";
-import AnalysisPaneUI from "../AnalysisPane/AnalysisPaneComponent";
-import SegmentListUI from "../SegmentList/SegmentListComponent";
-import GridToolbarUI from "../GridToolbar/GridToolbarComponent";
+import AnalysisPaneUI from "./AnalysisPane/AnalysisPaneComponent";
+import SegmentListUI from "./SegmentList/SegmentListComponent";
+import GridToolbarUI from "./Grid/GridToolbar/GridToolbarComponent";
 
 function App() {
   return (

@@ -9,12 +9,19 @@ class FieldUI extends React.Component {
     super(props);
     this.state = { activated: false };
   }
-  toggleField() {
+  toggleField(event) {
+    if (event.buttons !== 1) {
+      return false;
+    }
     if (this.state.activated) {
       this.setState({ activated: false });
+      this.props.fieldClicked(this.props.x, this.props.y, false);
     } else {
       this.setState({ activated: true });
+      this.props.fieldClicked(this.props.x, this.props.y, true);
     }
+
+    return true;
   }
   render() {
     let styleCell = {
@@ -35,6 +42,7 @@ class FieldUI extends React.Component {
       <td style={styleCell}>
         <div
           style={styleSquare}
+          onMouseOver={this.toggleField.bind(this)}
           onMouseDown={this.toggleField.bind(this)}
         ></div>
       </td>

@@ -2,13 +2,29 @@
 import React from "react";
 //import { connect } from "react-redux";
 // Actions
-//import { toggleField } from "./GridActions";
 import FieldUI from "./Components/FieldComponent";
 
 class GridUI extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.activeFields = [];
+  }
+  fieldClicked(x, y, active) {
+    if (active) {
+      if (!this.activeFields.find((field) => field === [x, y])) {
+        this.activeFields.push([x, y]);
+      }
+    } else {
+      this.activeFields = this.activeFields.filter(
+        (field) => !(field[0] === x && field[1] === y)
+      );
+    }
+    //console.log(this.activeFields);
+  }
+
   render() {
-    let xFields = 111;
-    let yFields = 44;
+    let [xFields, yFields] = [111, 44];
     let fieldBorder = 1;
     let fieldSize = 10;
     let table = [];
@@ -25,6 +41,7 @@ class GridUI extends React.Component {
                 y={j}
                 backgroundActivated={"grey"}
                 background={"white"}
+                fieldClicked={this.fieldClicked.bind(this)}
               />
             );
           })}
@@ -49,14 +66,4 @@ class GridUI extends React.Component {
   }
 }
 
-/*const mapStatetoProps = (state) => {
-  return { gridBoard: state.boardGrid };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(mapStatetoProps, mapDispatchToProps)(GridUI);
-*/
 export default GridUI;
