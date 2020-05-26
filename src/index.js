@@ -3,14 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App/App";
 import * as serviceWorker from "./serviceWorker";
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 // Reducers:
 import gridReducer from "./Grid/GridReducer";
+import appReducer from "./App/AppReducer";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={createStore(gridReducer)}>
+    <Provider store={createStore(combineReducers({ gridReducer, appReducer }))}>
       <App />
     </Provider>
   </React.StrictMode>,

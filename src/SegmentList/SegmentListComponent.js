@@ -1,9 +1,21 @@
 import React from "react";
+import { connect } from "react-redux";
 
 class SegmentListUI extends React.Component {
   render() {
-    return <div> Segment List </div>;
+    let segmentList = new Array(this.props.segments.length)
+      .fill(null)
+      .map((_, idx) => {
+        return <div key={idx}>this.props.segments[idx].toString()</div>;
+      });
+    return <div> {segmentList} </div>;
   }
 }
 
-export default SegmentListUI;
+const mapStateToProps = (state) => {
+  return {
+    segments: state.gridReducer.boardGridSegments,
+  };
+};
+
+export default connect(mapStateToProps)(SegmentListUI);

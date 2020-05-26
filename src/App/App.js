@@ -8,6 +8,7 @@ import HeaderUI from "../Header/HeaderComponent";
 import GridUI from "../Grid/GridComponent";
 import AnalysisPaneUI from "../AnalysisPane/AnalysisPaneComponent";
 import SegmentListUI from "../SegmentList/SegmentListComponent";
+import GridToolbarUI from "../GridToolbar/GridToolbarComponent";
 
 function App() {
   return (
@@ -109,12 +110,6 @@ class LayoutUI extends React.Component {
       </Grid>
       //<TrainingToolbarUI/>
     );
-  }
-}
-
-class GridToolbarUI extends React.Component {
-  render() {
-    return <div> GT </div>;
   }
 }
 
