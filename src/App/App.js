@@ -4,11 +4,10 @@ import "semantic-ui-css/semantic.min.css";
 import { Grid, Segment } from "semantic-ui-react";
 // Components
 import "./App.css";
-import HeaderUI from "../Header/HeaderComponent";
-import GridUI from "../Grid/GridComponent";
+import HeaderUI from "./Header/HeaderComponent";
+import GridUI from "./Grid/GridComponent";
 import AnalysisPaneUI from "./AnalysisPane/AnalysisPaneComponent";
 import SegmentListUI from "./SegmentList/SegmentListComponent";
-import GridToolbarUI from "./Grid/GridToolbar/GridToolbarComponent";
 
 function App() {
   return (
@@ -56,7 +55,7 @@ class LayoutUI extends React.Component {
             height: "65%",
           }}
         >
-          <Grid.Column width={14}>
+          <Grid.Column width={16}>
             <div
               style={{
                 height: "100%",
@@ -64,19 +63,8 @@ class LayoutUI extends React.Component {
               }}
             >
               {" "}
-              <GridUI />{" "}
+              <GridUI xFields={111} yFields={44} />{" "}
             </div>{" "}
-          </Grid.Column>{" "}
-          <Grid.Column width={2}>
-            <Segment
-              raised
-              style={{
-                height: "100%",
-              }}
-            >
-              {" "}
-              <GridToolbarUI />{" "}
-            </Segment>{" "}
           </Grid.Column>{" "}
         </Grid.Row>
         <Grid.Row

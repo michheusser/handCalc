@@ -1,8 +1,8 @@
 // Libraries
 import React from "react";
-//import { connect } from "react-redux";
+import { connect } from "react-redux";
 // Actions
-//import { toggleField } from "./FieldActions";
+import { fieldClicked } from "./FieldActions";
 
 class FieldUI extends React.Component {
   constructor(props) {
@@ -15,10 +15,10 @@ class FieldUI extends React.Component {
     }
     if (this.state.activated) {
       this.setState({ activated: false });
-      this.props.fieldClicked(this.props.x, this.props.y, false);
+      this.props.fieldToggle(false);
     } else {
       this.setState({ activated: true });
-      this.props.fieldClicked(this.props.x, this.props.y, true);
+      this.props.fieldToggle(true);
     }
 
     return true;
@@ -49,18 +49,16 @@ class FieldUI extends React.Component {
     );
   }
 }
-export default FieldUI;
-/*
+
 const mapStatetoProps = (state) => {
   return {};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    toggleField: () => {
-      dispatch(toggleField(ownProps.x, ownProps.y));
+    fieldToggle: (active) => {
+      dispatch(fieldClicked(ownProps.x, ownProps.y, active));
     },
   };
 };
 export default connect(mapStatetoProps, mapDispatchToProps)(FieldUI);
-*/

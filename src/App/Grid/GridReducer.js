@@ -3,17 +3,20 @@ import GridGenerator from "./GridLibrary";
 let gridReducer = (
   state = {
     filledFields: [],
-    boardGrid: new GridGenerator().createGrid(),
+    boardGrid: null,
     boardGridSegments: [],
   },
   action
 ) => {
   if (action.type === "PROCESS_GRID") {
     let newState = {
+      filledFields: [...state.filledFields],
       boardGrid: new GridGenerator().createGrid(
         action.payload.xFields,
-        action.payload.yFields
+        action.payload.yFields,
+        state.filledFields
       ),
+      boardGridSegments: [],
     };
     newState.boardGridSegments = newState.boardGrid.tools.gridSegmentator.createSegments(
       {
@@ -24,12 +27,32 @@ let gridReducer = (
         keepRatio: true,
       }
     );
-    console.log("[gridReducer] gridReducer on PROCESS_GRID executed.");
+    //console.log("[gridReducer] gridReducer on PROCESS_GRID executed.");
     return newState;
-  } else if (action.type === "TOGGLE_FIELD") {
-    return state;
+  } else if (action.type === "FIELD_CLICKED") {
+    let newState = {
+      filledFields: [...state.filledFields],
+      boardGrid: null,
+      boardGridSegments: [],
+    };
+    if (action.payload.active) {
+      if (
+        !newState.filledFields.find(
+          (field) => field === [action.payload.x, action.payload.y]
+        )
+      ) {
+        newState.filledFields.push([action.payload.x, action.payload.y]);
+      }
+    } else {
+      newState.filledFields = newState.filledFields.filter(
+        (field) =>
+          !(field[0] === action.payload.x && field[1] === action.payload.y)
+      );
+    }
+    //console.log("[gridReducer] gridReducer on FIELD_CLICKED executed.");
+    return newState;
   }
-  console.log(`[gridReducer] Reducer executed with no changes`);
+  //console.log("[gridReducer] Executed with no changes");
   return state;
 };
 

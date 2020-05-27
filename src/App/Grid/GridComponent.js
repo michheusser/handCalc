@@ -1,30 +1,16 @@
 // Libraries
 import React from "react";
-//import { connect } from "react-redux";
+import { Segment } from "semantic-ui-react";
+import { connect } from "react-redux";
+import { processGrid } from "./GridActions";
 // Actions
-import FieldUI from "./Components/FieldComponent";
+// Components
+import FieldUI from "./Field/FieldComponent";
+import GridToolbarUI from "./GridToolbar/GridToolbarComponent";
 
 class GridUI extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.activeFields = [];
-  }
-  fieldClicked(x, y, active) {
-    if (active) {
-      if (!this.activeFields.find((field) => field === [x, y])) {
-        this.activeFields.push([x, y]);
-      }
-    } else {
-      this.activeFields = this.activeFields.filter(
-        (field) => !(field[0] === x && field[1] === y)
-      );
-    }
-    //console.log(this.activeFields);
-  }
-
   render() {
-    let [xFields, yFields] = [111, 44];
+    let [xFields, yFields] = [this.props.xFields, this.props.yFields];
     let fieldBorder = 1;
     let fieldSize = 10;
     let table = [];
@@ -41,7 +27,6 @@ class GridUI extends React.Component {
                 y={j}
                 backgroundActivated={"grey"}
                 background={"white"}
-                fieldClicked={this.fieldClicked.bind(this)}
               />
             );
           })}
@@ -56,14 +41,31 @@ class GridUI extends React.Component {
             tableLayout: "fixed",
             margin: "0",
             padding: "0",
-            position: "relative",
+            position: "absolute",
           }}
         >
           <tbody>{table}</tbody>
         </table>
+        <Segment
+          raised
+          style={{ right: "0", bottom: "0", position: "absolute" }}
+        >
+          {" "}
+          <GridToolbarUI processGrid={this.props.process.bind(this)} />{" "}
+        </Segment>{" "}
       </div>
     );
   }
 }
 
-export default GridUI;
+const mapStateToProps = (state) => {
+  return {};
+  //return { filledFields: state.gridReducer.filledFields };
+};
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    process: () => dispatch(processGrid(ownProps.xFields, ownProps.yFields)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(GridUI);

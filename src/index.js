@@ -6,7 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 // Reducers:
-import gridReducer from "./Grid/GridReducer";
+import gridReducer from "./App/Grid/GridReducer";
 import appReducer from "./App/AppReducer";
 
 ReactDOM.render(
