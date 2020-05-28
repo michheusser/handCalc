@@ -369,26 +369,31 @@ class GridSegmentator extends GridTool {
   }
   createSegments(fitData = null) {
     // Segments the grid and allocates the segments in this.segments.
+
     this.clearSegments();
     let grid = this.grid.tools.gridCloner.clone(); // creates clone of original grid
+
     for (let y = 0; y < grid.yFields; y++) {
       for (let x = 0; x < grid.xFields; x++) {
         if (grid.getField(x, y).isFilled) {
           let gridSegment = new Grid(grid.xFields, grid.yFields);
+
           this.agglomerate(grid, gridSegment, x, y);
+
           this.segments.push(gridSegment);
         }
       }
-      if (fitData) {
-        this.fitSegments(
-          fitData.xFields,
-          fitData.yFields,
-          fitData.xMargin,
-          fitData.yMargin,
-          fitData.keepRatio
-        );
-      }
     }
+    if (fitData) {
+      this.fitSegments(
+        fitData.xFields,
+        fitData.yFields,
+        fitData.xMargin,
+        fitData.yMargin,
+        fitData.keepRatio
+      );
+    }
+
     return this.segments;
   }
   fitSegments(xFields, yFields, xMargin = 0, yMargin = 0, keepRatio = false) {
@@ -430,7 +435,7 @@ class GridGenerator {
       grid.addTool(tool);
       //  counter++;
     }
-    //console.log(`${counter} tools successfully added. `);
+
     return grid;
   }
   fillFields(grid, fields) {
@@ -442,7 +447,7 @@ class GridGenerator {
     let newGrid = new Grid(xFields, yFields);
     this.loadTools().addTools(newGrid);
     this.fillFields(newGrid, fields);
-    //console.log("New Grid created.");
+
     return newGrid;
   }
 }

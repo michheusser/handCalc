@@ -20,17 +20,19 @@ let gridReducer = (
     };
     newState.boardGridSegments = newState.boardGrid.tools.gridSegmentator.createSegments(
       {
-        xFields: 28,
-        yFields: 28,
+        xFields: 100,
+        yFields: 100,
         xMargin: 1,
         yMargin: 1,
         keepRatio: true,
       }
     );
+
     //console.log("[gridReducer] gridReducer on PROCESS_GRID executed.");
     return newState;
   } else if (action.type === "FIELD_CLICKED") {
     let newState = {
+      ...state,
       filledFields: [...state.filledFields],
       boardGrid: null,
       boardGridSegments: [],

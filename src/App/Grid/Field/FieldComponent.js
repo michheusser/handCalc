@@ -25,7 +25,7 @@ class FieldUI extends React.Component {
   }
   render() {
     let styleCell = {
-      border: `${this.props.border}px solid lightblue`,
+      border: `${this.props.border}px solid #CCCCCC`,
       padding: "0",
     };
     let styleSquare = {

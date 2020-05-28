@@ -8,10 +8,15 @@ import { Provider } from "react-redux";
 // Reducers:
 import gridReducer from "./App/Grid/GridReducer";
 import appReducer from "./App/AppReducer";
+import segmentListReducer from "./App/SegmentList/SegmentListReducer";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={createStore(combineReducers({ gridReducer, appReducer }))}>
+    <Provider
+      store={createStore(
+        combineReducers({ gridReducer, appReducer, segmentListReducer })
+      )}
+    >
       <App />
     </Provider>
   </React.StrictMode>,
