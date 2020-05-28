@@ -17,14 +17,13 @@ class GridUI extends React.Component {
     );
   }
   render() {
-    let [xFields, yFields] = [this.props.xFields, this.props.yFields];
     let fieldBorder = 1;
     let fieldSize = 10;
     let table = [];
-    for (let j = 0; j < yFields; j++) {
+    for (let j = 0; j < this.props.yFields; j++) {
       table.push(
         <tr key={j}>
-          {new Array(xFields).fill(null).map((_, index) => {
+          {new Array(this.props.xFields).fill(null).map((_, index) => {
             return (
               <FieldUI
                 key={`ID${j}&${index}`}
@@ -68,6 +67,8 @@ class GridUI extends React.Component {
 const mapStateToProps = (state) => {
   return {
     activeFields: state.gridReducer.activeFields,
+    xFields: state.appReducer.xFields,
+    yFields: state.appReducer.yFields,
   };
   //return { filledFields: state.gridReducer.filledFields };
 };

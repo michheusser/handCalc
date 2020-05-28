@@ -63,7 +63,7 @@ class LayoutUI extends React.Component {
               }}
             >
               {" "}
-              <GridUI xFields={111} yFields={44} />{" "}
+              <GridUI />{" "}
             </div>{" "}
           </Grid.Column>{" "}
         </Grid.Row>
