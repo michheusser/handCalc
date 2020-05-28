@@ -21,8 +21,10 @@ class FieldUI extends React.Component {
       return false;
     }
     this.props.fieldToggle();
+    //console.log(`Before update: active = ${this.props.active}`);
     return true;
   }
+
   render() {
     let styleCell = {
       border: `${this.props.border}px solid #CCCCCC`,
