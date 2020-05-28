@@ -68,7 +68,7 @@ class AnalysisPaneUI extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    selectedSegment: state.segmentListReducer.selectedSegment,
+    selectedSegment: state.analysisPaneReducer.selectedSegment,
   };
 };
 
