@@ -5,22 +5,22 @@ import { connect } from "react-redux";
 import { fieldClicked } from "./FieldActions";
 
 class FieldUI extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { activated: false };
-  }
-  toggleField(event) {
-    if (event.buttons !== 1) {
+  /*toggleField(event) {
+    /*if (event.buttons !== 1) {
       return false;
     }
-    if (this.state.activated) {
+    if (this.props.active) {
       this.setState({ activated: false });
       this.props.fieldToggle(false);
     } else {
       this.setState({ activated: true });
       this.props.fieldToggle(true);
+    }*/
+  toggle(event) {
+    if (event.buttons !== 1) {
+      return false;
     }
-
+    this.props.fieldToggle();
     return true;
   }
   render() {
@@ -31,7 +31,7 @@ class FieldUI extends React.Component {
     let styleSquare = {
       height: `${this.props.fieldSize}px`,
       width: `${this.props.fieldSize}px`,
-      background: this.state.activated
+      background: this.props.active
         ? `${this.props.backgroundActivated}`
         : `${this.props.background}`,
       border: "none",
@@ -42,22 +42,31 @@ class FieldUI extends React.Component {
       <td style={styleCell}>
         <div
           style={styleSquare}
-          onMouseOver={this.toggleField.bind(this)}
-          onMouseDown={this.toggleField.bind(this)}
+          onMouseOver={this.toggle.bind(this)}
+          onMouseDown={this.toggle.bind(this)}
         ></div>
       </td>
     );
   }
 }
 
-const mapStatetoProps = (state) => {
-  return {};
+const mapStatetoProps = (state, ownProps) => {
+  let active = false;
+
+  if (
+    state.gridReducer.activeFields.find((field) => {
+      return field[0] === ownProps.x && field[1] === ownProps.y;
+    })
+  ) {
+    active = true;
+  }
+  return { active: active };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fieldToggle: (active) => {
-      dispatch(fieldClicked(ownProps.x, ownProps.y, active));
+    fieldToggle: () => {
+      dispatch(fieldClicked(ownProps.x, ownProps.y));
     },
   };
 };

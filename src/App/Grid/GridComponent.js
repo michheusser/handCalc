@@ -9,6 +9,13 @@ import FieldUI from "./Field/FieldComponent";
 import GridToolbarUI from "./GridToolbar/GridToolbarComponent";
 
 class GridUI extends React.Component {
+  processGrid() {
+    this.props.process(
+      this.props.xFields,
+      this.props.yFields,
+      this.props.activeFields
+    );
+  }
   render() {
     let [xFields, yFields] = [this.props.xFields, this.props.yFields];
     let fieldBorder = 1;
@@ -51,7 +58,7 @@ class GridUI extends React.Component {
           style={{ right: "0", bottom: "0", position: "absolute" }}
         >
           {" "}
-          <GridToolbarUI processGrid={this.props.process.bind(this)} />{" "}
+          <GridToolbarUI processGrid={this.processGrid.bind(this)} />{" "}
         </Segment>{" "}
       </div>
     );
@@ -59,12 +66,15 @@ class GridUI extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    activeFields: state.gridReducer.activeFields,
+  };
   //return { filledFields: state.gridReducer.filledFields };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    process: () => dispatch(processGrid(ownProps.xFields, ownProps.yFields)),
+    process: (xFields, yFields, activeFields) =>
+      dispatch(processGrid(xFields, yFields, activeFields)),
   };
 };
 

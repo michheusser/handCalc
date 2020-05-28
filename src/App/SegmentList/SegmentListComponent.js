@@ -72,7 +72,7 @@ class SegmentListUI extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    segments: state.gridReducer.boardGridSegments,
+    segments: state.segmentListReducer.boardGridSegments,
   };
 };
 

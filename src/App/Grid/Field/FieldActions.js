@@ -1,6 +1,6 @@
-export const fieldClicked = (x, y, active) => {
+export const fieldClicked = (x, y) => {
   return {
     type: "FIELD_CLICKED",
-    payload: { x: x, y: y, active: active },
+    payload: { x: x, y: y },
   };
 };
