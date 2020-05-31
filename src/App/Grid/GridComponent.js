@@ -9,13 +9,22 @@ import FieldUI from "./Field/FieldComponent";
 import GridToolbarUI from "./GridToolbar/GridToolbarComponent";
 
 class GridUI extends React.Component {
-  processGrid() {
-    this.props.process(
-      this.props.xFields,
-      this.props.yFields,
-      this.props.activeFields
-    );
+  constructor(props) {
+    super(props);
+    this.fields = new Array(this.props.xFields)
+      .fill(null)
+      .map((_) => new Array(this.props.yFields).fill(false));
   }
+  setFieldActive(x, y) {
+    function setActive(active) {
+      this.fields[x][y] = active;
+    }
+    return setActive;
+  }
+  processGrid() {
+    this.props.process(this.props.xFields, this.props.yFields, this.fields);
+  }
+
   render() {
     let fieldBorder = 1;
     let fieldSize = 10;
@@ -31,6 +40,8 @@ class GridUI extends React.Component {
                 border={fieldBorder}
                 x={index}
                 y={j}
+                setFieldActive={this.setFieldActive(index, j).bind(this)}
+                active={this.fields[index][j]}
                 backgroundActivated={"grey"}
                 background={"white"}
               />
@@ -66,7 +77,6 @@ class GridUI extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    activeFields: state.gridReducer.activeFields,
     xFields: state.appReducer.xFields,
     yFields: state.appReducer.yFields,
   };
@@ -74,8 +84,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    process: (xFields, yFields, activeFields) =>
-      dispatch(processGrid(xFields, yFields, activeFields)),
+    process: (xFields, yFields, fields) =>
+      dispatch(processGrid(xFields, yFields, fields)),
   };
 };
 

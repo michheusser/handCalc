@@ -3,26 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App/App";
 import * as serviceWorker from "./serviceWorker";
-import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
-// Reducers:
-import gridReducer from "./App/Grid/GridReducer";
-import appReducer from "./App/AppReducer";
-import segmentListReducer from "./App/SegmentList/SegmentListReducer";
-import analysisPaneReducer from "./App/AnalysisPane/AnalysisPaneReducer";
+import setupStore from "./storeSetup";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider
-      store={createStore(
-        combineReducers({
-          gridReducer,
-          appReducer,
-          segmentListReducer,
-          analysisPaneReducer,
-        })
-      )}
-    >
+    <Provider store={setupStore()}>
       <App />
     </Provider>
   </React.StrictMode>,
