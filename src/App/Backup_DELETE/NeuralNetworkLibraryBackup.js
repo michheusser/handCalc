@@ -14,15 +14,85 @@ class NeuronData {
     this.inputWeights = [];
     this.bias = 0;
   }
+  loadDataArray(data) {
+    this.inputWeights = new Array(data.inputWeights.length)
+      .fill(null)
+      .map((_, index) => data.inputWeights[index]);
+    this.bias = data.bias;
+  }
+  getDataArray() {
+    return { inputWeights: this.inputWeights, bias: this.bias };
+  }
 }
 class NeuronLayerData {
   constructor() {
     this.neuronData = [];
   }
+  loadDataArray(data) {
+    this.neuronData = new Array(data.inputWeights.length)
+      .fill(null)
+      .map((_, index) =>
+        new NeuronData().loadDataArray({
+          inputWeights: data.inputWeights[index],
+          bias: data.bias[index],
+        })
+      );
+  }
+  getDataArray() {
+    let inputWeights = [],
+      bias = [];
+    for (let i = 0; i < this.neuronData.length; i++) {
+      let neuronData = this.neuronData[i].getDataArray();
+      inputWeights.push(neuronData.inputWeights);
+      bias.push(neuronData.bias);
+    }
+    return { inputWeights: inputWeights, bias: bias };
+  }
+
+  [Symbol.iterator]() {
+    // makes neurons within the layer iterable in for...of loops.
+    let counter = 0;
+    return {
+      next: () => ({
+        done: counter === this.neuronData.length,
+        value: this.neuronData[counter++],
+      }),
+    };
+  }
 }
 class NeuralNetworkData {
   constructor() {
     this.layerData = [];
+  }
+  loadDataArray(data) {
+    this.layerData = new Array(data.inputWeights.length)
+      .fill(null)
+      .map((_, index) =>
+        new NeuronLayerData().loadDataArray({
+          inputWeights: data.inputWeights[index],
+          bias: data.bias[index],
+        })
+      );
+  }
+  getDataArray() {
+    let inputWeights = [],
+      bias = [];
+    for (let i = 0; i < this.layerData.length; i++) {
+      let layerData = this.layerData[i].getDataArray();
+      inputWeights.push(layerData.inputWeights);
+      bias.push(layerData.bias);
+    }
+    return { inputWeights: inputWeights, bias: bias };
+  }
+  [Symbol.iterator]() {
+    // makes layers within the network iterable in for...of loops.
+    let counter = 0;
+    return {
+      next: () => ({
+        done: counter === this.layerData.length,
+        value: this.layerData[counter++],
+      }),
+    }; // when done == true, value is not returned anymore
   }
 }
 class Neuron {
@@ -91,14 +161,15 @@ class Neuron {
       this.inputs[i].weight = neuronData.inputWeights[i];
     }
     this.bias = neuronData.bias;
-    console.log("Neuron Data loaded.");
+    //console.log("Neuron Data loaded.");
     return this;
   }
   toString() {
     return `Neuron: inputs = ${this.inputs.length}, outputs = ${this.outputs.length}, bias = ${this.bias}`;
     // Todo
   }
-  [Symbol.iterator]() { // makes single neurons compatible for iterated neuron layer operations
+  [Symbol.iterator]() {
+    // makes single neurons compatible for iterated neuron layer operations
     let end = false;
     return { next: () => ({ value: this, done: end++ }) };
   }
@@ -107,14 +178,13 @@ class NeuronLayer {
   constructor() {
     this.neurons = [];
   }
-  [Symbol.iterator]() { // makes neurons within the layer iterable in for...of loops.
+  [Symbol.iterator]() {
+    // makes neurons within the layer iterable in for...of loops.
     let counter = 0;
-    let layerLength = this.neurons.length;
-    let neurons = this.neurons;
     return {
       next: () => ({
-        done: counter === layerLength,
-        value: neurons[counter++],
+        done: counter === this.neurons.length,
+        value: this.neurons[counter++],
       }),
     }; // when done == true, value is not returned anymore
   }
@@ -174,7 +244,7 @@ class NeuronLayer {
     for (let i = 0; i < this.neurons.length; i++) {
       this.neurons[i].loadData(layerData.neuronData[i]);
     }
-    console.log("Layer data loaded.");
+    //console.log("Layer data loaded.");
     return this;
   }
   toString() {
@@ -190,12 +260,14 @@ class NeuralNetwork {
     this.layers = [];
     this.tools = {};
   }
-  [Symbol.iterator]() { // makes layers within the network iterable in for...of loops.
+  [Symbol.iterator]() {
+    // makes layers within the network iterable in for...of loops.
     let counter = 0;
-    let networkSize = this.layers.length;
-    let layers = this.layers;
     return {
-      next: () => ({ done: counter === networkSize, value: layers[counter++] }),
+      next: () => ({
+        done: counter === this.layers.length,
+        value: this.layers[counter++],
+      }),
     }; // when done == true, value is not returned anymore
   }
   addLayer(layer = new NeuronLayer(), ...layers) {
@@ -216,7 +288,7 @@ class NeuralNetwork {
     for (let i = 0; i < this.layers.length; i++) {
       this.layers[i].loadData(networkData.layerData[i]);
     }
-    console.log("Network data loaded.");
+    //console.log("Network data loaded.");
     return this;
   }
   loadActivation(activation, layer) {
@@ -224,7 +296,7 @@ class NeuralNetwork {
     return this;
   }
   getActivation(layer) {
-    console.log(this.layers);
+    //console.log(this.layers);
     return this.layers[layer].getActivation();
   }
   activate() {
@@ -244,14 +316,13 @@ class NeuralNetwork {
     }
     neuralNetworkTool.network = this;
     this.tools[neuralNetworkTool.name] = neuralNetworkTool;
-    console.log(
+    /*console.log(
       `Tool added! Name: ${neuralNetworkTool.name}, Type: ${neuralNetworkTool.__proto__.constructor.name}`
-    );
+    );*/
     return this;
   }
   toString() {
     let string = `Neural Network with ${this.layers.length} layers\n`;
-    let counter = 0;
     for (let layer of this) {
       string += layer.toString();
     }
@@ -267,9 +338,6 @@ class NeuralNetworkTool {
   }
 }
 class NeuralNetworkBuilder extends NeuralNetworkTool {
-  constructor() {
-    super();
-  }
   connect(backLayer, frontLayer) {
     for (let backNeuron of backLayer) {
       for (let frontNeuron of frontLayer) {
@@ -301,39 +369,30 @@ class NeuralNetworkBuilder extends NeuralNetworkTool {
   }
 }
 class NeuralNetworkManipulator extends NeuralNetworkTool {
-  constructor() {
-    super();
-  }
   initialize(value = null) {
     for (let layer of this.network) {
       layer.initialize(value);
     }
-    console.log("Initialized Neural Network with given weights and bias.");
+    //console.log("Initialized Neural Network with given weights and bias.");
     return this.network;
   }
-  loadData(networkData = null) {
-    return this.network.loadData(networkData);
+  loadData(networkData) {
+    this.network.loadData(networkData);
   }
   extractData() {
     return this.network.getData();
   }
-  dataToMatrix(data) {
-    // Todo
+  extractMatrixData() {
+    const data = this.extractData();
+    return data.getDataArray();
   }
-  matrixToData(W, b) {
-    // Todo
+  loadMatrixData(matrixData) {
+    this.network.loadData(new NeuralNetworkData().loadDataArray(matrixData));
   }
   toString() {}
 }
-class NeuralNetworkTrainer extends NeuralNetworkTool {
-  constructor() {
-    super();
-  }
-}
+class NeuralNetworkTrainer extends NeuralNetworkTool {}
 class NeuralNetworkActivator extends NeuralNetworkTool {
-  constructor() {
-    super();
-  }
   evaluate(
     inputList // list of input activators for the first layer
   ) {
@@ -371,11 +430,13 @@ class NeuralNetworkGenerator {
   }
 }
 
+//export default NeuralNetworkGenerator;
+/*
 let neuralNetwork = new NeuralNetworkGenerator().createNeuralNetwork([5, 4, 3]);
 neuralNetwork.tools.neuralNetworkManipulator.initialize();
 let input = [5, 4, 3, 2, 1];
 console.log(neuralNetwork.tools.neuralNetworkActivator.evaluate(input));
-
+*/
 /*let neuralNetwork = new NeuralNetworkGenerator().createNeuralNetwork([1,1]);
 neuralNetwork.tools.neuralNetworkManipulator.initialize(1);
 let input = [4];
