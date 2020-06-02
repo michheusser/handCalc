@@ -25,7 +25,7 @@ class NeuronLayer {
     }
     return this;
   }
-  connectInput(backLayer, weight = 0) {
+  connectInput(backLayer, weight = null) {
     for (let backNeuron of backLayer) {
       for (let frontNeuron of this) {
         frontNeuron.connectInput(backNeuron, weight);

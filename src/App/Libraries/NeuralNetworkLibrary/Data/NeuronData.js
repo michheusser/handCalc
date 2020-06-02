@@ -1,7 +1,7 @@
 class NeuronData {
   constructor() {
     this.inputWeights = [];
-    this.bias = 0;
+    this.bias = null;
   }
   loadDataArray(data) {
     this.inputWeights = new Array(data.inputWeights.length)

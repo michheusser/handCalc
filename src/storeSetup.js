@@ -3,6 +3,7 @@ import gridReducer from "./App/Grid/GridReducer";
 import appReducer from "./App/AppReducer";
 import segmentListReducer from "./App/SegmentList/SegmentListReducer";
 import analysisPaneReducer from "./App/AnalysisPane/AnalysisPaneReducer";
+import predictorReducer from "./App/Predictor/PredictorReducer";
 
 // Define the Reducers that will always be present in the application
 const initialReducers = {
@@ -10,6 +11,7 @@ const initialReducers = {
   appReducer: appReducer,
   segmentListReducer: segmentListReducer,
   analysisPaneReducer: analysisPaneReducer,
+  predictorReducer: predictorReducer,
 };
 
 const setupStore = () => {

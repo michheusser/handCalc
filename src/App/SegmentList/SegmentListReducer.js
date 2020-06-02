@@ -1,4 +1,4 @@
-import GridGenerator from "../Grid/GridLibrary";
+import GridGenerator from "../Libraries/GridLibrary/GridGenerator";
 
 let segmentListReducer = (
   state = {

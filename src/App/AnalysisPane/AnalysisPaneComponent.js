@@ -20,6 +20,7 @@ class AnalysisPaneUI extends React.Component {
     }
     return new ImageData(imageArray, grid.xFields, grid.yFields);
   }
+
   updateCanvas() {
     if (this.props.selectedSegment) {
       /*this.context = this.canvas.getContext("2d");
@@ -54,13 +55,16 @@ class AnalysisPaneUI extends React.Component {
 
   render() {
     return (
-      <div style={{ background: "white", margin: "4px" }}>
-        <canvas
-          width={200}
-          height={200}
-          style={{ border: "thin solid black" }}
-          ref={(ref) => (this.canvas = ref)}
-        />{" "}
+      <div>
+        <div style={{ background: "white", margin: "4px" }}>
+          <canvas
+            width={200}
+            height={200}
+            style={{ border: "thin solid black" }}
+            ref={(ref) => (this.canvas = ref)}
+          />{" "}
+        </div>
+        <div>{}</div>
       </div>
     );
   }
@@ -69,6 +73,7 @@ class AnalysisPaneUI extends React.Component {
 const mapStateToProps = (state) => {
   return {
     selectedSegment: state.analysisPaneReducer.selectedSegment,
+    neuralNetwork: state.predictorReducer.neuralNetwork,
   };
 };
 

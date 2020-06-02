@@ -34,7 +34,6 @@ class NeuralNetwork {
     for (let i = 0; i < this.layers.length; i++) {
       this.layers[i].loadData(networkData.layerData[i]);
     }
-    console.log("Network data loaded.");
     return this;
   }
   loadActivation(activation, layer) {

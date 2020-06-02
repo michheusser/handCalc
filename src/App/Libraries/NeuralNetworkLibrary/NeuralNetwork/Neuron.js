@@ -4,8 +4,8 @@ import NeuronData from "../Data/NeuronData";
 
 class Neuron {
   constructor(
-    bias = 0,
-    activation = 0,
+    bias = null,
+    activation = null,
     activationFunction = ActivationFunctions.sigma
   ) {
     this.inputs = [];
@@ -14,7 +14,7 @@ class Neuron {
     this.activation = activation;
     this.activationFunction = activationFunction;
   }
-  connectInput(backNeuron, weight = 0) {
+  connectInput(backNeuron, weight = null) {
     let newConnection = new NeuronConnection(backNeuron, this, weight);
     this.inputs.push(newConnection);
     backNeuron.outputs.push(newConnection);
@@ -41,7 +41,7 @@ class Neuron {
     return this.activation;
   }
   activate() {
-    if (this.inputs.length < 1) {
+    if (this.inputs.length === 0) {
       return this;
     }
     let activation = 0;

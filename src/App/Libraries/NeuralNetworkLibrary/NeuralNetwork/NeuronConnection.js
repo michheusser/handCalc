@@ -1,5 +1,5 @@
 class NeuronConnection {
-  constructor(backNeuron, frontNeuron, weight = 0) {
+  constructor(backNeuron, frontNeuron, weight = null) {
     this.back = backNeuron;
     this.front = frontNeuron;
     this.weight = weight;
