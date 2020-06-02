@@ -1,10 +1,10 @@
-import GridTool from "./Tools/GridTool";
 import Grid from "./Grid/Grid";
 import GridCloner from "./Tools/GridCloner";
 import GridAligner from "./Tools/GridAligner";
 import GridCropper from "./Tools/GridCropper";
 import GridScaler from "./Tools/GridScaler";
 import GridSegmentator from "./Tools/GridSegmentator";
+import GridManipulator from "./Tools/GridManipulator";
 
 class GridGenerator {
   constructor() {
@@ -16,7 +16,8 @@ class GridGenerator {
       new GridAligner(),
       new GridCropper(),
       new GridScaler(),
-      new GridSegmentator()
+      new GridSegmentator(),
+      new GridManipulator()
     );
     return this;
   }

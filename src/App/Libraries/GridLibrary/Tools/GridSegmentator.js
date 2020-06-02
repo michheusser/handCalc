@@ -1,9 +1,6 @@
 import GridTool from "./GridTool";
-import GridCloner from "./GridCloner";
-import GridAligner from "./GridAligner";
-import GridCropper from "./GridCropper";
-import GridScaler from "./GridScaler";
-import Grid from "../Grid/Grid";
+
+import GridGenerator from "../GridGenerator";
 
 class GridSegmentator extends GridTool {
   // Takes a grid as an input and creates grids of equal size containing each agglomeration of filled fields
@@ -50,7 +47,10 @@ class GridSegmentator extends GridTool {
     for (let y = 0; y < grid.yFields; y++) {
       for (let x = 0; x < grid.xFields; x++) {
         if (grid.getField(x, y).isFilled) {
-          let gridSegment = new Grid(grid.xFields, grid.yFields);
+          let gridSegment = new GridGenerator().createGrid(
+            grid.xFields,
+            grid.yFields
+          );
 
           this.agglomerate(grid, gridSegment, x, y);
 
@@ -72,12 +72,6 @@ class GridSegmentator extends GridTool {
   }
   fitSegments(xFields, yFields, xMargin = 0, yMargin = 0, keepRatio = false) {
     for (let segment of this.segments) {
-      segment
-        .addTool(new GridCloner())
-        .addTool(new GridAligner())
-        .addTool(new GridCropper())
-        .addTool(new GridScaler())
-        .addTool(new GridSegmentator());
       segment.tools.gridScaler.fit(
         xFields,
         yFields,

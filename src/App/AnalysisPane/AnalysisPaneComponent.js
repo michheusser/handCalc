@@ -1,5 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+import NeuralNetworkBarsUI from "./NeuralNetworkChart/NeuralNetworkBars";
+import NeuralNetworkRadarUI from "./NeuralNetworkChart/NeuralNetworkRadar";
+//import "../node_modules/react-vis/dist/style.css";
 
 class AnalysisPaneUI extends React.Component {
   constructor(props) {
@@ -37,7 +40,7 @@ class AnalysisPaneUI extends React.Component {
       this.context = this.canvas.getContext("2d");
       this.context.putImageData(
         this.gridToImage(
-          this.props.selectedSegment.tools.gridScaler.scale(200, 200),
+          this.props.selectedSegment.tools.gridScaler.scale(28, 28),
           { r: 30, g: 30, b: 30 }
         ),
         0,
@@ -54,17 +57,31 @@ class AnalysisPaneUI extends React.Component {
   }
 
   render() {
+    let vectorizedSegment = null;
+    let output = null;
+    let prediction = null;
+    if (this.props.selectedSegment) {
+      vectorizedSegment = this.props.selectedSegment.tools.gridScaler
+        .scale(28, 28)
+        .tools.gridManipulator.gridToArray();
+      console.log(vectorizedSegment);
+      output = this.props.predictor.evaluate(vectorizedSegment);
+      prediction = output.indexOf(Math.max(...output));
+    }
     return (
-      <div>
+      <div height={400}>
         <div style={{ background: "white", margin: "4px" }}>
           <canvas
-            width={200}
-            height={200}
+            width={28}
+            height={28}
             style={{ border: "thin solid black" }}
             ref={(ref) => (this.canvas = ref)}
           />{" "}
         </div>
-        <div>{}</div>
+        <div>{prediction}</div>
+
+        <NeuralNetworkBarsUI data={output} />
+        <NeuralNetworkRadarUI data={output} />
       </div>
     );
   }
@@ -73,7 +90,8 @@ class AnalysisPaneUI extends React.Component {
 const mapStateToProps = (state) => {
   return {
     selectedSegment: state.analysisPaneReducer.selectedSegment,
-    neuralNetwork: state.predictorReducer.neuralNetwork,
+    predictor:
+      state.predictorReducer.neuralNetwork.tools.neuralNetworkActivator,
   };
 };
 

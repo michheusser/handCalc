@@ -50,6 +50,7 @@ class Neuron {
     }
     activation += this.bias;
     this.activation = this.activationFunction(activation);
+
     return this;
   }
   getData() {
@@ -67,6 +68,7 @@ class Neuron {
     for (let i = 0; i < this.inputs.length; i++) {
       this.inputs[i].weight = neuronData.inputWeights[i];
     }
+
     this.bias = neuronData.bias;
     //console.log("Neuron Data loaded.");
     return this;
