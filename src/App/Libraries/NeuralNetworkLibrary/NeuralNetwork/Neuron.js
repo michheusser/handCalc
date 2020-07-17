@@ -57,7 +57,8 @@ class Neuron {
   }
   getData() {
     let neuronData = new NeuronData();
-    neuronData.bias = this.bias;
+    //neuronData.bias = this.bias;//CHANGE!!!
+    neuronData.bias = [this.bias];
     for (let input of this.inputs) {
       neuronData.inputWeights.push(input.weight);
     }
@@ -70,9 +71,8 @@ class Neuron {
     for (let i = 0; i < this.inputs.length; i++) {
       this.inputs[i].weight = neuronData.inputWeights[i];
     }
-
-    this.bias = neuronData.bias;
-    //console.log("Neuron Data loaded.");
+    //this.bias = neuronData.bias;// CHANGE!!!
+    this.bias = neuronData.bias[0];
     return this;
   }
   toString() {

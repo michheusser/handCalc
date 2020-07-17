@@ -54,8 +54,8 @@ class NeuronLayer {
   activate() {
     let counter = 0;
     for (let neuron of this) {
-      console.log(`Neuron: ${counter}`);
-      counter++;
+      //console.log(`Neuron: ${counter}`);
+      //counter++;
       neuron.activate();
     }
     return this;

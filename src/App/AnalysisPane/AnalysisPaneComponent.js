@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-//import NeuralNetworkBarsUI from "./NeuralNetworkChart/NeuralNetworkBars";
-//import NeuralNetworkRadarUI from "./NeuralNetworkChart/NeuralNetworkRadar";
+import NeuralNetworkBarsUI from "./NeuralNetworkChart/NeuralNetworkBars";
+import NeuralNetworkRadarUI from "./NeuralNetworkChart/NeuralNetworkRadar";
 
 class AnalysisPaneUI extends React.Component {
   constructor(props) {
@@ -78,14 +78,13 @@ class AnalysisPaneUI extends React.Component {
           />{" "}
         </div>
         <div>{prediction}</div>
+        <NeuralNetworkBarsUI data={output} />
+        <NeuralNetworkRadarUI data={output} />
       </div>
     );
   }
 }
-/*
-<NeuralNetworkBarsUI data={output} />
-<NeuralNetworkRadarUI data={output} />
-*/
+
 const mapStateToProps = (state) => {
   return {
     selectedSegment: state.analysisPaneReducer.selectedSegment,
