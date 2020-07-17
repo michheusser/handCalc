@@ -10,7 +10,7 @@ class NeuralNetworkBarsUI extends React.Component {
     const barsData = [];
     for (let i = 0; i < this.props.data.length; i++) {
       barsData.push({
-        symbol: `${i}`,
+        symbol: `${this.props.outputMap[i]}`,
         prediction: Math.log(this.props.data[i]),
       });
     }
@@ -118,7 +118,9 @@ class NeuralNetworkBarsUI extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    outputMap: state.predictorReducer.outputMap,
+  };
 };
 
 export default connect(mapStateToProps)(NeuralNetworkBarsUI);

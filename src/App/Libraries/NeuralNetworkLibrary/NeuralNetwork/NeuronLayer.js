@@ -52,7 +52,10 @@ class NeuronLayer {
     return activation;
   }
   activate() {
+    let counter = 0;
     for (let neuron of this) {
+      console.log(`Neuron: ${counter}`);
+      counter++;
       neuron.activate();
     }
     return this;

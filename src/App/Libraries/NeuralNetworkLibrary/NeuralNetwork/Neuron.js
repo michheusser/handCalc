@@ -44,13 +44,15 @@ class Neuron {
     if (this.inputs.length === 0) {
       return this;
     }
-    let activation = 0;
+    let z = 0;
     for (let i = 0; i < this.inputs.length; i++) {
-      activation += this.inputs[i].weight * this.inputs[i].back.activation;
+      z += this.inputs[i].weight * this.inputs[i].back.activation;
     }
-    activation += this.bias;
-    this.activation = this.activationFunction(activation);
+    z += this.bias;
+    console.log(this.bias);
+    console.log(`type this.bias: ${typeof this.bias}`);
 
+    this.activation = this.activationFunction(z);
     return this;
   }
   getData() {

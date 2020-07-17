@@ -11,7 +11,7 @@ class NeuralNetworkRadarUI extends React.Component {
     const radarData = [];
     for (let i = 0; i < this.props.data.length; i++) {
       radarData.push({
-        symbol: `${i}`,
+        symbol: `${this.props.outputMap[i]}`,
         prediction: this.props.data[i],
       });
     }
@@ -77,7 +77,9 @@ class NeuralNetworkRadarUI extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    outputMap: state.predictorReducer.outputMap,
+  };
 };
 
 export default connect(mapStateToProps)(NeuralNetworkRadarUI);

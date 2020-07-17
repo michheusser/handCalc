@@ -24,10 +24,10 @@ let segmentListReducer = (
           activeFields
         )
         .tools.gridSegmentator.createSegments({
-          xFields: 100,
-          yFields: 100,
-          xMargin: 1,
-          yMargin: 1,
+          xFields: 28,
+          yFields: 28,
+          xMargin: 0,
+          yMargin: 0,
           keepRatio: true,
         }),
     };
