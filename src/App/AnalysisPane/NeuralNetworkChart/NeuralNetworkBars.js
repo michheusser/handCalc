@@ -11,7 +11,8 @@ class NeuralNetworkBarsUI extends React.Component {
     for (let i = 0; i < this.props.data.length; i++) {
       barsData.push({
         symbol: `${this.props.outputMap[i]}`,
-        prediction: Math.log(this.props.data[i]),
+        //prediction: Math.log(this.props.data[i]),
+        prediction: this.props.data[i],
       });
     }
     return barsData;

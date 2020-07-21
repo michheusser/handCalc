@@ -58,6 +58,7 @@ class GridSegmentator extends GridTool {
         }
       }
     }
+    this.orderSegments();
     if (fitData) {
       this.fitSegments(
         fitData.xFields,
@@ -81,6 +82,31 @@ class GridSegmentator extends GridTool {
       );
     }
     return this.grid;
+  }
+  centerOfMass(segment) {
+    let xM = 0;
+    let filledFields = 0;
+    for (let field of segment.fields) {
+      if (field.isFilled) {
+        xM += field.coordinate.x;
+        filledFields++;
+      }
+    }
+    return xM / filledFields;
+  }
+
+  orderSegments() {
+    let centerOfMassArray = [];
+    for (let segment of this.segments) {
+      centerOfMassArray.push({
+        segment: segment,
+        centerOfMass: this.centerOfMass(segment),
+      });
+    }
+    centerOfMassArray.sort((a, b) => a.centerOfMass - b.centerOfMass);
+    this.segments = centerOfMassArray.map((x) => x.segment);
+    //console.log(centerOfMassArray);
+    return centerOfMassArray;
   }
 }
 

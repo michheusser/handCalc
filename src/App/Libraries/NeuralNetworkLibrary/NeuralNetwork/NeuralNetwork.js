@@ -45,7 +45,7 @@ class NeuralNetwork {
     return this.layers[layer].getActivation();
   }
   activate() {
-    let counter = 0;
+    //let counter = 0;
     for (let layer of this) {
       //console.log(`Layer: ${counter}`);
       //counter++;

@@ -49,8 +49,8 @@ class Neuron {
       z += this.inputs[i].weight * this.inputs[i].back.activation;
     }
     z += this.bias;
-    console.log(this.bias);
-    console.log(`type this.bias: ${typeof this.bias}`);
+    //console.log(this.bias);
+    //console.log(`type this.bias: ${typeof this.bias}`);
 
     this.activation = this.activationFunction(z);
     return this;
