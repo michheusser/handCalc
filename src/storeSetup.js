@@ -1,7 +1,7 @@
 import { createStore, combineReducers } from "redux";
 import gridReducer from "./App/Grid/GridReducer";
 import appReducer from "./App/AppReducer";
-import segmentListReducer from "./App/SegmentList/SegmentListReducer";
+import resultPaneReducer from "./App/ResultPane/ResultPaneReducer";
 import analysisPaneReducer from "./App/AnalysisPane/AnalysisPaneReducer";
 import predictorReducer from "./App/Predictor/PredictorReducer";
 
@@ -9,7 +9,7 @@ import predictorReducer from "./App/Predictor/PredictorReducer";
 const initialReducers = {
   gridReducer: gridReducer,
   appReducer: appReducer,
-  segmentListReducer: segmentListReducer,
+  resultPaneReducer: resultPaneReducer,
   analysisPaneReducer: analysisPaneReducer,
   predictorReducer: predictorReducer,
 };

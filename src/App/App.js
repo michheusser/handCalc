@@ -7,7 +7,7 @@ import "./App.css";
 import HeaderUI from "./Header/HeaderComponent";
 import GridUI from "./Grid/GridComponent";
 import AnalysisPaneUI from "./AnalysisPane/AnalysisPaneComponent";
-import SegmentListUI from "./SegmentList/SegmentListComponent";
+import ResultPaneUI from "./ResultPane/ResultPaneComponent";
 
 function App() {
   return (
@@ -52,7 +52,7 @@ class LayoutUI extends React.Component {
         </Grid.Row>
         <Grid.Row
           style={{
-            height: "65%",
+            height: "50%",
           }}
         >
           <Grid.Column width={16}>
@@ -69,7 +69,24 @@ class LayoutUI extends React.Component {
         </Grid.Row>
         <Grid.Row
           style={{
-            height: "25%",
+            height: "20%",
+          }}
+        >
+          <Grid.Column width={16}>
+            <Segment
+              raised
+              style={{
+                height: "100%",
+              }}
+            >
+              {" "}
+              <HeaderUI />{" "}
+            </Segment>{" "}
+          </Grid.Column>{" "}
+        </Grid.Row>
+        <Grid.Row
+          style={{
+            height: "20%",
           }}
         >
           <Grid.Column width={8}>
@@ -80,7 +97,7 @@ class LayoutUI extends React.Component {
               }}
             >
               {" "}
-              <SegmentListUI />{" "}
+              <ResultPaneUI />{" "}
             </Segment>{" "}
           </Grid.Column>{" "}
           <Grid.Column width={8}>

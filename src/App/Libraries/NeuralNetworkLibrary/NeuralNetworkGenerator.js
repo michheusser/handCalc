@@ -2,7 +2,7 @@ import NeuralNetwork from "./NeuralNetwork/NeuralNetwork";
 import NeuralNetworkBuilder from "./Tools/NeuralNetworkBuilder";
 import NeuralNetworkManipulator from "./Tools/NeuralNetworkManipulator";
 import NeuralNetworkActivator from "./Tools/NeuralNetworkActivator";
-import NeuralNetworkTrainer from "./Tools/NeuralNetworkTrainer";
+import NeuralNetworkClassifier from "./Tools/NeuralNetworkClassifier";
 
 class NeuralNetworkGenerator {
   constructor() {
@@ -13,7 +13,7 @@ class NeuralNetworkGenerator {
       new NeuralNetworkBuilder(),
       new NeuralNetworkManipulator(),
       new NeuralNetworkActivator(),
-      new NeuralNetworkTrainer()
+      new NeuralNetworkClassifier()
     );
     return this;
   }
