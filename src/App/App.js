@@ -9,6 +9,8 @@ import GridUI from "./Grid/GridComponent";
 import AnalysisPaneUI from "./AnalysisPane/AnalysisPaneComponent";
 import ResultPaneUI from "./ResultPane/ResultPaneComponent";
 
+//import TransitionablePortalExampleTransition from "./ResultPane/TransitionablePortalExampleTransition";
+
 function App() {
   return (
     <div
@@ -21,17 +23,14 @@ function App() {
     </div>
   );
 }
+//<TransitionablePortalExampleTransition />
 
 class LayoutUI extends React.Component {
   render() {
     return (
       <Grid
         celled="internally"
-        style={{
-          margin: "1vh",
-          padding: "0",
-          height: "98vh",
-        }}
+        style={{ margin: "1vh", padding: "0", height: "98vh" }}
       >
         <Grid.Row
           style={{
@@ -52,7 +51,7 @@ class LayoutUI extends React.Component {
         </Grid.Row>
         <Grid.Row
           style={{
-            height: "50%",
+            height: "65%",
           }}
         >
           <Grid.Column width={16}>
@@ -69,24 +68,7 @@ class LayoutUI extends React.Component {
         </Grid.Row>
         <Grid.Row
           style={{
-            height: "20%",
-          }}
-        >
-          <Grid.Column width={16}>
-            <Segment
-              raised
-              style={{
-                height: "100%",
-              }}
-            >
-              {" "}
-              <HeaderUI />{" "}
-            </Segment>{" "}
-          </Grid.Column>{" "}
-        </Grid.Row>
-        <Grid.Row
-          style={{
-            height: "20%",
+            height: "35%",
           }}
         >
           <Grid.Column width={8}>

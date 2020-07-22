@@ -7,6 +7,7 @@ let resultPaneReducer = (
     boardGridSegments: [],
     predictedExpression: "",
     result: "",
+    paneOpen: false,
   },
   action
 ) => {
@@ -56,6 +57,7 @@ let resultPaneReducer = (
       boardGridSegments: boardGridSegments,
       predictedExpression: outputString,
       result: outputEvaluated,
+      paneOpen: true,
     };
 
     return newState;
