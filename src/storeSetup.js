@@ -4,6 +4,8 @@ import appReducer from "./App/AppReducer";
 import resultPaneReducer from "./App/ResultPane/ResultPaneReducer";
 import analysisPaneReducer from "./App/AnalysisPane/AnalysisPaneReducer";
 import predictorReducer from "./App/Predictor/PredictorReducer";
+import layoutReducer from "./App/Layout/LayoutReducer";
+import headerReducer from "./App/Header/HeaderReducer";
 
 // Define the Reducers that will always be present in the application
 const initialReducers = {
@@ -12,6 +14,8 @@ const initialReducers = {
   resultPaneReducer: resultPaneReducer,
   analysisPaneReducer: analysisPaneReducer,
   predictorReducer: predictorReducer,
+  layoutReducer: layoutReducer,
+  headerReducer: headerReducer,
 };
 
 const setupStore = () => {

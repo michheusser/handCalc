@@ -12,6 +12,7 @@ let resultPaneReducer = (
   action
 ) => {
   if (action.type === "PROCESS_GRID") {
+    console.log("[resultPaneReducer] PROCESS_GRID");
     let activeFields = [];
     for (let x = 0; x < action.payload.fields.length; x++) {
       for (let y = 0; y < action.payload.fields[0].length; y++) {
