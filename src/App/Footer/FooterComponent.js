@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Typography } from "@material-ui/core";
 
 function FooterUI() {
   return (
-    <AppBar position="static" color="primary">
+    <AppBar position="fixed" color="primary" style={{}}>
       <Toolbar>
         <Typography variant="caption">
           All rights reserved. Michel Heusser, 2020

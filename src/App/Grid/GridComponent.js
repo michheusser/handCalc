@@ -1,13 +1,13 @@
 // Libraries
 import React from "react";
-import { Segment } from "semantic-ui-react";
+
 import { connect } from "react-redux";
 import { processGrid, finishedProcess } from "./GridActions";
 import { Box } from "@material-ui/core";
 // Actions
 // Components
 import FieldUI from "./Field/FieldComponent";
-import GridToolbarUI from "./GridToolbar/GridToolbarComponent";
+//import GridToolbarUI from "./GridToolbar/GridToolbarComponent";
 
 class GridUI extends React.Component {
   constructor(props) {
@@ -71,13 +71,6 @@ class GridUI extends React.Component {
         >
           <tbody>{table}</tbody>
         </table>
-        <Segment
-          raised
-          style={{ right: "0", bottom: "0", position: "absolute" }}
-        >
-          {" "}
-          <GridToolbarUI processGrid={this.processGrid.bind(this)} />{" "}
-        </Segment>{" "}
       </Box>
     );
   }
@@ -104,3 +97,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridUI);
+
+/*        <Segment
+          raised
+          style={{ right: "0", bottom: "0", position: "absolute" }}
+        >
+          {" "}
+          <GridToolbarUI processGrid={this.processGrid.bind(this)} />{" "}
+        </Segment>{" "}*/

@@ -2,6 +2,7 @@ import React from "react";
 import HeaderUI from "../Header/HeaderComponent.js";
 //import FooterUI from "../Footer/FooterComponent.js";
 import GridUI from "../Grid/GridComponent.js";
+import ResultPaneUI from "../ResultPane/ResultPaneComponent.js";
 //import LoadingBarUI from "../Grid/LoadingBarComponent.js";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../Theme";
@@ -25,6 +26,7 @@ class LayoutUI extends React.Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
+        <ResultPaneUI />
         <HeaderUI />
         <GridUI />
       </ThemeProvider>
