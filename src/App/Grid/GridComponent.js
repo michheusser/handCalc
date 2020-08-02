@@ -17,7 +17,6 @@ class GridUI extends React.Component {
       .map((_) => new Array(this.props.yFields).fill(false));
   }
   componentDidUpdate() {
-    console.log("[GridComponent] componentDidUpdate");
     if (this.props.goClicked) {
       this.processGrid();
     }
@@ -30,7 +29,6 @@ class GridUI extends React.Component {
     return setActive;
   }
   processGrid() {
-    console.log("[GridComponent] processGrid()");
     this.props.process(this.props.xFields, this.props.yFields, this.fields);
     this.props.finishedProcess();
   }

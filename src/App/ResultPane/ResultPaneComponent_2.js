@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 class ResultPaneUI extends React.Component {
   constructor(props) {
     super(props);
-    this.canvas = [];
     this.contexts = [];
   }
   gridToImage(grid, color) {
@@ -49,38 +48,20 @@ class ResultPaneUI extends React.Component {
     }
     return new ImageData(imageArray, grid.xFields, grid.yFields);
   }
-  updateCanvas() {
-    //console.log(this.canvas);
-    this.contexts = new Array(this.props.segments.length)
-      .fill(null)
-      .map((_, idx) => this.canvas[idx].getContext("2d"));
-
-    for (let i = 0; i < this.props.segments.length; i++) {
-      this.contexts[i].putImageData(
-        this.gridToImage(this.props.segments[i], { r: 100, g: 100, b: 100 }),
+  updateCanvas(ref, idx) {
+    if (this.props.open) {
+      this.contexts[idx] = ref.getContext("2d");
+      this.contexts[idx].putImageData(
+        this.gridToImage(this.props.segments[idx], { r: 100, g: 100, b: 100 }),
         0,
         0
       );
     }
   }
-  componentDidUpdate() {
-    //this.updateCanvas();
-  }
-  componentDidMount() {
-    //this.updateCanvas();
-  }
-
-  handleClickOpen() {}
-
   handleClose() {
     this.props.closePane();
   }
-
   render() {
-    this.canvas = new Array(this.props.segments.length)
-      .fill(null)
-      .map((_, idx) => React.createRef());
-
     let segmentList = new Array(this.props.segments.length)
       .fill(null)
       .map((_, idx) => {
@@ -94,12 +75,13 @@ class ResultPaneUI extends React.Component {
               width={100}
               height={100}
               style={{ border: "thin solid black" }}
-              ref={(ref) => (this.canvas[idx] = ref)}
+              ref={(ref) => {
+                this.updateCanvas(ref, idx);
+              }}
             />
           </div>
         );
       });
-    //console.log(this.canvas);
     return (
       <React.Fragment>
         <Dialog
@@ -117,8 +99,8 @@ class ResultPaneUI extends React.Component {
               <div>
                 <div>Expression: {this.props.expression}</div>
                 <div>Result: {this.props.result}</div>
-                <div>{segmentList}</div>
               </div>
+              <div>{segmentList}</div>
             </DialogContentText>
           </DialogContent>
           <DialogActions>
@@ -152,13 +134,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(useStyles)(ResultPaneUI));
-
-/*
-<Button variant="outlined" color="primary" onClick={handleClickOpen}>
-  Open max-width dialog
-</Button>
-*/
+export default connect(mapStateToProps, mapDispatchToProps)(ResultPaneUI);

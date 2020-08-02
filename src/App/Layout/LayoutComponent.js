@@ -2,7 +2,7 @@ import React from "react";
 import HeaderUI from "../Header/HeaderComponent.js";
 //import FooterUI from "../Footer/FooterComponent.js";
 import GridUI from "../Grid/GridComponent.js";
-import ResultPaneUI from "../ResultPane/ResultPaneComponent.js";
+import ResultPaneUI from "../ResultPane/ResultPaneComponent_2.js";
 //import LoadingBarUI from "../Grid/LoadingBarComponent.js";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../Theme";
@@ -35,7 +35,6 @@ class LayoutUI extends React.Component {
 }
 /*<LoadingBarUI />
  */
-
 const mapStateToProps = (state) => {
   return {
     width: state.layoutReducer.width,

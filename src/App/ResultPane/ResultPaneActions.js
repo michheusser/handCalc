@@ -4,3 +4,10 @@ export const segmentSelected = (selectedSegment) => {
     payload: { selectedSegment: selectedSegment },
   };
 };
+
+export const closePane = () => {
+  return {
+    type: "RESET_RESULT",
+    payload: {},
+  };
+};
