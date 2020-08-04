@@ -3,17 +3,6 @@ import React from "react";
 // Actions
 
 class FieldUI extends React.Component {
-  /*toggleField(event) {
-    /*if (event.buttons !== 1) {
-      return false;
-    }
-    if (this.props.active) {
-      this.setState({ activated: false });
-      this.props.fieldToggle(false);
-    } else {
-      this.setState({ activated: true });
-      this.props.fieldToggle(true);
-    }*/
   constructor(props) {
     super(props);
     this.state = { active: this.props.active };

@@ -57,7 +57,7 @@ class GridUI extends React.Component {
       );
     }
     return (
-      <Box>
+      <Box style={{ touchAction: "none" }}>
         <table
           style={{
             borderCollapse: "collapse",

@@ -20,12 +20,14 @@ class NeuralNetworkBarsUI extends React.Component {
 
   render() {
     return (
-      <div style={{ height: 400 }}>
+      <div style={{ height: 400, width: 400 }}>
         <ResponsiveBar
           data={this.arrayToData()}
           keys={["prediction"]}
           indexBy="symbol"
           margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+          minValue={0}
+          maxValue={1}
           padding={0.3}
           colors={{ scheme: "nivo" }}
           defs={[

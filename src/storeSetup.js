@@ -2,7 +2,7 @@ import { createStore, combineReducers } from "redux";
 import gridReducer from "./App/Grid/GridReducer";
 import appReducer from "./App/AppReducer";
 import resultPaneReducer from "./App/ResultPane/ResultPaneReducer";
-import analysisPaneReducer from "./App/AnalysisPane/AnalysisPaneReducer";
+import analysisPaneReducer from "./App/ResultPane/Item/AnalysisPane/AnalysisPaneReducer";
 import predictorReducer from "./App/Predictor/PredictorReducer";
 import layoutReducer from "./App/Layout/LayoutReducer";
 import headerReducer from "./App/Header/HeaderReducer";

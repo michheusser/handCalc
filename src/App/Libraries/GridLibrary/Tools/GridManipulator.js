@@ -10,6 +10,19 @@ class GridManipulator extends GridTool {
     }
     return array;
   }
+  gridToImage(color) {
+    let imageArray = new Uint8ClampedArray(
+      this.grid.xFields * this.grid.yFields * 4
+    ).fill(255);
+    for (let i = 0; i < Math.floor(imageArray.length / 4); i++) {
+      if (this.grid.fields[i].isFilled) {
+        imageArray[4 * i + 0] = color.r;
+        imageArray[4 * i + 1] = color.g;
+        imageArray[4 * i + 2] = color.b;
+      }
+    }
+    return new ImageData(imageArray, this.grid.xFields, this.grid.yFields);
+  }
 }
 
 export default GridManipulator;
