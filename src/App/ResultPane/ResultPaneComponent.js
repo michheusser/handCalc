@@ -13,9 +13,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-//
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = (theme) => ({
   form: {
     display: "flex",
     flexDirection: "column",
@@ -29,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   formControlLabel: {
     marginTop: theme.spacing(1),
   },
-}));
+});
 
 class ResultPaneUI extends React.Component {
   constructor(props) {

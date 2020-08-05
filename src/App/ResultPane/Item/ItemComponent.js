@@ -1,18 +1,18 @@
 import React from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import Popover from "@material-ui/core/Popover";
-import Typography from "@material-ui/core/Typography";
+
 import SegmentUI from "./Segment/SegmentComponent.js";
 import Button from "@material-ui/core/Button";
 import AnalysisPaneUI from "./AnalysisPane/AnalysisPaneComponent.js";
 import { segmentSelected } from "./ItemActions.js";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = (theme) => ({
   typography: {
     padding: theme.spacing(2),
   },
-}));
+});
 
 class ItemUI extends React.Component {
   constructor(props) {

@@ -1,7 +1,4 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-
-import { ThemeProvider } from "@material-ui/core/styles";
 
 import { connect } from "react-redux";
 

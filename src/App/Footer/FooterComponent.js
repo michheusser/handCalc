@@ -1,16 +1,39 @@
 import React from "react";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
+import { withStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
+import theme from "../Theme.js";
 
-function FooterUI() {
-  return (
-    <AppBar position="fixed" color="primary" style={{}}>
-      <Toolbar>
-        <Typography variant="caption">
-          All rights reserved. Michel Heusser, 2020
-        </Typography>
-      </Toolbar>
-    </AppBar>
-  );
+const useStyles = (theme) => ({
+  appBar: {
+    bottom: 0,
+    top: "auto",
+  },
+});
+
+class FooterUI extends React.Component {
+  render() {
+    return (
+      <AppBar color="primary" style={{ bottom: 0, top: "auto" }}>
+        <Toolbar>
+          <Typography variant="caption">
+            All rights reserved. Michel Heusser, 2020
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    );
+  }
 }
 
-export default FooterUI;
+const mapStateToProps = (state) => {
+  return {};
+};
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(useStyles)(FooterUI));
