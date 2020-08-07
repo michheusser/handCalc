@@ -59,14 +59,12 @@ class ResultPaneUI extends React.Component {
           disableBackdropClick={false}
           aria-labelledby="max-width-dialog-title"
         >
-          <DialogTitle id="max-width-dialog-title">Dialog Title</DialogTitle>
+          <DialogTitle id="max-width-dialog-title">
+            {this.props.expression} = {this.props.result}
+          </DialogTitle>
           <DialogContent>
             <DialogContentText>
               {" "}
-              <div>
-                <div>Expression: {this.props.expression}</div>
-                <div>Result: {this.props.result}</div>
-              </div>
               <div>{segmentList}</div>
             </DialogContentText>
           </DialogContent>

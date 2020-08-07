@@ -61,7 +61,7 @@ function MenuUI() {
           </ListItemIcon>
           <ListItemText primary={"Instructions"} />
         </ListItem>
-        <Divider />
+
         <ListItem
           button
           key={"GitHub"}
@@ -73,7 +73,7 @@ function MenuUI() {
           <ListItemIcon>
             <GitHubIcon />
           </ListItemIcon>
-          <ListItemText primary={"GitHub"} />
+          <ListItemText primary={"GitHub Repository"} />
         </ListItem>
         <ListItem button key={"About"}>
           <ListItemIcon>
@@ -81,6 +81,7 @@ function MenuUI() {
           </ListItemIcon>
           <ListItemText primary={"About"} />
         </ListItem>
+        <Divider />
       </List>
     </div>
   );

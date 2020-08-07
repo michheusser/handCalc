@@ -40,14 +40,7 @@ class HeaderUI extends React.Component {
       <div className={classes.root}>
         <AppBar position="fixed" color="secondary">
           <Toolbar>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="menu"
-            >
-              <MenuUI />
-            </IconButton>
+            <MenuUI />
             <Typography variant="h6" className={classes.title}>
               handCalc
             </Typography>
