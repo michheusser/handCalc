@@ -2,11 +2,11 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import Popover from "@material-ui/core/Popover";
+import ItemUI from "./Item/ItemComponent.js";
 
-import SegmentUI from "./Segment/SegmentComponent.js";
 import Button from "@material-ui/core/Button";
-import AnalysisPaneUI from "./AnalysisPane/AnalysisPaneComponent.js";
-import { segmentSelected } from "./ItemActions.js";
+
+import { Typography } from "@material-ui/core";
 
 const useStyles = (theme) => ({
   typography: {
@@ -14,46 +14,44 @@ const useStyles = (theme) => ({
   },
 });
 
-class ItemUI extends React.Component {
+class SymbolListUI extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       anchorEl: null,
     };
-    this.context = null;
-  }
-  updateCanvas(ref, idx) {
-    if (ref) {
-      this.context = ref.getContext("2d");
-      const color = { r: 100, g: 100, b: 100 };
-      this.context.putImageData(
-        this.props.segments[idx].tools.gridManipulator.gridToImage(color),
-        0,
-        0
-      );
-    }
   }
   handleClick(event) {
     this.setState({ anchorEl: event.currentTarget });
-    this.props.selectSegment(this.props.segments[this.props.index]);
   }
   handleClose() {
     this.setState({ anchorEl: null });
   }
-
   render() {
     const open = Boolean(this.state.anchorEl);
     const id = open ? "simple-popover" : undefined;
     const { classes } = this.props;
+
+    let segmentList = new Array(this.props.segments.length)
+      .fill(null)
+      .map((_, idx) => {
+        return (
+          <ItemUI
+            key={idx}
+            index={idx}
+            selectSegment={this.props.selectSegment}
+          />
+        );
+      });
     return (
       <div>
         <Button
-          aria-describedby={this.props.id}
-          variant="outlined"
+          aria-describedby={id}
+          variant="text"
           color="primary"
           onClick={this.handleClick.bind(this)}
         >
-          <SegmentUI index={this.props.index} id={id} />
+          <Typography variant="h3">{this.props.text}</Typography>
         </Button>
         <Popover
           id={id}
@@ -61,15 +59,15 @@ class ItemUI extends React.Component {
           anchorEl={this.state.anchorEl}
           onClose={this.handleClose.bind(this)}
           anchorOrigin={{
-            vertical: "bottom",
+            vertical: "center",
             horizontal: "center",
           }}
           transformOrigin={{
-            vertical: "top",
+            vertical: "center",
             horizontal: "center",
           }}
         >
-          <AnalysisPaneUI />
+          <div>{segmentList}</div>
         </Popover>
       </div>
     );
@@ -78,28 +76,15 @@ class ItemUI extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    open: state.resultPaneReducer.paneOpen,
     segments: state.resultPaneReducer.boardGridSegments,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    selectSegment: (segment) => {
-      dispatch(segmentSelected(segment));
-    },
-  };
+  return {};
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(ItemUI));
-
-/*
-<SegmentUI index={this.props.index} id={id} />
-*/
-
-/*          <Typography className={classes.typography}>
-            <AnalysisPaneUI />
-          </Typography>*/
+)(withStyles(useStyles)(SymbolListUI));

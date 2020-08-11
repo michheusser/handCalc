@@ -1,11 +1,11 @@
 import { createStore, combineReducers } from "redux";
-import gridReducer from "./App/Grid/GridReducer";
+import gridReducer from "./App//Layout/Grid/GridReducer";
 import appReducer from "./App/AppReducer";
-import resultPaneReducer from "./App/ResultPane/ResultPaneReducer";
-import analysisPaneReducer from "./App/ResultPane/Item/AnalysisPane/AnalysisPaneReducer";
+import resultPaneReducer from "./App/Layout/ResultPane/ResultPaneReducer";
+import analysisPaneReducer from "./App/Layout/ResultPane/SymbolList/Item/AnalysisPane/AnalysisPaneReducer";
 import predictorReducer from "./App/Predictor/PredictorReducer";
 import layoutReducer from "./App/Layout/LayoutReducer";
-import headerReducer from "./App/Header/HeaderReducer";
+import headerReducer from "./App/Layout/Header/HeaderReducer";
 
 // Define the Reducers that will always be present in the application
 const initialReducers = {

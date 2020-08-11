@@ -22,8 +22,8 @@ class SegmentUI extends React.Component {
     return (
       <div>
         <canvas
-          width={100}
-          height={100}
+          width={120}
+          height={120}
           style={{ border: "thin solid black", margin: 0 }}
           ref={(ref) => {
             this.updateCanvas(ref, this.props.index);
@@ -36,7 +36,7 @@ class SegmentUI extends React.Component {
 const mapStateToProps = (state) => {
   return {
     open: state.resultPaneReducer.paneOpen,
-    segments: state.resultPaneReducer.boardGridSegments,
+    segments: state.resultPaneReducer.scaledGridSegments,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {

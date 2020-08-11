@@ -1,5 +1,5 @@
-import NeuralNetworkGenerator from "../Libraries/NeuralNetworkLibrary/NeuralNetworkGenerator";
-import neuralNetworkMatrixData from "../Libraries/NeuralNetworkLibrary/Tools/NeuralNetworkMatrixData";
+import NeuralNetworkGenerator from "../Layout/ResultPane/Libraries/NeuralNetworkLibrary/NeuralNetworkGenerator";
+import neuralNetworkMatrixData from "../Layout/ResultPane/Libraries/NeuralNetworkLibrary/Tools/NeuralNetworkMatrixData";
 
 let predictorReducer = (
   state = {

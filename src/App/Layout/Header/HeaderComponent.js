@@ -1,13 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { goClicked } from "./HeaderActions.js";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  IconButton,
-} from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 import MenuUI from "./Menu/MenuComponent.js";
@@ -49,7 +43,7 @@ class HeaderUI extends React.Component {
               color="primary"
               onClick={this.props.goClicked}
             >
-              Go!
+              Start
             </Button>
           </Toolbar>
         </AppBar>

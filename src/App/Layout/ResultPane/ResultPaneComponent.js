@@ -2,16 +2,17 @@ import React from "react";
 import { connect } from "react-redux";
 import { closePane } from "./ResultPaneActions";
 import { withStyles } from "@material-ui/core/styles";
-import ItemUI from "./Item/ItemComponent.js";
 
 //
-import { makeStyles } from "@material-ui/core/styles";
+import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import SymbolListUI from "./SymbolList/SymbolListComponent.js";
+import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = (theme) => ({
   form: {
@@ -38,39 +39,27 @@ class ResultPaneUI extends React.Component {
     this.props.closePane();
   }
   render() {
-    let segmentList = new Array(this.props.segments.length)
-      .fill(null)
-      .map((_, idx) => {
-        return (
-          <ItemUI
-            key={idx}
-            index={idx}
-            selectSegment={this.props.selectSegment}
-          />
-        );
-      });
     return (
       <React.Fragment>
         <Dialog
           fullWidth={true}
-          maxWidth={"md"}
+          maxWidth={"sm"}
           open={this.props.open}
           onClose={this.handleClose.bind(this)}
           disableBackdropClick={false}
           aria-labelledby="max-width-dialog-title"
         >
-          <DialogTitle id="max-width-dialog-title">
-            {this.props.expression} = {this.props.result}
-          </DialogTitle>
+          <DialogTitle id="max-width-dialog-title"></DialogTitle>
           <DialogContent>
             <DialogContentText>
-              {" "}
-              <div>{segmentList}</div>
+              <SymbolListUI
+                text={this.props.expression + " = " + this.props.result}
+              ></SymbolListUI>
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose.bind(this)} color="primary">
-              Close
+              <CloseIcon />
             </Button>
           </DialogActions>
         </Dialog>
@@ -82,7 +71,6 @@ class ResultPaneUI extends React.Component {
 const mapStateToProps = (state) => {
   return {
     open: state.resultPaneReducer.paneOpen,
-    segments: state.resultPaneReducer.boardGridSegments,
     expression: state.resultPaneReducer.predictedExpression,
     result: state.resultPaneReducer.result,
   };
@@ -100,3 +88,9 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withStyles(useStyles)(ResultPaneUI));
+
+/*  <Button variant="text">
+    <Typography variant="h3">
+      {this.props.expression} = {this.props.result}
+    </Typography>
+  </Button>*/

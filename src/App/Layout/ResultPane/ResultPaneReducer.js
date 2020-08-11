@@ -1,10 +1,11 @@
-import GridGenerator from "../Libraries/GridLibrary/GridGenerator";
-import NeuralNetworkGenerator from "../Libraries/NeuralNetworkLibrary/NeuralNetworkGenerator";
-import neuralNetworkMatrixData from "../Libraries/NeuralNetworkLibrary/Tools/NeuralNetworkMatrixData";
+import GridGenerator from "./Libraries/GridLibrary/GridGenerator";
+import NeuralNetworkGenerator from "./Libraries/NeuralNetworkLibrary/NeuralNetworkGenerator";
+import neuralNetworkMatrixData from "./Libraries/NeuralNetworkLibrary/Tools/NeuralNetworkMatrixData";
 
 let resultPaneReducer = (
   state = {
     boardGridSegments: [],
+    scaledGridSegments: [],
     predictedExpression: "",
     result: "",
     paneOpen: false,
@@ -30,6 +31,14 @@ let resultPaneReducer = (
         yMargin: 0,
         keepRatio: true,
       });
+
+    let scaledGridSegments = [];
+    for (let segment of boardGridSegments) {
+      scaledGridSegments.push(
+        segment.tools.gridCloner.clone().tools.gridScaler.scale(120, 120, false)
+      );
+    }
+
     let outputMap = "0123456789+-*/()";
     let neuralNetwork = new NeuralNetworkGenerator()
       .createNeuralNetwork([784, 64, 32, 16])
@@ -42,7 +51,8 @@ let resultPaneReducer = (
     let outputEvaluated = "";
     for (let segment of boardGridSegments) {
       let output = predictor.classifyGrid(
-        segment.tools.gridScaler.scale(28, 28)
+        //segment.tools.gridScaler.scale(28, 28)
+        segment
       );
       outputString += output;
 
@@ -55,6 +65,7 @@ let resultPaneReducer = (
 
     let newState = {
       boardGridSegments: boardGridSegments,
+      scaledGridSegments: scaledGridSegments,
       predictedExpression: outputString,
       result: outputEvaluated,
       paneOpen: true,
@@ -64,6 +75,7 @@ let resultPaneReducer = (
   if (action.type === "RESET_RESULT") {
     let newState = {
       boardGridSegments: [],
+      scaledGridSegments: [],
       predictedExpression: "",
       result: "",
       paneOpen: false,
