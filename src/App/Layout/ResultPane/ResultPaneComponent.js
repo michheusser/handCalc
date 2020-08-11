@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { closePane } from "./ResultPaneActions";
 import { withStyles } from "@material-ui/core/styles";
+import DetailedViewUI from "./DetailedView/DetailedViewComponent.js";
 
 //
 import { Typography } from "@material-ui/core";
@@ -22,11 +23,11 @@ const useStyles = (theme) => ({
     width: "fit-content",
   },
   formControl: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(0),
     minWidth: 120,
   },
   formControlLabel: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(0),
   },
 });
 
@@ -49,19 +50,16 @@ class ResultPaneUI extends React.Component {
           disableBackdropClick={false}
           aria-labelledby="max-width-dialog-title"
         >
-          <DialogTitle id="max-width-dialog-title"></DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              <SymbolListUI
-                text={this.props.expression + " = " + this.props.result}
-              ></SymbolListUI>
-            </DialogContentText>
-          </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose.bind(this)} color="primary">
+            <Button onClick={this.handleClose.bind(this)} color="secondary">
               <CloseIcon />
             </Button>
           </DialogActions>
+          <DialogContent>
+            <DialogContentText>
+              <DetailedViewUI text={this.props.result} />
+            </DialogContentText>
+          </DialogContent>
         </Dialog>
       </React.Fragment>
     );
@@ -72,7 +70,7 @@ const mapStateToProps = (state) => {
   return {
     open: state.resultPaneReducer.paneOpen,
     expression: state.resultPaneReducer.predictedExpression,
-    result: state.resultPaneReducer.result,
+    result: state.resultPaneReducer.displayedResult,
   };
 };
 
@@ -94,3 +92,7 @@ export default connect(
       {this.props.expression} = {this.props.result}
     </Typography>
   </Button>*/
+
+/*<SymbolListUI
+    text={this.props.expression + " = " + this.props.result}
+  ></SymbolListUI>*/

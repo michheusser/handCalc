@@ -7,6 +7,7 @@ let resultPaneReducer = (
     boardGridSegments: [],
     scaledGridSegments: [],
     predictedExpression: "",
+    displayedResult: "",
     result: "",
     paneOpen: false,
   },
@@ -35,7 +36,7 @@ let resultPaneReducer = (
     let scaledGridSegments = [];
     for (let segment of boardGridSegments) {
       scaledGridSegments.push(
-        segment.tools.gridCloner.clone().tools.gridScaler.scale(120, 120, false)
+        segment.tools.gridCloner.clone().tools.gridScaler.scale(60, 60, false)
       );
     }
 
@@ -49,6 +50,7 @@ let resultPaneReducer = (
 
     let outputString = "";
     let outputEvaluated = "";
+    let displayedResult = "";
     for (let segment of boardGridSegments) {
       let output = predictor.classifyGrid(
         //segment.tools.gridScaler.scale(28, 28)
@@ -57,9 +59,15 @@ let resultPaneReducer = (
       outputString += output;
 
       try {
-        outputEvaluated = eval(outputString);
+        outputEvaluated = eval(outputString).toString();
+        if (outputString === outputEvaluated) {
+          displayedResult = outputEvaluated;
+        } else {
+          displayedResult = outputString + " = " + outputEvaluated;
+        }
       } catch (err) {
-        outputEvaluated = "Syntax Error";
+        outputEvaluated = "";
+        displayedResult = outputString;
       }
     }
 
@@ -67,6 +75,7 @@ let resultPaneReducer = (
       boardGridSegments: boardGridSegments,
       scaledGridSegments: scaledGridSegments,
       predictedExpression: outputString,
+      displayedResult: displayedResult,
       result: outputEvaluated,
       paneOpen: true,
     };
@@ -77,6 +86,7 @@ let resultPaneReducer = (
       boardGridSegments: [],
       scaledGridSegments: [],
       predictedExpression: "",
+      displayedResult: "",
       result: "",
       paneOpen: false,
     };

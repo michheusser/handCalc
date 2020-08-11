@@ -71,7 +71,13 @@ function MenuUI() {
           </ListItemIcon>
           <ListItemText primary={"GitHub Repository"} />
         </ListItem>
-        <ListItem button key={"About"}>
+        <ListItem
+          button
+          key={"About"}
+          onClick={(event) =>
+            (window.location.href = "https://github.com/michheusser")
+          }
+        >
           <ListItemIcon>
             <PersonIcon />
           </ListItemIcon>
