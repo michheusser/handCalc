@@ -15,7 +15,7 @@ class NeuralNetworkClassifier extends NeuralNetworkTool {
       vectorizedGrid
     );
     let maxIndex = output.indexOf(Math.max(...output));
-    return this.outputMap[maxIndex];
+    return { likelihood: output, prediction: this.outputMap[maxIndex] };
   }
 }
 

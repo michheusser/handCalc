@@ -81,6 +81,7 @@ const mapStateToProps = (state) => {
     fieldSize: state.layoutReducer.fieldSize,
     fieldBorder: state.layoutReducer.fieldBorder,
     goClicked: state.headerReducer.goClicked,
+    segments: state.resultPaneReducer.boardGridSegments,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {

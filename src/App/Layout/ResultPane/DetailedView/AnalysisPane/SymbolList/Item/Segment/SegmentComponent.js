@@ -1,6 +1,11 @@
 import React from "react";
+import { withStyles } from "@material-ui/core/styles";
 
 import { connect } from "react-redux";
+
+const useStyles = (theme) => ({
+  canvas: { margin: 0, padding: 0 },
+});
 
 class SegmentUI extends React.Component {
   constructor(props) {
@@ -22,9 +27,9 @@ class SegmentUI extends React.Component {
     return (
       <div>
         <canvas
-          width={60}
-          height={60}
-          style={{ border: "thin solid black", margin: 0 }}
+          width={40}
+          height={40}
+          style={{ border: "thin solid black", margin: 0, padding: 0 }}
           ref={(ref) => {
             this.updateCanvas(ref, this.props.index);
           }}
@@ -43,4 +48,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SegmentUI);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(useStyles)(SegmentUI));

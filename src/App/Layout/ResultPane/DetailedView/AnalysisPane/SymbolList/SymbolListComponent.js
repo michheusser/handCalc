@@ -10,12 +10,16 @@ const useStyles = (theme) => ({
     flexGrow: 1,
   },
   paper: {
-    height: 40,
-    width: 40,
+    height: 50,
+    width: 50,
     padding: 0,
+    alignItems: "center",
+    justifyContent: "center",
+    display: "flex",
   },
   control: {
     padding: theme.spacing(0),
+    margin: theme.spacing(0),
   },
 });
 
@@ -23,19 +27,21 @@ class SymbolListUI extends React.Component {
   render() {
     const { classes } = this.props;
 
-    let segmentList = new Array(this.props.segments.length)
+    let itemList = new Array(this.props.segments.length)
       .fill(null)
       .map((_, idx) => {
         return (
           <Grid key={idx} item>
-            <Paper className={classes.paper}>{idx}</Paper>
+            <Paper className={classes.paper}>
+              <ItemUI index={idx} />
+            </Paper>
           </Grid>
         );
       });
     return (
       <Grid item xs={12}>
         <Grid container justify="center" spacing={1}>
-          {segmentList}
+          {itemList}
         </Grid>
       </Grid>
     );

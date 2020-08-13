@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import SymbolListUI from "./SymbolList/SymbolListComponent.js";
+import SegmentDetailsUI from "./SegmentDetails/SegmentDetailsComponent.js";
 
 //
 
@@ -19,16 +20,12 @@ const useStyles = (theme) => ({
 });
 
 class AnalysisPaneUI extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { classes } = this.props;
 
     return (
       <div className={classes.root}>
-        <Grid container spacing={3}>
+        <Grid container spacing={1}>
           <Grid item xs={12}>
             <Paper elevation={1} className={classes.paper}>
               <SymbolListUI />
@@ -36,7 +33,7 @@ class AnalysisPaneUI extends React.Component {
           </Grid>
           <Grid item xs={12}>
             <Paper elevation={1} className={classes.paper}>
-              Graph
+              <SegmentDetailsUI />
             </Paper>
           </Grid>
         </Grid>

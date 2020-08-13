@@ -54,9 +54,7 @@ class HeaderUI extends React.Component {
 //<div className={classes.toolbarMargin}></div>;
 
 const mapStateToProps = (state) => {
-  return {
-    processOngoing: state.headerReducer.goCLicked,
-  };
+  return {};
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {

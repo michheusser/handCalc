@@ -5,14 +5,13 @@ import { withStyles } from "@material-ui/core/styles";
 import DetailedViewUI from "./DetailedView/DetailedViewComponent.js";
 
 //
-import { Typography } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
+
+import IconButton from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import SymbolListUI from "./SymbolList/SymbolListComponent.js";
+
 import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = (theme) => ({
@@ -29,6 +28,21 @@ const useStyles = (theme) => ({
   formControlLabel: {
     marginTop: theme.spacing(0),
   },
+  closeIcon: {
+    margin: 0,
+    padding: 0,
+  },
+  iconButton: {
+    margin: 0,
+    padding: 0,
+  },
+  dialogContent: {
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    marginBottom: theme.spacing(1),
+    marginTop: theme.spacing(0),
+    padding: theme.spacing(1),
+  },
 });
 
 class ResultPaneUI extends React.Component {
@@ -40,6 +54,7 @@ class ResultPaneUI extends React.Component {
     this.props.closePane();
   }
   render() {
+    const { classes } = this.props;
     return (
       <React.Fragment>
         <Dialog
@@ -51,11 +66,16 @@ class ResultPaneUI extends React.Component {
           aria-labelledby="max-width-dialog-title"
         >
           <DialogActions>
-            <Button onClick={this.handleClose.bind(this)} color="secondary">
+            <IconButton
+              size="small"
+              className={classes.iconButton}
+              onClick={this.handleClose.bind(this)}
+              color="secondary"
+            >
               <CloseIcon />
-            </Button>
+            </IconButton>
           </DialogActions>
-          <DialogContent>
+          <DialogContent className={classes.dialogContent}>
             <DialogContentText>
               <DetailedViewUI text={this.props.result} />
             </DialogContentText>

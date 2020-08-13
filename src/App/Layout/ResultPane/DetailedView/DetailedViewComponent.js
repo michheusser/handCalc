@@ -11,19 +11,21 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Divider from "@material-ui/core/Divider";
 
-import Box from "@material-ui/core/Box";
 import AnalysisPaneUI from "./AnalysisPane/AnalysisPaneComponent.js";
 
 const AccordionSummary = withStyles({
   root: {
     flexDirection: "column",
+    margin: 0,
+    padding: 0,
   },
   content: {
-    marginBottom: 0,
+    margin: 0,
+    padding: 0,
   },
   expandIcon: {
-    marginRight: 0,
-    paddingTop: 0,
+    margin: 0,
+    padding: 0,
   },
 })(MuiAccordionSummary);
 
@@ -38,10 +40,6 @@ const useStyles = (theme) => ({
 });
 
 class DetailedViewUI extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { classes } = this.props;
 

@@ -1,11 +1,15 @@
-import GridGenerator from "./Libraries/GridLibrary/GridGenerator";
-import NeuralNetworkGenerator from "./Libraries/NeuralNetworkLibrary/NeuralNetworkGenerator";
-import neuralNetworkMatrixData from "./Libraries/NeuralNetworkLibrary/Tools/NeuralNetworkMatrixData";
+import GridGenerator from "../Libraries/GridLibrary/GridGenerator";
+import NeuralNetworkGenerator from "../Libraries/NeuralNetworkLibrary/NeuralNetworkGenerator";
+import neuralNetworkMatrixData from "../Libraries/NeuralNetworkLibrary/Tools/NeuralNetworkMatrixData";
 
 let resultPaneReducer = (
   state = {
     boardGridSegments: [],
+    outputMap: "",
+    segmentLikelihoods: [],
+    segmentPredictions: [],
     scaledGridSegments: [],
+    predictionLikelihood: null,
     predictedExpression: "",
     displayedResult: "",
     result: "",
@@ -33,10 +37,14 @@ let resultPaneReducer = (
         keepRatio: true,
       });
 
+    if (boardGridSegments.length === 0) {
+      return state;
+    }
+
     let scaledGridSegments = [];
     for (let segment of boardGridSegments) {
       scaledGridSegments.push(
-        segment.tools.gridCloner.clone().tools.gridScaler.scale(60, 60, false)
+        segment.tools.gridCloner.clone().tools.gridScaler.scale(40, 40, false)
       );
     }
 
@@ -51,30 +59,37 @@ let resultPaneReducer = (
     let outputString = "";
     let outputEvaluated = "";
     let displayedResult = "";
+    let segmentLikelihoods = [];
+    let segmentPredictions = [];
+    let predictionLikelihoods = [];
     for (let segment of boardGridSegments) {
-      let output = predictor.classifyGrid(
-        //segment.tools.gridScaler.scale(28, 28)
-        segment
-      );
-      outputString += output;
+      let output = predictor.classifyGrid(segment);
+      segmentPredictions.push(output.prediction);
+      segmentLikelihoods.push(output.likelihood);
+      predictionLikelihoods.push(output.predictionLikelihood);
+    }
+    outputString = segmentPredictions.join("");
 
-      try {
-        outputEvaluated = eval(outputString).toString();
-        if (outputString === outputEvaluated) {
-          displayedResult = outputEvaluated;
-        } else {
-          displayedResult = outputString + " = " + outputEvaluated;
-        }
-      } catch (err) {
-        outputEvaluated = "";
-        displayedResult = outputString;
+    try {
+      outputEvaluated = eval(outputString).toString();
+      if (outputString === outputEvaluated) {
+        displayedResult = outputEvaluated;
+      } else {
+        displayedResult = outputString + " = " + outputEvaluated;
       }
+    } catch (err) {
+      outputEvaluated = "";
+      displayedResult = outputString;
     }
 
     let newState = {
       boardGridSegments: boardGridSegments,
       scaledGridSegments: scaledGridSegments,
+      outputMap: outputMap,
+      predictionLikelihoods: predictionLikelihoods,
       predictedExpression: outputString,
+      segmentLikelihoods: segmentLikelihoods,
+      segmentPredictions: segmentPredictions,
       displayedResult: displayedResult,
       result: outputEvaluated,
       paneOpen: true,
@@ -85,7 +100,11 @@ let resultPaneReducer = (
     let newState = {
       boardGridSegments: [],
       scaledGridSegments: [],
+      outputMap: "",
+      segmentLikelihoods: [],
+      segmentPredictions: [],
       predictedExpression: "",
+      predictionLikelihood: null,
       displayedResult: "",
       result: "",
       paneOpen: false,
