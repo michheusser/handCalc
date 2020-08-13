@@ -9,7 +9,6 @@ import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Divider from "@material-ui/core/Divider";
 
 import AnalysisPaneUI from "./AnalysisPane/AnalysisPaneComponent.js";
 
@@ -45,7 +44,7 @@ class DetailedViewUI extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Accordion variant="outlined">
+        <Accordion variant="text" elevation={0}>
           <AccordionSummary
             className={classes.accordionSummary}
             expandIcon={<ExpandMoreIcon />}
@@ -54,7 +53,7 @@ class DetailedViewUI extends React.Component {
           >
             <Typography variant="h3">{this.props.text}</Typography>
           </AccordionSummary>
-          <Divider />
+
           <AccordionDetails>
             <AnalysisPaneUI />
           </AccordionDetails>

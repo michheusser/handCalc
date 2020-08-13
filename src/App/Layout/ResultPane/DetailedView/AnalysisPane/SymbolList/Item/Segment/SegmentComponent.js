@@ -41,7 +41,7 @@ class SegmentUI extends React.Component {
 const mapStateToProps = (state) => {
   return {
     open: state.resultPaneReducer.paneOpen,
-    segments: state.resultPaneReducer.scaledGridSegments,
+    segments: state.resultPaneReducer.scaledOriginalSegments,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {

@@ -7,9 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = (theme) => ({
-  root: {
-    minWidth: 275,
-  },
+  root: {},
   bullet: {
     display: "inline-block",
     margin: "0 2px",
@@ -41,15 +39,13 @@ class NeuralNetworkBarsUI extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Card className={classes.root}>
+      <Card elevation={0} className={classes.root}>
         <CardContent>
           <Typography
             className={classes.title}
             color="textSecondary"
             gutterBottom
-          >
-            Segment Information
-          </Typography>
+          ></Typography>
           <div style={{ height: 200, width: 300 }}>
             <ResponsiveBar
               data={this.arrayToData()}

@@ -28,7 +28,7 @@ class ItemUI extends React.Component {
       <Button
         className={classes.button}
         aria-describedby={this.props.id}
-        variant="outlined"
+        variant="text"
         color="secondary"
         height={1}
         width={1}
@@ -41,7 +41,7 @@ class ItemUI extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { segments: state.resultPaneReducer.boardGridSegments };
+  return {};
 };
 
 const mapDispatchToProps = (dispatch) => {

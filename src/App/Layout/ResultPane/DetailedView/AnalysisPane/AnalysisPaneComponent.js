@@ -5,7 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import SymbolListUI from "./SymbolList/SymbolListComponent.js";
 import SegmentDetailsUI from "./SegmentDetails/SegmentDetailsComponent.js";
-
+import Divider from "@material-ui/core/Divider";
 //
 
 const useStyles = (theme) => ({
@@ -27,12 +27,14 @@ class AnalysisPaneUI extends React.Component {
       <div className={classes.root}>
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <Paper elevation={1} className={classes.paper}>
+            <Paper elevation={0} className={classes.paper}>
               <SymbolListUI />
+
+              <Divider />
             </Paper>
           </Grid>
           <Grid item xs={12}>
-            <Paper elevation={1} className={classes.paper}>
+            <Paper elevation={0} className={classes.paper}>
               <SegmentDetailsUI />
             </Paper>
           </Grid>

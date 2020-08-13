@@ -1,12 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import NeuralNetworkBarsUI from "./NeuralNetworkChart/NeuralNetworkBars";
+import NeuralNetworkBarsUI from "./NeuralNetworkChart/NeuralNetworkBars2";
 import DetailsCardUI from "./DetailsCard/DetailsCardComponent";
 import ImageDetailsUI from "./ImageDetails/ImageDetailsComponent";
 import ScaledImageUI from "./ScaledImage/ScaledImageComponent";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = (theme) => ({
   root: {
@@ -35,19 +36,27 @@ class SegmentDetailsUI extends React.Component {
     return (
       <div className={classes.root}>
         <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <Typography variant="subtitle1">Processed Segment</Typography>
+          </Grid>
           <Grid item xs={4}>
             <ScaledImageUI />
           </Grid>
           <Grid item xs={8}>
             <ImageDetailsUI />
           </Grid>
-          <Grid item xs={5}>
+        </Grid>
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <Typography variant="subtitle1">Prediction Analysis</Typography>
+          </Grid>
+          <Grid item xs={7}>
             <NeuralNetworkBarsUI
               likelihood={likelihood}
               prediction={prediction}
             />
           </Grid>
-          <Grid item xs={7}>
+          <Grid item xs={5}>
             <DetailsCardUI />
           </Grid>
         </Grid>
@@ -61,7 +70,6 @@ const mapStateToProps = (state) => {
     selectedSegment: state.analysisPaneReducer.selectedSegment,
     likelihoods: state.resultPaneReducer.segmentLikelihoods,
     predictions: state.resultPaneReducer.segmentPredictions,
-    segments: state.resultPaneReducer.scaledGridSegments,
   };
 };
 

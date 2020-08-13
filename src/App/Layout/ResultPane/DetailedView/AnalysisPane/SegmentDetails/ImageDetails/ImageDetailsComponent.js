@@ -7,9 +7,7 @@ import Typography from "@material-ui/core/Typography";
 
 //
 const useStyles = (theme) => ({
-  root: {
-    minWidth: 275,
-  },
+  root: {},
   bullet: {
     display: "inline-block",
     margin: "0 2px",
@@ -36,20 +34,25 @@ class ImageDetailsUI extends React.Component {
     }
 
     return (
-      <Card className={classes.root}>
+      <Card elevation={0} className={classes.root}>
         <CardContent>
           <Typography
+            align="left"
             className={classes.title}
             color="textSecondary"
             gutterBottom
-          >
-            Segment Information
+          ></Typography>
+          <Typography align="left" variant="body2" component="h2">
+            Original segment: 15x15 pixels
           </Typography>
-          <Typography variant="body2" component="h2">
-            Original Image: 15x15 pixels
+          <Typography align="left" variant="body2" component="p">
+            Processed segment: 28x28 pixels
           </Typography>
-          <Typography variant="body2" component="p">
-            Scaled Image: 28x28 pixels
+          <Typography align="left" variant="body2" component="p">
+            Used pixels: 8
+          </Typography>
+          <Typography align="left" variant="body2" component="p">
+            Used pixels (after processing): 8
           </Typography>
         </CardContent>
       </Card>
@@ -63,7 +66,6 @@ const mapStateToProps = (state) => {
     likelihoods: state.resultPaneReducer.segmentLikelihoods,
     predictionLikelihoods: state.resultPaneReducer.predictionLikelihoods,
     predictions: state.resultPaneReducer.segmentPredictions,
-    segments: state.resultPaneReducer.scaledGridSegments,
   };
 };
 

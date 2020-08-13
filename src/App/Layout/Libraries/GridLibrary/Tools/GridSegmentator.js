@@ -65,20 +65,38 @@ class GridSegmentator extends GridTool {
         fitData.yFields,
         fitData.xMargin,
         fitData.yMargin,
-        fitData.keepRatio
+        fitData.keepRatio,
+        fitData.scaleStroke
       );
+    } else {
+      this.wrapSegments();
     }
 
     return this.segments;
   }
-  fitSegments(xFields, yFields, xMargin = 0, yMargin = 0, keepRatio = false) {
+
+  wrapSegments() {
+    for (let segment of this.segments) {
+      segment.tools.gridCropper.wrap();
+    }
+    return this.grid;
+  }
+  fitSegments(
+    xFields,
+    yFields,
+    xMargin = 0,
+    yMargin = 0,
+    keepRatio = true,
+    scaleStroke = true
+  ) {
     for (let segment of this.segments) {
       segment.tools.gridScaler.fit(
         xFields,
         yFields,
         xMargin,
         yMargin,
-        keepRatio
+        keepRatio,
+        scaleStroke
       );
     }
     return this.grid;

@@ -140,13 +140,20 @@ class GridScaler extends GridTool {
     }
     return this.grid.replaceFields(scaledGrid);
   }
-  fit(xFields, yFields, xMargin = 0, yMargin = 0, keepRatio = false) {
+  fit(
+    xFields,
+    yFields,
+    xMargin = 0,
+    yMargin = 0,
+    keepRatio = false,
+    scaleStroke = true
+  ) {
     if (2 * xMargin >= xFields || 2 * yMargin >= yFields) {
       return this.grid;
     }
     this.grid.tools.gridCropper.wrap();
     if (!keepRatio) {
-      this.scale(xFields - 2 * xMargin, yFields - 2 * yMargin);
+      this.scale(xFields - 2 * xMargin, yFields - 2 * yMargin, scaleStroke);
       this.grid.tools.gridCropper.wrap(xMargin, yMargin);
       return this.grid;
     }
@@ -157,12 +164,14 @@ class GridScaler extends GridTool {
     if (scaleRatio > (yFields - 2 * yMargin) / (xFields - 2 * xMargin)) {
       this.scale(
         Math.floor((yFields - 2 * yMargin) / scaleRatio),
-        yFields - 2 * yMargin
+        yFields - 2 * yMargin,
+        scaleStroke
       );
     } else {
       this.scale(
         xFields - 2 * xMargin,
-        Math.floor((xFields - 2 * xMargin) * scaleRatio)
+        Math.floor((xFields - 2 * xMargin) * scaleRatio),
+        scaleStroke
       );
     }
     this.grid.tools.gridCropper.crop(

@@ -32,7 +32,7 @@ class SymbolListUI extends React.Component {
       .map((_, idx) => {
         return (
           <Grid key={idx} item>
-            <Paper className={classes.paper}>
+            <Paper elevation={0} className={classes.paper}>
               <ItemUI index={idx} />
             </Paper>
           </Grid>
@@ -50,7 +50,7 @@ class SymbolListUI extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    segments: state.resultPaneReducer.boardGridSegments,
+    segments: state.resultPaneReducer.scaledOriginalSegments,
   };
 };
 

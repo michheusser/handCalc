@@ -6,14 +6,8 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = (theme) => ({
-  root: {
-    minWidth: 275,
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
-  },
+  root: {},
+
   title: {
     fontSize: 14,
   },
@@ -51,18 +45,16 @@ class ScaledImageUI extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Card className={classes.root}>
+      <Card elevation={0} className={classes.root}>
         <CardContent>
           <Typography
             className={classes.title}
             color="textSecondary"
             gutterBottom
-          >
-            Original Segment
-          </Typography>
+          ></Typography>
           <canvas
-            width={28}
-            height={28}
+            width={100}
+            height={100}
             style={{ border: "thin solid black" }}
             ref={(ref) => {
               this.updateCanvas(ref);
@@ -77,7 +69,7 @@ class ScaledImageUI extends React.Component {
 const mapStateToProps = (state) => {
   return {
     selectedSegment: state.analysisPaneReducer.selectedSegment,
-    segments: state.resultPaneReducer.scaledGridSegments,
+    segments: state.resultPaneReducer.scaledCuratedSegments,
   };
 };
 

@@ -4,11 +4,13 @@ import neuralNetworkMatrixData from "../Libraries/NeuralNetworkLibrary/Tools/Neu
 
 let resultPaneReducer = (
   state = {
-    boardGridSegments: [],
+    originalSegments: [],
+    curatedSegments: [],
+    scaledOriginalSegments: [],
+    scaledCuratedSegments: [],
     outputMap: "",
     segmentLikelihoods: [],
     segmentPredictions: [],
-    scaledGridSegments: [],
     predictionLikelihood: null,
     predictedExpression: "",
     displayedResult: "",
@@ -27,24 +29,68 @@ let resultPaneReducer = (
       }
     }
 
-    let boardGridSegments = new GridGenerator()
+    let originalSegments = new GridGenerator()
       .createGrid(action.payload.xFields, action.payload.yFields, activeFields)
-      .tools.gridSegmentator.createSegments({
-        xFields: 28,
-        yFields: 28,
-        xMargin: 0,
-        yMargin: 0,
-        keepRatio: true,
-      });
+      .tools.gridSegmentator.createSegments();
 
-    if (boardGridSegments.length === 0) {
+    if (originalSegments.length === 0) {
       return state;
     }
 
-    let scaledGridSegments = [];
-    for (let segment of boardGridSegments) {
-      scaledGridSegments.push(
-        segment.tools.gridCloner.clone().tools.gridScaler.scale(40, 40, false)
+    const originalScaledFitData = {
+      xFields: 40,
+      yFields: 40,
+      xMargin: 0,
+      yMargin: 0,
+      keepRatio: true,
+      scaleStroke: false,
+    };
+
+    let scaledOriginalSegments = [];
+    for (let segment of originalSegments) {
+      scaledOriginalSegments.push(
+        segment.tools.gridCloner
+          .clone()
+          .tools.gridScaler.fit(
+            originalScaledFitData.xFields,
+            originalScaledFitData.yFields,
+            originalScaledFitData.xMargin,
+            originalScaledFitData.yMargin,
+            originalScaledFitData.keepRatio,
+            originalScaledFitData.scaleStroke
+          )
+      );
+    }
+
+    const curatedFitData = {
+      xFields: 28,
+      yFields: 28,
+      xMargin: 0,
+      yMargin: 0,
+      keepRatio: true,
+      scaleStroke: true,
+    };
+
+    let curatedSegments = new GridGenerator()
+      .createGrid(action.payload.xFields, action.payload.yFields, activeFields)
+      .tools.gridSegmentator.createSegments(curatedFitData);
+
+    const curatedScaledFitData = {
+      xFields: 100,
+      yFields: 100,
+      scaleStroke: false,
+    };
+
+    let scaledCuratedSegments = [];
+    for (let segment of curatedSegments) {
+      scaledCuratedSegments.push(
+        segment.tools.gridCloner
+          .clone()
+          .tools.gridScaler.scale(
+            curatedScaledFitData.xFields,
+            curatedScaledFitData.yFields,
+            curatedScaledFitData.scaleStroke
+          )
       );
     }
 
@@ -62,7 +108,7 @@ let resultPaneReducer = (
     let segmentLikelihoods = [];
     let segmentPredictions = [];
     let predictionLikelihoods = [];
-    for (let segment of boardGridSegments) {
+    for (let segment of curatedSegments) {
       let output = predictor.classifyGrid(segment);
       segmentPredictions.push(output.prediction);
       segmentLikelihoods.push(output.likelihood);
@@ -83,8 +129,10 @@ let resultPaneReducer = (
     }
 
     let newState = {
-      boardGridSegments: boardGridSegments,
-      scaledGridSegments: scaledGridSegments,
+      originalSegments: originalSegments,
+      curatedSegments: curatedSegments,
+      scaledOriginalSegments: scaledOriginalSegments,
+      scaledCuratedSegments: scaledCuratedSegments,
       outputMap: outputMap,
       predictionLikelihoods: predictionLikelihoods,
       predictedExpression: outputString,
@@ -98,8 +146,10 @@ let resultPaneReducer = (
   }
   if (action.type === "RESET_RESULT") {
     let newState = {
-      boardGridSegments: [],
-      scaledGridSegments: [],
+      originalSegments: [],
+      curatedSegments: [],
+      scaledOriginalSegments: [],
+      scaledCuratedSegments: [],
       outputMap: "",
       segmentLikelihoods: [],
       segmentPredictions: [],
