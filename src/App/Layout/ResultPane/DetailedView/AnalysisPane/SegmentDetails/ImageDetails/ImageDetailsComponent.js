@@ -7,7 +7,9 @@ import Typography from "@material-ui/core/Typography";
 
 //
 const useStyles = (theme) => ({
-  root: {},
+  root: {
+    padding: 0,
+  },
   bullet: {
     display: "inline-block",
     margin: "0 2px",

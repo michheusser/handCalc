@@ -29,12 +29,11 @@ class AnalysisPaneUI extends React.Component {
           <Grid item xs={12}>
             <Paper elevation={0} className={classes.paper}>
               <SymbolListUI />
-
-              <Divider />
             </Paper>
+            <Divider />
           </Grid>
           <Grid item xs={12}>
-            <Paper elevation={0} className={classes.paper}>
+            <Paper elevation={1} className={classes.paper}>
               <SegmentDetailsUI />
             </Paper>
           </Grid>

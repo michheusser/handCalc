@@ -44,7 +44,7 @@ class DetailedViewUI extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Accordion variant="text" elevation={0}>
+        <Accordion variant="text" elevation={1}>
           <AccordionSummary
             className={classes.accordionSummary}
             expandIcon={<ExpandMoreIcon />}

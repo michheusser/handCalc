@@ -1,6 +1,7 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
+import Paper from "@material-ui/core/Paper";
 
 import SegmentUI from "./Segment/SegmentComponent.js";
 
@@ -9,9 +10,9 @@ import Button from "@material-ui/core/Button";
 import { segmentSelected } from "./ItemActions.js";
 
 const useStyles = (theme) => ({
-  button: {
+  paper: {
     margin: 0,
-    padding: 0,
+    padding: 3,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -25,17 +26,17 @@ class ItemUI extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Button
-        className={classes.button}
+      <Paper
+        className={classes.paper}
+        elevation={1}
         aria-describedby={this.props.id}
-        variant="text"
         color="secondary"
         height={1}
         width={1}
         onClick={this.handleClick.bind(this)}
       >
         <SegmentUI index={this.props.index} />
-      </Button>
+      </Paper>
     );
   }
 }

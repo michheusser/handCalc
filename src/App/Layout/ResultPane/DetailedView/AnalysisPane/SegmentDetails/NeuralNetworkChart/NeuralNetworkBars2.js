@@ -58,9 +58,9 @@ class NeuralNetworkBarsUI extends React.Component {
             color="textSecondary"
             gutterBottom
           ></Typography>
-          <Chart data={data}>
+          <Chart height={180} data={data}>
             <ArgumentAxis />
-            <ValueAxis max={7} />
+            <ValueAxis max={7} tickSize={10} />
             <BarSeries
               argumentField="symbol"
               valueField="likelihood"

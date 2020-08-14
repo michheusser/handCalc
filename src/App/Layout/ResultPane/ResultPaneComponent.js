@@ -29,16 +29,20 @@ const useStyles = (theme) => ({
     marginTop: theme.spacing(0),
   },
   closeIcon: {
-    margin: 0,
-    padding: 0,
+    margin: theme.spacing(0),
+    padding: theme.spacing(0),
   },
   iconButton: {
-    margin: 0,
-    padding: 0,
+    margin: theme.spacing(0),
+    padding: theme.spacing(0),
+  },
+  dialog: {
+    margin: theme.spacing(0),
+    padding: theme.spacing(0),
   },
   dialogContent: {
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     marginBottom: theme.spacing(1),
     marginTop: theme.spacing(0),
     padding: theme.spacing(1),
@@ -56,32 +60,31 @@ class ResultPaneUI extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <React.Fragment>
-        <Dialog
-          fullWidth={true}
-          maxWidth={"sm"}
-          open={this.props.open}
-          onClose={this.handleClose.bind(this)}
-          disableBackdropClick={false}
-          aria-labelledby="max-width-dialog-title"
-        >
-          <DialogActions>
-            <IconButton
-              size="small"
-              className={classes.iconButton}
-              onClick={this.handleClose.bind(this)}
-              color="secondary"
-            >
-              <CloseIcon />
-            </IconButton>
-          </DialogActions>
-          <DialogContent className={classes.dialogContent}>
-            <DialogContentText>
-              <DetailedViewUI text={this.props.result} />
-            </DialogContentText>
-          </DialogContent>
-        </Dialog>
-      </React.Fragment>
+      <Dialog
+        className={classes.dialog}
+        fullWidth={true}
+        maxWidth={"sm"}
+        open={this.props.open}
+        onClose={this.handleClose.bind(this)}
+        disableBackdropClick={false}
+        aria-labelledby="max-width-dialog-title"
+      >
+        <DialogActions>
+          <IconButton
+            size="small"
+            className={classes.iconButton}
+            onClick={this.handleClose.bind(this)}
+            color="secondary"
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogActions>
+        <DialogContent className={classes.dialogContent}>
+          <DialogContentText>
+            <DetailedViewUI text={this.props.result} />
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
     );
   }
 }

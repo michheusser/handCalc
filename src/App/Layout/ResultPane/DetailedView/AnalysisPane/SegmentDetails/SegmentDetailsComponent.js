@@ -35,9 +35,11 @@ class SegmentDetailsUI extends React.Component {
     }
     return (
       <div className={classes.root}>
-        <Grid container spacing={1}>
+        <Grid container spacing={0}>
           <Grid item xs={12}>
-            <Typography variant="subtitle1">Processed Segment</Typography>
+            <Typography align="left" variant="subtitle1">
+              Processed Segment
+            </Typography>
           </Grid>
           <Grid item xs={4}>
             <ScaledImageUI />
@@ -46,17 +48,19 @@ class SegmentDetailsUI extends React.Component {
             <ImageDetailsUI />
           </Grid>
         </Grid>
-        <Grid container spacing={1}>
+        <Grid container spacing={0}>
           <Grid item xs={12}>
-            <Typography variant="subtitle1">Prediction Analysis</Typography>
+            <Typography align="left" variant="subtitle1">
+              Prediction Analysis
+            </Typography>
           </Grid>
-          <Grid item xs={7}>
+          <Grid item xs={6}>
             <NeuralNetworkBarsUI
               likelihood={likelihood}
               prediction={prediction}
             />
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <DetailsCardUI />
           </Grid>
         </Grid>

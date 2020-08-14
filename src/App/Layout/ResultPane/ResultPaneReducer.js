@@ -76,8 +76,8 @@ let resultPaneReducer = (
       .tools.gridSegmentator.createSegments(curatedFitData);
 
     const curatedScaledFitData = {
-      xFields: 100,
-      yFields: 100,
+      xFields: 120,
+      yFields: 120,
       scaleStroke: false,
     };
 

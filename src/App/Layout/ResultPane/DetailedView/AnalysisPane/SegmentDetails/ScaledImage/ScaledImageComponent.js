@@ -45,21 +45,23 @@ class ScaledImageUI extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Card elevation={0} className={classes.root}>
+      <Card elevation={1} className={classes.root}>
         <CardContent>
           <Typography
             className={classes.title}
             color="textSecondary"
             gutterBottom
           ></Typography>
-          <canvas
-            width={100}
-            height={100}
-            style={{ border: "thin solid black" }}
-            ref={(ref) => {
-              this.updateCanvas(ref);
-            }}
-          />
+          <Card variant="outlined" elevation={1} padding={3}>
+            <canvas
+              width={120}
+              height={120}
+              style={{ border: "none" }}
+              ref={(ref) => {
+                this.updateCanvas(ref);
+              }}
+            />
+          </Card>
         </CardContent>
       </Card>
     );

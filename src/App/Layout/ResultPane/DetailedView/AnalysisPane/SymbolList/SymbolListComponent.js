@@ -31,16 +31,14 @@ class SymbolListUI extends React.Component {
       .fill(null)
       .map((_, idx) => {
         return (
-          <Grid key={idx} item>
-            <Paper elevation={0} className={classes.paper}>
-              <ItemUI index={idx} />
-            </Paper>
+          <Grid elevation={0} key={idx} item>
+            <ItemUI index={idx} />
           </Grid>
         );
       });
     return (
       <Grid item xs={12}>
-        <Grid container justify="center" spacing={1}>
+        <Grid elevation={0} container justify="left" spacing={1}>
           {itemList}
         </Grid>
       </Grid>

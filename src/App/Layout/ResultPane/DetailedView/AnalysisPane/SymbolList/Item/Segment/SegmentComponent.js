@@ -25,16 +25,14 @@ class SegmentUI extends React.Component {
   }
   render() {
     return (
-      <div>
-        <canvas
-          width={40}
-          height={40}
-          style={{ border: "thin solid black", margin: 0, padding: 0 }}
-          ref={(ref) => {
-            this.updateCanvas(ref, this.props.index);
-          }}
-        />
-      </div>
+      <canvas
+        width={40}
+        height={40}
+        style={{ border: "none", margin: 0, padding: 0 }}
+        ref={(ref) => {
+          this.updateCanvas(ref, this.props.index);
+        }}
+      />
     );
   }
 }

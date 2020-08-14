@@ -7,7 +7,9 @@ import Typography from "@material-ui/core/Typography";
 
 //
 const useStyles = (theme) => ({
-  root: {},
+  root: {
+    padding: 0,
+  },
   bullet: {
     display: "inline-block",
     margin: "0 2px",
@@ -41,19 +43,14 @@ class DetailsCardUI extends React.Component {
             color="textSecondary"
             gutterBottom
           ></Typography>
-          <Typography align="left" variant="h5" component="h2">
-            {prediction}
+          <Typography align="left" variant="body2" component="h2">
+            Predicted symbol: {prediction}
           </Typography>
-          <Typography
-            align="left"
-            className={classes.pos}
-            color="textSecondary"
-          >
-            Prediction likelihood ={" "}
-            {Math.round(predictionLikelihood * 10000) / 100}%
+          <Typography align="left" variant="body2" component="h2">
+            Prediction likelihood = {Math.round(predictionLikelihood * 100)}%
           </Typography>
-          <Typography align="left" variant="body2" component="p">
-            Lorem ipsum
+          <Typography align="left" variant="body2" component="h2">
+            Prediction likelihood = {Math.round(predictionLikelihood * 100)}%
           </Typography>
         </CardContent>
       </Card>
