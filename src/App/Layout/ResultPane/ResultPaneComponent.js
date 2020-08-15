@@ -15,6 +15,9 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = (theme) => ({
+  closeButton: {
+    minWidth: 0,
+  },
   form: {
     display: "flex",
     flexDirection: "column",
@@ -40,6 +43,7 @@ const useStyles = (theme) => ({
     margin: theme.spacing(0),
     padding: theme.spacing(0),
   },
+  dialogActions: {},
   dialogContent: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
@@ -69,10 +73,10 @@ class ResultPaneUI extends React.Component {
         disableBackdropClick={false}
         aria-labelledby="max-width-dialog-title"
       >
-        <DialogActions>
+        <DialogActions className={classes.dialogActions}>
           <IconButton
             size="small"
-            className={classes.iconButton}
+            className={classes.closeButton}
             onClick={this.handleClose.bind(this)}
             color="secondary"
           >

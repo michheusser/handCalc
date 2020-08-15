@@ -12,7 +12,7 @@ import { segmentSelected } from "./ItemActions.js";
 const useStyles = (theme) => ({
   paper: {
     margin: 0,
-    padding: 3,
+    padding: theme.spacing(1),
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -28,7 +28,7 @@ class ItemUI extends React.Component {
     return (
       <Paper
         className={classes.paper}
-        elevation={1}
+        elevation={0}
         aria-describedby={this.props.id}
         color="secondary"
         height={1}

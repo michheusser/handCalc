@@ -38,7 +38,7 @@ class SymbolListUI extends React.Component {
       });
     return (
       <Grid item xs={12}>
-        <Grid elevation={0} container justify="left" spacing={1}>
+        <Grid elevation={0} container justify="left" spacing={0}>
           {itemList}
         </Grid>
       </Grid>

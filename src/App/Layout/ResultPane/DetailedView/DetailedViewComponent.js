@@ -18,6 +18,7 @@ const AccordionSummary = withStyles({
     margin: 0,
     padding: 0,
   },
+
   content: {
     margin: 0,
     padding: 0,
@@ -32,6 +33,9 @@ const useStyles = (theme) => ({
   root: {
     width: "100%",
   },
+  accordionDetails: {
+    padding: theme.spacing(0),
+  },
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
@@ -44,7 +48,7 @@ class DetailedViewUI extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Accordion variant="text" elevation={1}>
+        <Accordion variant="text" elevation={0}>
           <AccordionSummary
             className={classes.accordionSummary}
             expandIcon={<ExpandMoreIcon />}
@@ -54,7 +58,7 @@ class DetailedViewUI extends React.Component {
             <Typography variant="h3">{this.props.text}</Typography>
           </AccordionSummary>
 
-          <AccordionDetails>
+          <AccordionDetails className={classes.accordionDetails}>
             <AnalysisPaneUI />
           </AccordionDetails>
         </Accordion>

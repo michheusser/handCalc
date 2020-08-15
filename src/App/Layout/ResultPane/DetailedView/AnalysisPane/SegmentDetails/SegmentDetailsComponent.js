@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import NeuralNetworkBarsUI from "./NeuralNetworkChart/NeuralNetworkBars2";
+import NeuralNetworkBarsUI from "./NeuralNetworkChart/NeuralNetworkBars";
 import DetailsCardUI from "./DetailsCard/DetailsCardComponent";
 import ImageDetailsUI from "./ImageDetails/ImageDetailsComponent";
 import ScaledImageUI from "./ScaledImage/ScaledImageComponent";

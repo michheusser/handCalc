@@ -5,9 +5,21 @@ import { ResponsiveBar } from "@nivo/bar";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
+import {
+  Chart,
+  BarSeries,
+  Title,
+  ArgumentAxis,
+  ValueAxis,
+} from "@devexpress/dx-react-chart-material-ui";
+import { formatPrefix, format } from "d3-format";
+
+import { Animation } from "@devexpress/dx-react-chart";
 
 const useStyles = (theme) => ({
   root: {},
+  chart: { padding: 0 },
   bullet: {
     display: "inline-block",
     margin: "0 2px",
@@ -19,100 +31,49 @@ const useStyles = (theme) => ({
   pos: {
     marginBottom: 12,
   },
+  cardContent: {
+    "&:last-child": {
+      paddingBottom: theme.spacing(1),
+    },
+  },
 });
 
 class NeuralNetworkBarsUI extends React.Component {
-  arrayToData() {
-    if (!this.props.likelihood) {
-      return [];
-    }
-    const barsData = [];
-    for (let i = 0; i < this.props.likelihood.length; i++) {
-      barsData.push({
-        symbol: `${this.props.outputMap[i]}`,
-        prediction: this.props.likelihood[i],
-      });
-    }
-    return barsData;
-  }
-
   render() {
+    let data = [];
+    if (this.props.selectedSegment !== null) {
+      data = new Array(this.props.outputMap.length)
+        .fill(null)
+        .map((value, index) => {
+          return {
+            symbol: this.props.outputMap[index],
+            likelihood: this.props.likelihoods[this.props.selectedSegment][
+              index
+            ],
+          };
+        });
+    }
     const { classes } = this.props;
+
+    const formatFunc = (obj) => obj.tickFormat(null, format(".0%"));
     return (
       <Card elevation={0} className={classes.root}>
-        <CardContent>
+        <CardContent className={classes.cardContent}>
           <Typography
             className={classes.title}
             color="textSecondary"
             gutterBottom
           ></Typography>
-          <div style={{ height: 200, width: 300 }}>
-            <ResponsiveBar
-              data={this.arrayToData()}
-              keys={["prediction"]}
-              indexBy="symbol"
-              margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
-              isInteractive={false}
-              minValue={0}
-              maxValue={1}
-              padding={0.3}
-              colors={{ scheme: "nivo" }}
-              defs={[
-                {
-                  id: "dots",
-                  type: "patternDots",
-                  background: "inherit",
-                  color: "#38bcb2",
-                  size: 4,
-                  padding: 1,
-                  stagger: true,
-                },
-                {
-                  id: "lines",
-                  type: "patternLines",
-                  background: "inherit",
-                  color: "#eed312",
-                  rotation: -45,
-                  lineWidth: 6,
-                  spacing: 10,
-                },
-              ]}
-              fill={[
-                {
-                  match: {
-                    id: "fries",
-                  },
-                  id: "dots",
-                },
-                {
-                  match: {
-                    id: "sandwich",
-                  },
-                  id: "lines",
-                },
-              ]}
-              borderColor={{ from: "color", modifiers: [["darker", 1.6]] }}
-              axisTop={null}
-              axisRight={null}
-              axisBottom={{
-                tickSize: 5,
-                tickPadding: 5,
-                tickRotation: 0,
-                legend: "Symbol",
-                legendPosition: "middle",
-                legendOffset: 32,
-              }}
-              axisLeft={false}
-              enableLabel={false}
-              labelSkipWidth={12}
-              labelSkipHeight={12}
-              labelTextColor={{ from: "color", modifiers: [["darker", 1.6]] }}
-              legends={[]}
-              animate={true}
-              motionStiffness={90}
-              motionDamping={15}
+          <Chart className={classes.chart} height={180} data={data}>
+            <ArgumentAxis />
+            <ValueAxis max={7} tickSize={10} />
+            <BarSeries
+              argumentField="symbol"
+              valueField="likelihood"
+              color="#3a8a74"
             />
-          </div>
+            <Animation />
+          </Chart>
         </CardContent>
       </Card>
     );
@@ -122,6 +83,8 @@ class NeuralNetworkBarsUI extends React.Component {
 const mapStateToProps = (state) => {
   return {
     outputMap: state.resultPaneReducer.outputMap,
+    selectedSegment: state.analysisPaneReducer.selectedSegment,
+    likelihoods: state.resultPaneReducer.segmentLikelihoods,
   };
 };
 

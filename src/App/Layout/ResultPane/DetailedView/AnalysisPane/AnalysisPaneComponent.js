@@ -13,7 +13,7 @@ const useStyles = (theme) => ({
     flexGrow: 1,
   },
   paper: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(0),
     textAlign: "center",
     color: theme.palette.text.secondary,
   },
@@ -33,7 +33,7 @@ class AnalysisPaneUI extends React.Component {
             <Divider />
           </Grid>
           <Grid item xs={12}>
-            <Paper elevation={1} className={classes.paper}>
+            <Paper elevation={0} className={classes.paper}>
               <SegmentDetailsUI />
             </Paper>
           </Grid>
