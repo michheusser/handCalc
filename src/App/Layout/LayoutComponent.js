@@ -3,7 +3,6 @@ import HeaderUI from "./Header/HeaderComponent.js";
 import FooterUI from "./Footer/FooterComponent.js";
 import GridUI from "./Grid/GridComponent.js";
 import ResultPaneUI from "./ResultPane/ResultPaneComponent.js";
-//import LoadingBarUI from "../Grid/LoadingBarComponent.js";
 import { connect } from "react-redux";
 import { windowResize } from "./LayoutActions.js";
 
@@ -32,16 +31,9 @@ class LayoutUI extends React.Component {
     );
   }
 }
-/*<LoadingBarUI />
- */
+
 const mapStateToProps = (state) => {
-  return {
-    width: state.layoutReducer.width,
-    height: state.layoutReducer.height,
-    widthFields: state.layoutReducer.widthFields,
-    heightFields: state.layoutReducer.heightFields,
-    fieldSize: state.layoutReducer.fieldSize,
-  };
+  return {};
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {

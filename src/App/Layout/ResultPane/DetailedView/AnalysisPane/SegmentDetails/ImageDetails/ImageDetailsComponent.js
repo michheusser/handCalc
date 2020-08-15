@@ -1,9 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
 import Paper from "@material-ui/core/Paper";
-import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
 //
@@ -20,14 +18,6 @@ const useStyles = (theme) => ({
 class ImageDetailsUI extends React.Component {
   render() {
     const { classes } = this.props;
-    let predictionLikelihood = null;
-    let prediction = null;
-    if (this.props.selectedSegment !== null) {
-      predictionLikelihood = this.props.predictionLikelihoods[
-        this.props.selectedSegment
-      ];
-      prediction = this.props.predictions[this.props.selectedSegment];
-    }
 
     return (
       <Paper

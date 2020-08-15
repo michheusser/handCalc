@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { goClicked } from "./HeaderActions.js";
-import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button, Slide } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 import MenuUI from "./Menu/MenuComponent.js";
@@ -32,21 +32,27 @@ class HeaderUI extends React.Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar position="fixed" color="secondary">
-          <Toolbar>
-            <MenuUI />
-            <Typography variant="h6" className={classes.title}>
-              handCalc
-            </Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.props.goClicked}
-            >
-              Start
-            </Button>
-          </Toolbar>
-        </AppBar>
+        <Slide
+          direction="down"
+          in={this.props.show}
+          timeout={{ enter: 800, exit: 800 }}
+        >
+          <AppBar position="fixed" color="secondary">
+            <Toolbar>
+              <MenuUI />
+              <Typography variant="h6" className={classes.title}>
+                handCalc
+              </Typography>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.props.goClicked}
+              >
+                Start
+              </Button>
+            </Toolbar>
+          </AppBar>
+        </Slide>
       </div>
     );
   }
@@ -54,7 +60,9 @@ class HeaderUI extends React.Component {
 //<div className={classes.toolbarMargin}></div>;
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    show: state.headerFooterReducer.show,
+  };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {

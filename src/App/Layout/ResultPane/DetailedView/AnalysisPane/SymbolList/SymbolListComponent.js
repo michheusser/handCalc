@@ -2,30 +2,13 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import ItemUI from "./Item/ItemComponent.js";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
-const useStyles = (theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    height: 50,
-    width: 50,
-    padding: 0,
-    alignItems: "center",
-    justifyContent: "center",
-    display: "flex",
-  },
-  control: {
-    padding: theme.spacing(0),
-    margin: theme.spacing(0),
-  },
-});
+const useStyles = (theme) => ({});
 
 class SymbolListUI extends React.Component {
   render() {
-    const { classes } = this.props;
+    //  const { classes } = this.props;
 
     let itemList = new Array(this.props.segments.length)
       .fill(null)

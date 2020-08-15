@@ -7,7 +7,7 @@ class FieldUI extends React.Component {
     super(props);
     this.state = { active: this.props.active };
   }
-  toggle(event) {
+  toggle2(event) {
     if (event.buttons !== 1) {
       return false;
     }
@@ -17,6 +17,15 @@ class FieldUI extends React.Component {
     } else {
       this.setState({ active: true });
       this.props.setFieldActive(true);
+    }
+  }
+  toggle(event) {
+    if (event.buttons === 1) {
+      this.setState({ active: true });
+      this.props.setFieldActive(true);
+    } else if (event.buttons === 2) {
+      this.setState({ active: false });
+      this.props.setFieldActive(false);
     }
   }
   render() {
@@ -35,11 +44,13 @@ class FieldUI extends React.Component {
       margin: "0",
     };
     return (
-      <td style={styleCell}>
+      <td style={styleCell} draggable="false">
         <div
+          draggable="false"
           style={styleSquare}
           onMouseOver={this.toggle.bind(this)}
           onMouseDown={this.toggle.bind(this)}
+          onContextMenu={(event) => event.preventDefault()}
         ></div>
       </td>
     );

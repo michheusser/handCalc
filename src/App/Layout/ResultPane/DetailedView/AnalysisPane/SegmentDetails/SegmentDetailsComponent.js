@@ -4,7 +4,6 @@ import NeuralNetworkBarsUI from "./NeuralNetworkChart/NeuralNetworkBars";
 import DetailsCardUI from "./DetailsCard/DetailsCardComponent";
 import ImageDetailsUI from "./ImageDetails/ImageDetailsComponent";
 import ScaledImageUI from "./ScaledImage/ScaledImageComponent";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -21,10 +20,6 @@ const useStyles = (theme) => ({
 });
 
 class SegmentDetailsUI extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { classes } = this.props;
     let likelihood = null;

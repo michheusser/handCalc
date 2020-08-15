@@ -1,19 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
-import { ResponsiveBar } from "@nivo/bar";
+
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
+
 import {
   Chart,
   BarSeries,
-  Title,
   ArgumentAxis,
   ValueAxis,
 } from "@devexpress/dx-react-chart-material-ui";
-import { formatPrefix, format } from "d3-format";
 
 import { Animation } from "@devexpress/dx-react-chart";
 
@@ -25,9 +23,7 @@ const useStyles = (theme) => ({
     margin: "0 2px",
     transform: "scale(0.8)",
   },
-  title: {
-    fontSize: 14,
-  },
+
   pos: {
     marginBottom: 12,
   },
@@ -55,7 +51,7 @@ class NeuralNetworkBarsUI extends React.Component {
     }
     const { classes } = this.props;
 
-    const formatFunc = (obj) => obj.tickFormat(null, format(".0%"));
+    //const formatFunc = (obj) => obj.tickFormat(null, format(".0%"));
     return (
       <Card elevation={0} className={classes.root}>
         <CardContent className={classes.cardContent}>

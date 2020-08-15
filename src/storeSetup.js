@@ -9,17 +9,19 @@ import segmentDetailsReducer from "./App/Layout/ResultPane/DetailedView/Analysis
 
 import resultPaneReducer from "./App/Reducers/ResultPaneReducer";
 import analysisPaneReducer from "./App/Reducers/AnalysisPaneReducer";
-import layoutReducer from "./App/Reducers/LayoutReducer";
+import boardGridReducer from "./App/Reducers/BoardGridReducer";
 import headerReducer from "./App/Reducers/HeaderReducer";
 import segmentDetailsReducer from "./App/Reducers/SegmentDetailsReducer.js";
+import headerFooterReducer from "./App/Reducers/HeaderFooterReducer.js";
 
 // Define the Reducers that will always be present in the application
 const initialReducers = {
   resultPaneReducer: resultPaneReducer,
   analysisPaneReducer: analysisPaneReducer,
   segmentDetailsReducer: segmentDetailsReducer,
-  layoutReducer: layoutReducer,
+  boardGridReducer: boardGridReducer,
   headerReducer: headerReducer,
+  headerFooterReducer: headerFooterReducer,
 };
 
 const setupStore = () => {

@@ -1,20 +1,18 @@
-// Libraries
 import React from "react";
-
 import { connect } from "react-redux";
-import { processGrid, finishedProcess } from "./GridActions";
+import {
+  processGrid,
+  finishedProcess,
+  mouseDown,
+  mouseUp,
+} from "./GridActions";
 import { Box } from "@material-ui/core";
-// Actions
-// Components
 import FieldUI from "./Field/FieldComponent";
-//import GridToolbarUI from "./GridToolbar/GridToolbarComponent";
 
 class GridUI extends React.Component {
   constructor(props) {
     super(props);
-    this.fields = new Array(this.props.xFields)
-      .fill(null)
-      .map((_) => new Array(this.props.yFields).fill(false));
+    this.fields = null;
   }
   componentDidUpdate() {
     if (this.props.goClicked) {
@@ -34,20 +32,23 @@ class GridUI extends React.Component {
   }
 
   render() {
+    this.fields = new Array(this.props.xFields)
+      .fill(null)
+      .map((_) => new Array(this.props.yFields).fill(false));
     let table = [];
-    for (let j = 0; j < this.props.yFields; j++) {
+    for (let y = 0; y < this.props.yFields; y++) {
       table.push(
-        <tr key={j}>
-          {new Array(this.props.xFields).fill(null).map((_, index) => {
+        <tr key={y}>
+          {new Array(this.props.xFields).fill(null).map((_, x) => {
             return (
               <FieldUI
-                key={`ID${j}&${index}`}
+                key={`ID${y}&${x}`}
                 fieldSize={this.props.fieldSize}
                 border={this.props.fieldBorder}
-                x={index}
-                y={j}
-                setFieldActive={this.setFieldActive(index, j).bind(this)}
-                active={this.fields[index][j]}
+                x={x}
+                y={y}
+                setFieldActive={this.setFieldActive(x, y).bind(this)}
+                active={this.fields[x][y]}
                 backgroundActivated={"grey"}
                 background={"white"}
               />
@@ -57,17 +58,31 @@ class GridUI extends React.Component {
       );
     }
     return (
-      <Box style={{ touchAction: "none" }}>
+      <Box
+        draggable="false"
+        style={{
+          display: "flex",
+          justify: "center",
+          touchAction: "none",
+          margin: 0,
+          padding: 0,
+        }}
+      >
         <table
           style={{
             borderCollapse: "collapse",
             tableLayout: "fixed",
-            margin: "0",
-            padding: "0",
+            margin: 0,
+            padding: 0,
+            top: this.props.marginTop,
+            left: this.props.marginLeft,
             position: "absolute",
           }}
+          onMouseDown={this.props.mouseDown}
+          onMouseUp={this.props.mouseUp}
+          draggable="false"
         >
-          <tbody>{table}</tbody>
+          <tbody draggable="false">{table}</tbody>
         </table>
       </Box>
     );
@@ -76,10 +91,12 @@ class GridUI extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    xFields: state.layoutReducer.widthFields,
-    yFields: state.layoutReducer.heightFields,
-    fieldSize: state.layoutReducer.fieldSize,
-    fieldBorder: state.layoutReducer.fieldBorder,
+    xFields: state.boardGridReducer.widthFields,
+    yFields: state.boardGridReducer.heightFields,
+    fieldSize: state.boardGridReducer.fieldSize,
+    fieldBorder: state.boardGridReducer.fieldBorder,
+    marginLeft: state.boardGridReducer.marginLeft,
+    marginTop: state.boardGridReducer.marginTop,
     goClicked: state.headerReducer.goClicked,
   };
 };
@@ -90,6 +107,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     finishedProcess: () => {
       dispatch(finishedProcess());
+    },
+    mouseDown: () => {
+      dispatch(mouseDown());
+    },
+    mouseUp: () => {
+      dispatch(mouseUp());
     },
   };
 };
