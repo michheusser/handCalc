@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from "redux";
-import gridReducer from "./App//Layout/Grid/GridReducer";
+//import gridReducer from "./App//Layout/Grid/GridReducer";
 import appReducer from "./App/AppReducer";
 import resultPaneReducer from "./App/Layout/ResultPane/ResultPaneReducer";
 import analysisPaneReducer from "./App/Layout/ResultPane/DetailedView/AnalysisPane/AnalysisPaneReducer";
@@ -10,7 +10,6 @@ import segmentDetailsReducer from "./App/Layout/ResultPane/DetailedView/Analysis
 
 // Define the Reducers that will always be present in the application
 const initialReducers = {
-  gridReducer: gridReducer,
   appReducer: appReducer,
   resultPaneReducer: resultPaneReducer,
   analysisPaneReducer: analysisPaneReducer,
