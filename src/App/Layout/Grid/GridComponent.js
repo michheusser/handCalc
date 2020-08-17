@@ -12,23 +12,23 @@ import FieldUI from "./Field/FieldComponent";
 class GridUI extends React.Component {
   constructor(props) {
     super(props);
-    this.fields = this.initializeFields();
+    this.fields = null;
   }
   componentDidUpdate() {
     if (this.props.goClicked) {
       this.processGrid();
     }
   }
-  initializeFields() {
-    console.log("Re-rendered");
-    return new Array(this.props.xFields)
-      .fill(null)
-      .map((_) => new Array(this.props.yFields).fill(false));
+  updateFields() {
+    if (!this.props.goClicked) {
+      this.fields = new Array(this.props.xFields)
+        .fill(null)
+        .map((_) => new Array(this.props.yFields).fill(false));
+    }
   }
   setFieldActive(x, y) {
     function setActive(active) {
       this.fields[x][y] = active;
-      //console.log(this.fields);
     }
     return setActive;
   }
@@ -38,7 +38,7 @@ class GridUI extends React.Component {
   }
 
   render() {
-    this.fields = this.initializeFields();
+    this.updateFields();
     let table = [];
     for (let y = 0; y < this.props.yFields; y++) {
       table.push(

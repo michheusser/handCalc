@@ -15,7 +15,7 @@ let resultPaneReducer = (
     predictedExpression: "",
     displayedResult: "",
     result: "",
-    paneOpen: false,
+    //paneOpen: false,
   },
   action
 ) => {
@@ -140,7 +140,7 @@ let resultPaneReducer = (
       segmentPredictions: segmentPredictions,
       displayedResult: displayedResult,
       result: outputEvaluated,
-      paneOpen: true,
+      //paneOpen: true,
     };
     return newState;
   }
@@ -157,7 +157,7 @@ let resultPaneReducer = (
       predictionLikelihood: null,
       displayedResult: "",
       result: "",
-      paneOpen: false,
+      //paneOpen: false,
     };
     return newState;
   }

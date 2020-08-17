@@ -95,7 +95,7 @@ class ResultPaneUI extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    open: state.resultPaneReducer.paneOpen,
+    open: state.resultDialogReducer.paneOpen,
     expression: state.resultPaneReducer.predictedExpression,
     result: state.resultPaneReducer.displayedResult,
   };

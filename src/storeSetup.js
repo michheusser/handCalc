@@ -13,6 +13,7 @@ import boardGridReducer from "./App/Reducers/BoardGridReducer";
 import headerReducer from "./App/Reducers/HeaderReducer";
 import segmentDetailsReducer from "./App/Reducers/SegmentDetailsReducer.js";
 import headerFooterReducer from "./App/Reducers/HeaderFooterReducer.js";
+import resultDialogReducer from "./App/Reducers/ResultDialogReducer.js";
 
 // Define the Reducers that will always be present in the application
 const initialReducers = {
@@ -22,6 +23,7 @@ const initialReducers = {
   boardGridReducer: boardGridReducer,
   headerReducer: headerReducer,
   headerFooterReducer: headerFooterReducer,
+  resultDialogReducer: resultDialogReducer,
 };
 
 const setupStore = () => {
