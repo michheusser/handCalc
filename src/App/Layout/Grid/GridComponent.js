@@ -12,17 +12,23 @@ import FieldUI from "./Field/FieldComponent";
 class GridUI extends React.Component {
   constructor(props) {
     super(props);
-    this.fields = null;
+    this.fields = this.initializeFields();
   }
   componentDidUpdate() {
     if (this.props.goClicked) {
       this.processGrid();
     }
   }
-
+  initializeFields() {
+    console.log("Re-rendered");
+    return new Array(this.props.xFields)
+      .fill(null)
+      .map((_) => new Array(this.props.yFields).fill(false));
+  }
   setFieldActive(x, y) {
     function setActive(active) {
       this.fields[x][y] = active;
+      //console.log(this.fields);
     }
     return setActive;
   }
@@ -32,9 +38,7 @@ class GridUI extends React.Component {
   }
 
   render() {
-    this.fields = new Array(this.props.xFields)
-      .fill(null)
-      .map((_) => new Array(this.props.yFields).fill(false));
+    this.fields = this.initializeFields();
     let table = [];
     for (let y = 0; y < this.props.yFields; y++) {
       table.push(
@@ -63,7 +67,7 @@ class GridUI extends React.Component {
         style={{
           display: "flex",
           justify: "center",
-          touchAction: "none",
+          //touchAction: "none",
           margin: 0,
           padding: 0,
         }}
@@ -103,6 +107,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     process: (xFields, yFields, fields) => {
+      console.log(fields);
       dispatch(processGrid(xFields, yFields, fields));
     },
     finishedProcess: () => {

@@ -28,7 +28,7 @@ let resultPaneReducer = (
         }
       }
     }
-
+    console.log(action.payload.fields);
     let originalSegments = new GridGenerator()
       .createGrid(action.payload.xFields, action.payload.yFields, activeFields)
       .tools.gridSegmentator.createSegments();

@@ -7,23 +7,15 @@ class FieldUI extends React.Component {
     super(props);
     this.state = { active: this.props.active };
   }
-  toggle2(event) {
-    if (event.buttons !== 1) {
-      return false;
-    }
-    if (this.state.active) {
-      this.setState({ active: false });
-      this.props.setFieldActive(false);
-    } else {
-      this.setState({ active: true });
-      this.props.setFieldActive(true);
-    }
-  }
+  componentWillMount() {}
   toggle(event) {
+    event.persist();
     if (event.buttons === 1) {
+      event.preventDefault();
       this.setState({ active: true });
       this.props.setFieldActive(true);
     } else if (event.buttons === 2) {
+      event.preventDefault();
       this.setState({ active: false });
       this.props.setFieldActive(false);
     }
@@ -50,6 +42,8 @@ class FieldUI extends React.Component {
           style={styleSquare}
           onMouseOver={this.toggle.bind(this)}
           onMouseDown={this.toggle.bind(this)}
+          onTouchStart={this.toggle.bind(this)}
+          onTouchMove={this.toggle.bind(this)}
           onContextMenu={(event) => event.preventDefault()}
         ></div>
       </td>
@@ -58,3 +52,5 @@ class FieldUI extends React.Component {
 }
 
 export default FieldUI;
+
+//
