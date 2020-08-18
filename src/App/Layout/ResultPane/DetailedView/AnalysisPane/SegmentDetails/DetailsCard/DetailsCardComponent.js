@@ -12,6 +12,7 @@ const useStyles = (theme) => ({
   paper: {
     margin: 0,
     padding: theme.spacing(2),
+    paddingTop: 0,
     display: "block",
     alignItems: "top",
     justifyContent: "top",
@@ -19,15 +20,35 @@ const useStyles = (theme) => ({
 });
 
 class DetailsCardUI extends React.Component {
+  getMessage() {
+    return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+  }
+  standardDeviation(likelihood) {
+    let average = 0;
+    for (let i = 0; i < likelihood.length; i++) {
+      average += i * likelihood[i];
+    }
+    average = average / likelihood.length;
+    let variance = 0;
+    for (let i = 0; i < likelihood.length; i++) {
+      variance += Math.pow(i - average, 2) * likelihood[i];
+    }
+    variance = Math.sqrt(variance);
+    return variance;
+  }
   render() {
     const { classes } = this.props;
     let predictionLikelihood = null;
     let prediction = null;
+    let stdDeviation = null;
     if (this.props.selectedSegment !== null) {
       predictionLikelihood = this.props.predictionLikelihoods[
         this.props.selectedSegment
       ];
       prediction = this.props.predictions[this.props.selectedSegment];
+      stdDeviation = this.standardDeviation(
+        this.props.likelihoods[this.props.selectedSegment]
+      );
     }
 
     return (
@@ -45,7 +66,10 @@ class DetailsCardUI extends React.Component {
           Prediction likelihood = {Math.round(predictionLikelihood * 100)}%
         </Typography>
         <Typography align="left" variant="body2" component="h2">
-          Prediction likelihood = {Math.round(predictionLikelihood * 100)}%
+          Standard deviation = {stdDeviation}
+        </Typography>
+        <Typography align="left" variant="body2" component="h2">
+          {this.getMessage()}
         </Typography>
       </Paper>
     );
@@ -55,9 +79,9 @@ class DetailsCardUI extends React.Component {
 const mapStateToProps = (state) => {
   return {
     selectedSegment: state.analysisPaneReducer.selectedSegment,
-    likelihoods: state.resultPaneReducer.segmentLikelihoods,
-    predictionLikelihoods: state.resultPaneReducer.predictionLikelihoods,
-    predictions: state.resultPaneReducer.segmentPredictions,
+    likelihoods: state.gridProcessorReducer.segmentLikelihoods,
+    predictionLikelihoods: state.gridProcessorReducer.predictionLikelihoods,
+    predictions: state.gridProcessorReducer.segmentPredictions,
   };
 };
 

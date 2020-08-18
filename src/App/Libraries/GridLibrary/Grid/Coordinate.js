@@ -20,6 +20,12 @@ class Coordinate {
   get y() {
     return this._y;
   }
+  equal(coordinate) {
+    if (this.x === coordinate.x && this.y === coordinate.y) {
+      return true;
+    }
+    return false;
+  }
   toString() {
     return `Coordinate: x = ${this._x}, y = ${this._y}`;
   }

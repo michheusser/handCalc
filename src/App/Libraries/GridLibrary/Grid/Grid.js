@@ -89,6 +89,32 @@ class Grid {
     }
     return this;
   }
+  getFilledFields() {
+    let filledFields = [];
+    for (let field of this.fields) {
+      if (field.isFilled) {
+        filledFields.push(field);
+      }
+    }
+    return filledFields;
+  }
+  equalFilledFields(grid) {
+    /*if (this.xFields === grid.xFields && this.yFields === grid.yFields) {
+      const filledFields = this.getFilledFields();
+      const newFilledFields = newGrid.getFilledFields();
+      const equalGrids = true;
+      if(filledFields.length === newFilledFields.length){
+          for(let i = 0; i<filledFields.length; i++){
+            if (!filledFields[i].equal(newFilledFields[i])){
+
+              break;
+            }
+          }
+
+      }
+    }
+    return false;*/
+  }
   toString() {
     // Displays grid as text (empty fields as 0's filled fields as 1's)
     let text = `Grid: width = ${this.xFields}, height = ${this.yFields}\n`;

@@ -17,7 +17,7 @@ import { Animation } from "@devexpress/dx-react-chart";
 
 const useStyles = (theme) => ({
   root: {},
-  chart: { padding: 0 },
+  chart: { padding: 0, paddingBottom: theme.spacing(1) },
   bullet: {
     display: "inline-block",
     margin: "0 2px",
@@ -29,7 +29,7 @@ const useStyles = (theme) => ({
   },
   cardContent: {
     "&:last-child": {
-      paddingBottom: theme.spacing(1),
+      padding: theme.spacing(0),
     },
   },
 });
@@ -78,9 +78,9 @@ class NeuralNetworkBarsUI extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    outputMap: state.resultPaneReducer.outputMap,
+    outputMap: state.gridProcessorReducer.outputMap,
     selectedSegment: state.analysisPaneReducer.selectedSegment,
-    likelihoods: state.resultPaneReducer.segmentLikelihoods,
+    likelihoods: state.gridProcessorReducer.segmentLikelihoods,
   };
 };
 

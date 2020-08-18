@@ -36,7 +36,7 @@ class SegmentDetailsUI extends React.Component {
               Processed Segment
             </Typography>
           </Grid>
-          <Grid item xs={4}>
+          <Grid align="left" item xs={4}>
             <ScaledImageUI />
           </Grid>
           <Grid item xs={8}>
@@ -49,7 +49,7 @@ class SegmentDetailsUI extends React.Component {
               Prediction Analysis
             </Typography>
           </Grid>
-          <Grid item xs={6}>
+          <Grid align="left" item xs={6}>
             <NeuralNetworkBarsUI
               likelihood={likelihood}
               prediction={prediction}
@@ -67,8 +67,8 @@ class SegmentDetailsUI extends React.Component {
 const mapStateToProps = (state) => {
   return {
     selectedSegment: state.analysisPaneReducer.selectedSegment,
-    likelihoods: state.resultPaneReducer.segmentLikelihoods,
-    predictions: state.resultPaneReducer.segmentPredictions,
+    likelihoods: state.gridProcessorReducer.segmentLikelihoods,
+    predictions: state.gridProcessorReducer.segmentPredictions,
   };
 };
 

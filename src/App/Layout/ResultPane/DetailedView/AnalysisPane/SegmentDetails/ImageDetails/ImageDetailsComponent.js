@@ -9,6 +9,7 @@ const useStyles = (theme) => ({
   paper: {
     margin: 0,
     padding: theme.spacing(2),
+    paddingTop: 0,
     display: "block",
     alignItems: "top",
     justifyContent: "top",
@@ -28,16 +29,32 @@ class ImageDetailsUI extends React.Component {
         width={1}
       >
         <Typography align="left" variant="body2">
-          Original segment: 15x15 pixels
+          Original segment:{" "}
+          {this.props.originalSegments[this.props.selectedSegment].xFields}x
+          {this.props.originalSegments[this.props.selectedSegment].yFields}{" "}
+          pixels
         </Typography>
         <Typography align="left" variant="body2">
-          Processed segment: 28x28 pixels
+          Processed segment:{" "}
+          {this.props.curatedSegments[this.props.selectedSegment].xFields}x
+          {this.props.curatedSegments[this.props.selectedSegment].yFields}{" "}
+          pixels
         </Typography>
         <Typography align="left" variant="body2">
-          Used pixels: 8
+          Used pixels:{" "}
+          {
+            this.props.originalSegments[
+              this.props.selectedSegment
+            ].getFilledFields().length
+          }
         </Typography>
         <Typography align="left" variant="body2">
-          Used pixels (after processing): 8
+          Used pixels (processed):{" "}
+          {
+            this.props.curatedSegments[
+              this.props.selectedSegment
+            ].getFilledFields().length
+          }
         </Typography>
       </Paper>
     );
@@ -46,10 +63,9 @@ class ImageDetailsUI extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    originalSegments: state.gridProcessorReducer.originalSegments,
+    curatedSegments: state.gridProcessorReducer.curatedSegments,
     selectedSegment: state.analysisPaneReducer.selectedSegment,
-    likelihoods: state.resultPaneReducer.segmentLikelihoods,
-    predictionLikelihoods: state.resultPaneReducer.predictionLikelihoods,
-    predictions: state.resultPaneReducer.segmentPredictions,
   };
 };
 

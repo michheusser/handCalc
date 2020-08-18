@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { closePane } from "./ResultPaneActions";
+import { openPane, closePane, segmentSelected } from "./ResultPaneActions";
 import { withStyles } from "@material-ui/core/styles";
 import DetailedViewUI from "./DetailedView/DetailedViewComponent.js";
 
@@ -10,7 +10,7 @@ import IconButton from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
+//import DialogContentText from "@material-ui/core/DialogContentText";
 
 import CloseIcon from "@material-ui/icons/Close";
 
@@ -43,13 +43,19 @@ const useStyles = (theme) => ({
     margin: theme.spacing(0),
     padding: theme.spacing(0),
   },
-  dialogActions: {},
+  dialogActions: {
+    margin: theme.spacing(0),
+    padding: theme.spacing(0),
+  },
   dialogContent: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    marginBottom: theme.spacing(1),
+    marginBottom: theme.spacing(0),
     marginTop: theme.spacing(0),
-    padding: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    paddingTop: theme.spacing(0),
   },
 });
 
@@ -61,8 +67,15 @@ class ResultPaneUI extends React.Component {
   handleClose() {
     this.props.closePane();
   }
+  setSelectedSegment() {
+    if (this.props.segments.length) {
+      //this.props.selectSegment(0);
+    }
+  }
   render() {
     const { classes } = this.props;
+    this.setSelectedSegment();
+
     return (
       <Dialog
         className={classes.dialog}
@@ -84,27 +97,31 @@ class ResultPaneUI extends React.Component {
           </IconButton>
         </DialogActions>
         <DialogContent className={classes.dialogContent}>
-          <DialogContentText>
-            <DetailedViewUI text={this.props.result} />
-          </DialogContentText>
+          <DetailedViewUI />
         </DialogContent>
       </Dialog>
     );
   }
 }
+//<DetailedViewUI />
 
 const mapStateToProps = (state) => {
   return {
-    open: state.resultDialogReducer.paneOpen,
-    expression: state.resultPaneReducer.predictedExpression,
-    result: state.resultPaneReducer.displayedResult,
+    segments: state.gridProcessorReducer.originalSegments,
+    open: state.analysisPaneReducer.paneOpen,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    openPane: () => {
+      dispatch(openPane());
+    },
     closePane: () => {
       dispatch(closePane());
+    },
+    selectSegment: (selectedSegmentIndex) => {
+      dispatch(segmentSelected(selectedSegmentIndex));
     },
   };
 };
@@ -113,13 +130,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withStyles(useStyles)(ResultPaneUI));
-
-/*  <Button variant="text">
-    <Typography variant="h3">
-      {this.props.expression} = {this.props.result}
-    </Typography>
-  </Button>*/
-
-/*<SymbolListUI
-    text={this.props.expression + " = " + this.props.result}
-  ></SymbolListUI>*/

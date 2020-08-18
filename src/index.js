@@ -4,14 +4,14 @@ import App from "./App/App";
 import { Provider } from "react-redux";
 import setupStore from "./storeSetup";
 
-/*ReactDOM.render(
+ReactDOM.render(
   <Provider store={setupStore()}>
     <App />
   </Provider>,
   document.getElementById("root")
-);*/
+);
 
-ReactDOM.render(
+/*ReactDOM.render(
   <React.StrictMode>
     <Provider store={setupStore()}>
       <App />
@@ -19,3 +19,4 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+*/

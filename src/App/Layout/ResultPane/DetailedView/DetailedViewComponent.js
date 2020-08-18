@@ -48,14 +48,14 @@ class DetailedViewUI extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Accordion variant="text" elevation={0}>
+        <Accordion variant="elevation" elevation={0}>
           <AccordionSummary
             className={classes.accordionSummary}
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography variant="h3">{this.props.text}</Typography>
+            <Typography variant="h3">{this.props.result}</Typography>
           </AccordionSummary>
 
           <AccordionDetails className={classes.accordionDetails}>
@@ -68,7 +68,7 @@ class DetailedViewUI extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return { result: state.gridProcessorReducer.displayedResult };
 };
 
 const mapDispatchToProps = (dispatch) => {

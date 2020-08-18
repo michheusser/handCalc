@@ -34,7 +34,7 @@ class SegmentUI extends React.Component {
   render() {
     const { classes } = this.props;
     let borderStyle = {};
-    let variant = "";
+    let variant = "elevation";
     if (this.props.selectedSegment === this.props.index) {
       borderStyle = { borderColor: "#3a8a74", borderWidth: "3px" };
       variant = "outlined";
@@ -63,7 +63,7 @@ class SegmentUI extends React.Component {
 }
 const mapStateToProps = (state) => {
   return {
-    segments: state.resultPaneReducer.scaledOriginalSegments,
+    segments: state.gridProcessorReducer.scaledOriginalSegments,
     selectedSegment: state.analysisPaneReducer.selectedSegment,
   };
 };

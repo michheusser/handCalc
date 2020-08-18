@@ -1,4 +1,4 @@
-let boardGridReducer = (state, action) => {
+let gridLayoutReducer = (state, action) => {
   if (typeof state === "undefined") {
     const width = window.innerWidth;
     const height = window.innerHeight;
@@ -71,4 +71,4 @@ const calculateDimensions = (width, height, shortFields, border) => {
   return [widthFields, heightFields, fieldSize, marginLeft, marginTop];
 };
 
-export default boardGridReducer;
+export default gridLayoutReducer;

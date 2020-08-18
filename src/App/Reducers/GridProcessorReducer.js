@@ -2,8 +2,9 @@ import GridGenerator from "../Libraries/GridLibrary/GridGenerator";
 import NeuralNetworkGenerator from "../Libraries/NeuralNetworkLibrary/NeuralNetworkGenerator";
 import neuralNetworkMatrixData from "../Libraries/NeuralNetworkLibrary/Tools/NeuralNetworkMatrixData";
 
-let resultPaneReducer = (
+const gridProcessorReducer = (
   state = {
+    grid: new GridGenerator().createGrid(1, 1),
     originalSegments: [],
     curatedSegments: [],
     scaledOriginalSegments: [],
@@ -15,7 +16,7 @@ let resultPaneReducer = (
     predictedExpression: "",
     displayedResult: "",
     result: "",
-    paneOpen: false,
+    //paneOpen: false,
   },
   action
 ) => {
@@ -28,10 +29,11 @@ let resultPaneReducer = (
         }
       }
     }
-
-    let originalSegments = new GridGenerator()
+    const newGrid = new GridGenerator()
       .createGrid(action.payload.xFields, action.payload.yFields, activeFields)
-      .tools.gridSegmentator.createSegments();
+      .tools.gridCropper.wrap();
+
+    const originalSegments = newGrid.tools.gridSegmentator.createSegments();
 
     if (originalSegments.length === 0) {
       return state;
@@ -129,6 +131,7 @@ let resultPaneReducer = (
     }
 
     let newState = {
+      grid: newGrid,
       originalSegments: originalSegments,
       curatedSegments: curatedSegments,
       scaledOriginalSegments: scaledOriginalSegments,
@@ -140,12 +143,13 @@ let resultPaneReducer = (
       segmentPredictions: segmentPredictions,
       displayedResult: displayedResult,
       result: outputEvaluated,
-      paneOpen: true,
+      //paneOpen: true,
     };
     return newState;
   }
-  if (action.type === "RESET_RESULT") {
+  /*if (action.type === "RESET_RESULT") {
     let newState = {
+      grid: new GridGenerator().createGrid(1, 1),
       originalSegments: [],
       curatedSegments: [],
       scaledOriginalSegments: [],
@@ -157,11 +161,11 @@ let resultPaneReducer = (
       predictionLikelihood: null,
       displayedResult: "",
       result: "",
-      paneOpen: false,
+      //paneOpen: false,
     };
     return newState;
-  }
+  }*/
   return state;
 };
 
-export default resultPaneReducer;
+export default gridProcessorReducer;

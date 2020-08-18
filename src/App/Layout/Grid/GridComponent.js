@@ -5,6 +5,7 @@ import {
   finishedProcess,
   mouseDown,
   mouseUp,
+  openPane,
 } from "./GridActions";
 import { Box } from "@material-ui/core";
 import FieldUI from "./Field/FieldComponent";
@@ -34,6 +35,7 @@ class GridUI extends React.Component {
   }
   processGrid() {
     this.props.process(this.props.xFields, this.props.yFields, this.fields);
+    this.props.openPane();
     this.props.finishedProcess();
   }
 
@@ -67,7 +69,7 @@ class GridUI extends React.Component {
         style={{
           display: "flex",
           justify: "center",
-          //touchAction: "none",
+          touchAction: "none",
           margin: 0,
           padding: 0,
         }}
@@ -95,19 +97,18 @@ class GridUI extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    xFields: state.boardGridReducer.widthFields,
-    yFields: state.boardGridReducer.heightFields,
-    fieldSize: state.boardGridReducer.fieldSize,
-    fieldBorder: state.boardGridReducer.fieldBorder,
-    marginLeft: state.boardGridReducer.marginLeft,
-    marginTop: state.boardGridReducer.marginTop,
+    xFields: state.gridLayoutReducer.widthFields,
+    yFields: state.gridLayoutReducer.heightFields,
+    fieldSize: state.gridLayoutReducer.fieldSize,
+    fieldBorder: state.gridLayoutReducer.fieldBorder,
+    marginLeft: state.gridLayoutReducer.marginLeft,
+    marginTop: state.gridLayoutReducer.marginTop,
     goClicked: state.headerReducer.goClicked,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     process: (xFields, yFields, fields) => {
-      console.log(fields);
       dispatch(processGrid(xFields, yFields, fields));
     },
     finishedProcess: () => {
@@ -119,15 +120,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     mouseUp: () => {
       dispatch(mouseUp());
     },
+    openPane: () => {
+      dispatch(openPane());
+    },
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridUI);
-
-/*        <Segment
-          raised
-          style={{ right: "0", bottom: "0", position: "absolute" }}
-        >
-          {" "}
-          <GridToolbarUI processGrid={this.processGrid.bind(this)} />{" "}
-        </Segment>{" "}*/

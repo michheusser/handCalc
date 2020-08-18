@@ -40,20 +40,6 @@ class GridScaler extends GridTool {
     }
     return false;
   }
-  // def _isCorner(self,x,y,position):
-  //       '''Returns weather a pixel on a corner of pixels'''
-  //       positionC =  [int((position[0]-position[1])/2),int((position[0]+position[1])/2)]
-  //       positionCC = [int((position[1]+position[0])/2),int((position[1]-position[0])/2)]
-  //       xNextC = x+positionC[1]
-  //       yNextC = y+positionC[0]
-  //       xNextCC = x+positionCC[1]
-  //       yNextCC = y+positionCC[0]
-  //
-  //       if  (abs(position[0])==1 and abs(position[1])==1) and (0 <= xNextC < self.imageData.data.shape[1] and 0 <= yNextC < self.imageData.data.shape[0] and xNextCC < self.imageData.data.shape[1] and 0 <= yNextCC < self.imageData.data.shape[0]):
-  //           if self.imageData.data[y][x] and (self.imageData.data[yNextC][xNextC] or self.imageData.data[yNextCC][xNextCC]):
-  //               return True
-  //       return False
-
   scale(xFields, yFields, scaleStroke = true) {
     let scaledGrid = new Grid(xFields, yFields);
     if (scaleStroke) {

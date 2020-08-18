@@ -12,6 +12,15 @@ class Field {
   get coordinate() {
     return this._coordinate;
   }
+  equal(field) {
+    if (
+      this.coordinate.equal(field.coordinate) &&
+      this.isFilled === field.isFilled
+    ) {
+      return true;
+    }
+    return false;
+  }
   toString() {
     // Displays field properties as text
     if (this.isFilled) {

@@ -20,7 +20,9 @@ const useStyles = (theme) => ({
   paper: {
     margin: 0,
     padding: theme.spacing(2),
-    display: "flex",
+    paddingLeft: 0,
+    paddingTop: 0,
+    display: "inline-block",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -93,7 +95,7 @@ class ScaledImageUI extends React.Component {
 const mapStateToProps = (state) => {
   return {
     selectedSegment: state.analysisPaneReducer.selectedSegment,
-    segments: state.resultPaneReducer.scaledCuratedSegments,
+    segments: state.gridProcessorReducer.scaledCuratedSegments,
   };
 };
 

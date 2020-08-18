@@ -7,7 +7,7 @@ class FieldUI extends React.Component {
     super(props);
     this.state = { active: this.props.active };
   }
-  componentWillMount() {}
+
   toggle(event) {
     event.persist();
     if (event.buttons === 1) {

@@ -12,6 +12,20 @@ export const finishedProcess = () => {
   };
 };
 
+export const openPane = () => {
+  return {
+    type: "OPEN_PANE",
+    payload: {},
+  };
+};
+
+export const closePane = () => {
+  return {
+    type: "CLOSE_PANE",
+    payload: {},
+  };
+};
+
 export const mouseDown = () => {
   return {
     type: "GRID_MOUSE_DOWN",

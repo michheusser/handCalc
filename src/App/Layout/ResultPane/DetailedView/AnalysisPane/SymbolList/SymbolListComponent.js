@@ -21,7 +21,7 @@ class SymbolListUI extends React.Component {
       });
     return (
       <Grid item xs={12}>
-        <Grid elevation={0} container justify="left" spacing={0}>
+        <Grid elevation={0} container spacing={0}>
           {itemList}
         </Grid>
       </Grid>
@@ -31,7 +31,7 @@ class SymbolListUI extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    segments: state.resultPaneReducer.scaledOriginalSegments,
+    segments: state.gridProcessorReducer.scaledOriginalSegments,
   };
 };
 
