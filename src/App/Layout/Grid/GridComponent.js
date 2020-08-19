@@ -86,6 +86,11 @@ class GridUI extends React.Component {
           }}
           onMouseDown={this.props.mouseDown}
           onMouseUp={this.props.mouseUp}
+          onTouchStart={(event) => {
+            console.log(event);
+            this.props.mouseDown();
+          }}
+          onTouchEnd={this.props.mouseUp}
           draggable="false"
         >
           <tbody draggable="false">{table}</tbody>

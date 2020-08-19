@@ -7,7 +7,12 @@ class FieldUI extends React.Component {
     super(props);
     this.state = { active: this.props.active };
   }
-
+  toggleTouch(event) {
+    event.persist();
+    event.preventDefault();
+    this.setState({ active: true });
+    this.props.setFieldActive(true);
+  }
   toggle(event) {
     event.persist();
     if (event.buttons === 1) {
@@ -42,8 +47,8 @@ class FieldUI extends React.Component {
           style={styleSquare}
           onMouseOver={this.toggle.bind(this)}
           onMouseDown={this.toggle.bind(this)}
-          onTouchStart={this.toggle.bind(this)}
-          onTouchMove={this.toggle.bind(this)}
+          onTouchStart={this.toggleTouch.bind(this)}
+          onTouchMove={this.toggleTouch.bind(this)}
           onContextMenu={(event) => event.preventDefault()}
         ></div>
       </td>

@@ -69,7 +69,7 @@ class ResultPaneUI extends React.Component {
   }
   setSelectedSegment() {
     if (this.props.segments.length) {
-      //this.props.selectSegment(0);
+      this.props.selectSegment(0);
     }
   }
   render() {

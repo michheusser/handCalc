@@ -79,8 +79,8 @@ class ScaledImageUI extends React.Component {
           width={1}
         >
           <canvas
-            width={120}
-            height={120}
+            width={150}
+            height={150}
             style={{ border: "none" }}
             ref={(ref) => {
               this.updateCanvas(ref);

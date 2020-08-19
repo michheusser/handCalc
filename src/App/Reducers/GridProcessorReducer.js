@@ -78,8 +78,8 @@ const gridProcessorReducer = (
       .tools.gridSegmentator.createSegments(curatedFitData);
 
     const curatedScaledFitData = {
-      xFields: 120,
-      yFields: 120,
+      xFields: 150,
+      yFields: 150,
       scaleStroke: false,
     };
 

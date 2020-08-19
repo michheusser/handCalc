@@ -21,7 +21,9 @@ const useStyles = (theme) => ({
 
 class DetailsCardUI extends React.Component {
   getMessage() {
-    return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+    return `The neural network identified this symbol with a likelihood of ${Math.round(
+      this.props.predictionLikelihoods[this.props.selectedSegment] * 100
+    )}%. If other possible symbols have a comparable likelihood value, or the prediction is incorrect, please go back to the drawing board and make sure the symbol is better distincted by the rest of the prediction candidates`;
   }
   standardDeviation(likelihood) {
     let average = 0;
@@ -46,9 +48,12 @@ class DetailsCardUI extends React.Component {
         this.props.selectedSegment
       ];
       prediction = this.props.predictions[this.props.selectedSegment];
-      stdDeviation = this.standardDeviation(
-        this.props.likelihoods[this.props.selectedSegment]
-      );
+      stdDeviation =
+        Math.round(
+          this.standardDeviation(
+            this.props.likelihoods[this.props.selectedSegment]
+          ) * 100
+        ) / 100;
     }
 
     return (
@@ -68,7 +73,8 @@ class DetailsCardUI extends React.Component {
         <Typography align="left" variant="body2" component="h2">
           Standard deviation = {stdDeviation}
         </Typography>
-        <Typography align="left" variant="body2" component="h2">
+        <Typography align="left" variant="caption" component="h2">
+          <br />
           {this.getMessage()}
         </Typography>
       </Paper>

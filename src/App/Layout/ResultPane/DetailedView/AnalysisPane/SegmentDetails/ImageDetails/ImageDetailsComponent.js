@@ -10,6 +10,7 @@ const useStyles = (theme) => ({
     margin: 0,
     padding: theme.spacing(2),
     paddingTop: 0,
+    paddingLeft: 0,
     display: "block",
     alignItems: "top",
     justifyContent: "top",
@@ -17,6 +18,17 @@ const useStyles = (theme) => ({
 });
 
 class ImageDetailsUI extends React.Component {
+  getMessage() {
+    const message = `The original drawing of this symbol has a total of ${
+      this.props.originalSegments[this.props.selectedSegment].xFields *
+      this.props.originalSegments[this.props.selectedSegment].yFields
+    } pixels, out of which ${
+      this.props.originalSegments[this.props.selectedSegment].getFilledFields()
+        .length
+    } are non-empty. If the dimensions are too small, the neural network might have difficulties identifying the symbol with precision`;
+    return message;
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -55,6 +67,10 @@ class ImageDetailsUI extends React.Component {
               this.props.selectedSegment
             ].getFilledFields().length
           }
+        </Typography>
+        <Typography align="left" variant="caption" component="h2">
+          <br />
+          {this.getMessage()}
         </Typography>
       </Paper>
     );

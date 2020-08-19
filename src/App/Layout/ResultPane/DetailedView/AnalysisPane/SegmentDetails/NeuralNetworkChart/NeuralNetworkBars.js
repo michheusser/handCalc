@@ -5,7 +5,8 @@ import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-
+import { formatPrefix } from "d3-format";
+import { scaleLog } from "d3-scale";
 import {
   Chart,
   BarSeries,
@@ -13,7 +14,7 @@ import {
   ValueAxis,
 } from "@devexpress/dx-react-chart-material-ui";
 
-import { Animation } from "@devexpress/dx-react-chart";
+import { Animation, ValueScale } from "@devexpress/dx-react-chart";
 
 const useStyles = (theme) => ({
   root: {},
@@ -50,8 +51,9 @@ class NeuralNetworkBarsUI extends React.Component {
         });
     }
     const { classes } = this.props;
+    //const scale = () => scaleLog().base(2);
+    const modifyDomain = (domain) => [0, 1];
 
-    //const formatFunc = (obj) => obj.tickFormat(null, format(".0%"));
     return (
       <Card elevation={0} className={classes.root}>
         <CardContent className={classes.cardContent}>
@@ -60,9 +62,10 @@ class NeuralNetworkBarsUI extends React.Component {
             color="textSecondary"
             gutterBottom
           ></Typography>
-          <Chart className={classes.chart} height={180} data={data}>
+          <Chart className={classes.chart} height={220} data={data}>
             <ArgumentAxis />
-            <ValueAxis max={7} tickSize={10} />
+            <ValueScale modifyDomain={modifyDomain} />
+            <ValueAxis showLine={true} />
             <BarSeries
               argumentField="symbol"
               valueField="likelihood"
