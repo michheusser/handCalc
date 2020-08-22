@@ -52,18 +52,14 @@ const useStyles = (theme) => ({
     marginRight: theme.spacing(1),
     marginBottom: theme.spacing(0),
     marginTop: theme.spacing(0),
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-    paddingTop: theme.spacing(0),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+    paddingTop: theme.spacing(1),
   },
 });
 
 class ResultPaneUI extends React.Component {
-  constructor(props) {
-    super(props);
-    this.contexts = [];
-  }
   handleClose() {
     this.props.closePane();
   }

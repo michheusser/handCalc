@@ -5,8 +5,8 @@ import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import { formatPrefix } from "d3-format";
-import { scaleLog } from "d3-scale";
+//import { formatPrefix } from "d3-format";
+//import { scaleLog } from "d3-scale";
 import {
   Chart,
   BarSeries,

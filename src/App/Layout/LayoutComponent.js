@@ -3,6 +3,8 @@ import HeaderUI from "./Header/HeaderComponent.js";
 import FooterUI from "./Footer/FooterComponent.js";
 import GridUI from "./Grid/GridComponent.js";
 import ResultPaneUI from "./ResultPane/ResultPaneComponent.js";
+import InstructionsUI from "./Instructions/InstructionsComponent.js";
+import AboutUI from "./About/AboutComponent.js";
 import { connect } from "react-redux";
 import { windowResize } from "./LayoutActions.js";
 
@@ -23,6 +25,8 @@ class LayoutUI extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <InstructionsUI />
+        <AboutUI />
         <ResultPaneUI />
         <HeaderUI />
         <GridUI />

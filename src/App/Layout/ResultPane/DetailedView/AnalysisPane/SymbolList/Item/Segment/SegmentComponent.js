@@ -33,7 +33,7 @@ class SegmentUI extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    let borderStyle = {};
+    let borderStyle = { padding: "6px" };
     let variant = "elevation";
     if (this.props.selectedSegment === this.props.index) {
       borderStyle = { borderColor: "#3a8a74", borderWidth: "3px" };

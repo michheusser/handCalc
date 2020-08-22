@@ -23,7 +23,7 @@ class DetailsCardUI extends React.Component {
   getMessage() {
     return `The neural network identified this symbol with a likelihood of ${Math.round(
       this.props.predictionLikelihoods[this.props.selectedSegment] * 100
-    )}%. If other possible symbols have a comparable likelihood value, or the prediction is incorrect, please go back to the drawing board and make sure the symbol is better distincted by the rest of the prediction candidates`;
+    )}%. If other possible symbols have a comparable likelihood, or the prediction itself is incorrect, please go back to the drawing board and make sure the symbol is more clearly written`;
   }
   standardDeviation(likelihood) {
     let average = 0;
@@ -64,13 +64,13 @@ class DetailsCardUI extends React.Component {
         height={1}
         width={1}
       >
-        <Typography align="left" variant="body2" component="h2">
+        <Typography align="left" variant="caption" component="h2">
           Predicted symbol: {prediction}
         </Typography>
-        <Typography align="left" variant="body2" component="h2">
+        <Typography align="left" variant="caption" component="h2">
           Prediction likelihood = {Math.round(predictionLikelihood * 100)}%
         </Typography>
-        <Typography align="left" variant="body2" component="h2">
+        <Typography align="left" variant="caption" component="h2">
           Standard deviation = {stdDeviation}
         </Typography>
         <Typography align="left" variant="caption" component="h2">

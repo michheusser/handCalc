@@ -11,6 +11,9 @@ import MenuIcon from "@material-ui/icons/Menu";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import PersonIcon from "@material-ui/icons/Person";
+import { openInstructions, openAbout } from "./MenuActions.js";
+import { connect } from "react-redux";
+import { withStyles } from "@material-ui/core/styles";
 
 const useStyles = (theme) => ({
   list: {
@@ -21,98 +24,126 @@ const useStyles = (theme) => ({
   },
 });
 
-function MenuUI() {
-  const classes = useStyles();
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
+class MenuUI extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      top: false,
+      left: false,
+      bottom: false,
+      right: false,
+    };
+  }
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
+  toggleDrawer(anchor, open) {
+    return (event) => {
+      if (
+        event.type === "keydown" &&
+        (event.key === "Tab" || event.key === "Shift")
+      ) {
+        return;
+      }
 
-    setState({ ...state, [anchor]: open });
-  };
+      this.setState({ ...this.state, [anchor]: open });
+    };
+  }
 
-  const list = (anchor) => (
-    <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === "top" || anchor === "bottom",
-      })}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        <ListItem button key={"Instructions"}>
-          <ListItemIcon>
-            <AssignmentIcon />
-          </ListItemIcon>
-          <ListItemText primary={"Instructions"} />
-        </ListItem>
+  render() {
+    const { classes } = this.props;
+    const list = (anchor) => (
+      <div
+        className={clsx(classes.list, {
+          [classes.fullList]: anchor === "top" || anchor === "bottom",
+        })}
+        role="presentation"
+        onClick={this.toggleDrawer(anchor, false)}
+        onKeyDown={this.toggleDrawer(anchor, false)}
+      >
+        <List>
+          <ListItem
+            button
+            key={"Instructions"}
+            onClick={(event) => {
+              this.props.openInstructions();
+            }}
+          >
+            <ListItemIcon>
+              <AssignmentIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Instructions"} />
+          </ListItem>
 
-        <ListItem
-          button
-          key={"GitHub"}
-          onClick={(event) =>
-            (window.location.href =
-              "https://github.com/michheusser/symbol-neural-network")
-          }
-        >
-          <ListItemIcon>
-            <GitHubIcon />
-          </ListItemIcon>
-          <ListItemText primary={"GitHub Repository"} />
-        </ListItem>
-        <ListItem
-          button
-          key={"About"}
-          onClick={(event) =>
-            (window.location.href = "https://github.com/michheusser")
-          }
-        >
-          <ListItemIcon>
-            <PersonIcon />
-          </ListItemIcon>
-          <ListItemText primary={"About"} />
-        </ListItem>
-        <Divider />
-      </List>
-    </div>
-  );
+          <ListItem
+            button
+            key={"GitHub"}
+            onClick={(event) =>
+              (window.location.href =
+                "https://github.com/michheusser/symbol-neural-network")
+            }
+          >
+            <ListItemIcon>
+              <GitHubIcon />
+            </ListItemIcon>
+            <ListItemText primary={"GitHub Repository"} />
+          </ListItem>
+          <ListItem
+            button
+            key={"About"}
+            onClick={(event) => {
+              this.props.openAbout();
+            }}
+          >
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            <ListItemText primary={"About"} />
+          </ListItem>
+          <Divider />
+        </List>
+      </div>
+    );
 
-  return (
-    <div>
-      <React.Fragment key={"left"}>
-        <IconButton
-          onClick={toggleDrawer("left", true)}
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="menu"
-        >
-          <MenuIcon />
-        </IconButton>
+    return (
+      <div>
+        <React.Fragment key={"left"}>
+          <IconButton
+            onClick={this.toggleDrawer("left", true)}
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+          >
+            <MenuIcon />
+          </IconButton>
 
-        <Drawer
-          anchor={"left"}
-          open={state["left"]}
-          onClose={toggleDrawer("left", false)}
-        >
-          {list("left")}
-        </Drawer>
-      </React.Fragment>
-    </div>
-  );
+          <Drawer
+            anchor={"left"}
+            open={this.state["left"]}
+            onClose={this.toggleDrawer("left", false)}
+          >
+            {list("left")}
+          </Drawer>
+        </React.Fragment>
+      </div>
+    );
+  }
 }
+const mapStateToProps = (state) => {
+  return {};
+};
 
-export default MenuUI;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    openInstructions: () => {
+      dispatch(openInstructions());
+    },
+    openAbout: () => {
+      dispatch(openAbout());
+    },
+  };
+};
 
-/*<Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>*/
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(useStyles)(MenuUI));

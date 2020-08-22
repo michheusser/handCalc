@@ -37,7 +37,7 @@ class HeaderUI extends React.Component {
           in={this.props.show}
           timeout={{ enter: 800, exit: 800 }}
         >
-          <AppBar position="fixed" color="secondary">
+          <AppBar position="fixed" color="primary">
             <Toolbar>
               <MenuUI />
               <Typography variant="h6" className={classes.title}>
@@ -45,7 +45,7 @@ class HeaderUI extends React.Component {
               </Typography>
               <Button
                 variant="contained"
-                color="primary"
+                color="secondary"
                 onClick={this.props.goClicked}
               >
                 Start

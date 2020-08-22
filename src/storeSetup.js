@@ -5,6 +5,8 @@ import analysisPaneReducer from "./App/Reducers/AnalysisPaneReducer";
 import gridLayoutReducer from "./App/Reducers/GridLayoutReducer";
 import headerReducer from "./App/Reducers/HeaderReducer";
 import headerFooterReducer from "./App/Reducers/HeaderFooterReducer.js";
+import instructionsReducer from "./App/Reducers/InstructionsReducer.js";
+import aboutReducer from "./App/Reducers/AboutReducer.js";
 
 // Define the Reducers that will always be present in the application
 const initialReducers = {
@@ -13,6 +15,8 @@ const initialReducers = {
   gridLayoutReducer: gridLayoutReducer,
   gridProcessorReducer: gridProcessorReducer,
   analysisPaneReducer: analysisPaneReducer,
+  instructionsReducer: instructionsReducer,
+  aboutReducer: aboutReducer,
 };
 
 const setupStore = () => {

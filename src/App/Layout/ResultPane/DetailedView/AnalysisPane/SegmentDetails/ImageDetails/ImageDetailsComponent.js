@@ -40,19 +40,19 @@ class ImageDetailsUI extends React.Component {
         height={1}
         width={1}
       >
-        <Typography align="left" variant="body2">
+        <Typography align="left" variant="caption" component="h2">
           Original segment:{" "}
           {this.props.originalSegments[this.props.selectedSegment].xFields}x
           {this.props.originalSegments[this.props.selectedSegment].yFields}{" "}
           pixels
         </Typography>
-        <Typography align="left" variant="body2">
+        <Typography align="left" variant="caption" component="h2">
           Processed segment:{" "}
           {this.props.curatedSegments[this.props.selectedSegment].xFields}x
           {this.props.curatedSegments[this.props.selectedSegment].yFields}{" "}
           pixels
         </Typography>
-        <Typography align="left" variant="body2">
+        <Typography align="left" variant="caption" component="h2">
           Used pixels:{" "}
           {
             this.props.originalSegments[
@@ -60,7 +60,7 @@ class ImageDetailsUI extends React.Component {
             ].getFilledFields().length
           }
         </Typography>
-        <Typography align="left" variant="body2">
+        <Typography align="left" variant="caption" component="h2">
           Used pixels (processed):{" "}
           {
             this.props.curatedSegments[

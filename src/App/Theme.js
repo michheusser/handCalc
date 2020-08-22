@@ -1,7 +1,7 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
 //const myBlue = "#20358a";
-const myBlue = "#FFFFFF";
+const myWhite = "#FFFFFF";
 const myGreen = "#3a8a74";
 
 const theme = createMuiTheme({
@@ -23,11 +23,11 @@ const theme = createMuiTheme({
   },
   palette: {
     common: {
-      blue: `${myBlue}`,
+      blue: `${myWhite}`,
       green: `${myGreen}`,
     },
-    primary: { main: `${myBlue}` },
-    secondary: { main: `${myGreen}` },
+    primary: { main: `${myGreen}` },
+    secondary: { main: `${myWhite}` },
   },
 });
 

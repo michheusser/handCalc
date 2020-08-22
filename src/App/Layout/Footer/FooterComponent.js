@@ -20,12 +20,12 @@ class FooterUI extends React.Component {
       >
         <AppBar
           position="fixed"
-          color="primary"
+          color="secondary"
           style={{ bottom: 0, top: "auto" }}
         >
           <Toolbar>
             <Typography variant="caption">
-              All rights reserved. Michel Heusser, 2020
+              Original work Copyright © 2020 Michel Heusser.
             </Typography>
           </Toolbar>
         </AppBar>
