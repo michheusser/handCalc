@@ -1,28 +1,22 @@
 // Libraries
 import React from "react";
+import { connect } from "react-redux";
+import { changeField } from "./FieldActions.js";
 // Actions
 
 class FieldUI extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { active: this.props.active };
-  }
   toggleTouch(event) {
     event.persist();
     event.preventDefault();
-    this.setState({ active: true });
-    this.props.setFieldActive(true);
   }
   toggle(event) {
     event.persist();
     if (event.buttons === 1) {
       event.preventDefault();
-      this.setState({ active: true });
-      this.props.setFieldActive(true);
+      this.props.changeField(true);
     } else if (event.buttons === 2) {
       event.preventDefault();
-      this.setState({ active: false });
-      this.props.setFieldActive(false);
+      this.props.changeField(false);
     }
   }
   render() {
@@ -33,7 +27,7 @@ class FieldUI extends React.Component {
     let styleSquare = {
       height: `${this.props.fieldSize}px`,
       width: `${this.props.fieldSize}px`,
-      background: this.state.active
+      background: this.props.active
         ? `${this.props.backgroundActivated}`
         : `${this.props.background}`,
       border: "none",
@@ -56,6 +50,19 @@ class FieldUI extends React.Component {
   }
 }
 
-export default FieldUI;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    active: state.gridLayoutReducer.fields[ownProps.x][ownProps.y],
+  };
+};
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    changeField: (isFilled) => {
+      dispatch(changeField(ownProps.x, ownProps.y, isFilled));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FieldUI);
 
 //

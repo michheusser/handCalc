@@ -11,6 +11,7 @@ let gridLayoutReducer = (state, action) => {
       marginLeft,
       marginTop,
     ] = calculateDimensions(width, height, shortFields, fieldBorder);
+    const fields = newFieldGrid(widthFields, heightFields);
 
     const newState = {
       width: width,
@@ -22,7 +23,9 @@ let gridLayoutReducer = (state, action) => {
       shortFields: shortFields,
       marginLeft: marginLeft,
       marginTop: marginTop,
+      fields: fields,
     };
+
     return newState;
   }
 
@@ -39,6 +42,14 @@ let gridLayoutReducer = (state, action) => {
       marginTop,
     ] = calculateDimensions(width, height, shortFields, fieldBorder);
 
+    let fields = newFieldGrid(widthFields, heightFields);
+    copyFields(state.fields, fields);
+
+    /*for (let x = 0; x < Math.min(widthFields, state.widthFields); x++) {
+      for (let y = 0; y < Math.min(heightFields, state.heightFields); y++) {
+        fields[x][y] = state.fields[x][y];
+      }
+    }*/
     const newState = {
       width: width,
       height: height,
@@ -49,9 +60,25 @@ let gridLayoutReducer = (state, action) => {
       shortFields: shortFields,
       marginLeft: marginLeft,
       marginTop: marginTop,
+      fields: fields,
     };
+
     return newState;
   }
+  if (action.type === "CHANGE_FIELD") {
+    let fields = newFieldGrid(state.widthFields, state.heightFields);
+    for (let x = 0; x < state.widthFields; x++) {
+      fields[x] = [...state.fields[x]];
+    }
+    fields[action.payload.x][action.payload.y] = action.payload.isFilled;
+    const newState = {
+      ...state,
+      fields: fields,
+    };
+
+    return newState;
+  }
+
   return state;
 };
 
@@ -72,3 +99,19 @@ const calculateDimensions = (width, height, shortFields, border) => {
 };
 
 export default gridLayoutReducer;
+
+function newFieldGrid(xFields, yFields) {
+  return new Array(xFields)
+    .fill(null)
+    .map((_) => new Array(yFields).fill(false));
+}
+
+function copyFields(oldFields, newFields) {
+  const xFieldsMin = Math.min(oldFields.length, newFields.length);
+  const yFieldsMin = Math.min(oldFields[0].length, newFields[0].length);
+  for (let x = 0; x < xFieldsMin; x++) {
+    for (let y = 0; y < yFieldsMin; y++) {
+      newFields[x][y] = oldFields[x][y];
+    }
+  }
+}

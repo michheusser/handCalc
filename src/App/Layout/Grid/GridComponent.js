@@ -11,53 +11,6 @@ import { Box, Button } from "@material-ui/core";
 import FieldUI from "./Field/FieldComponent";
 
 class GridUI extends React.Component {
-  constructor(props) {
-    super(props);
-    this.fields = this.newFieldGrid(this.props.xFields, this.props.yFields);
-  }
-  newFieldGrid(xFields, yFields) {
-    return new Array(this.props.xFields)
-      .fill(null)
-      .map((_) => new Array(this.props.yFields).fill(false));
-  }
-  copyFields(oldFields, newFields) {
-    const xFieldsMin = Math.min(oldFields.length, newFields.length);
-    const yFieldsMin = Math.min(oldFields[0].length, newFields[0].length);
-    for (let x = 0; x < xFieldsMin; x++) {
-      for (let y = 0; y < yFieldsMin; y++) {
-        newFields[x][y] = oldFields[x][y];
-      }
-    }
-  }
-  updateFields() {
-    let newFields = this.newFieldGrid(this.props.xFields, this.props.yFields);
-    this.copyFields(this.fields, newFields);
-    this.fields = newFields;
-  }
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.goClicked) {
-      this.processGrid();
-      return false;
-    }
-    return true;
-  }
-  componentDidUpdate() {
-    //  this.processGrid();
-  }
-
-  /*updateFields() {
-    if (!this.props.goClicked) {
-      this.fields = new Array(this.props.xFields)
-        .fill(null)
-        .map((_) => new Array(this.props.yFields).fill(false));
-    }
-  }*/
-  setFieldActive(x, y) {
-    function setActive(active) {
-      this.fields[x][y] = active;
-    }
-    return setActive;
-  }
   processGrid() {
     //if (this.props.goClicked) {
     this.props.process(this.props.xFields, this.props.yFields, this.fields);
@@ -66,8 +19,6 @@ class GridUI extends React.Component {
     //}
   }
   render() {
-    console.log("grid rendered");
-    this.updateFields();
     let table = [];
     for (let y = 0; y < this.props.yFields; y++) {
       table.push(
@@ -80,8 +31,6 @@ class GridUI extends React.Component {
                 border={this.props.fieldBorder}
                 x={x}
                 y={y}
-                setFieldActive={this.setFieldActive(x, y).bind(this)}
-                active={this.fields[x][y]}
                 backgroundActivated={"grey"}
                 background={"white"}
               />
@@ -121,7 +70,6 @@ class GridUI extends React.Component {
         >
           <tbody draggable="false">{table}</tbody>
         </table>
-        <Button onClick={this.processGrid.bind(this)}>Button</Button>
       </Box>
     );
   }
@@ -135,7 +83,6 @@ const mapStateToProps = (state) => {
     fieldBorder: state.gridLayoutReducer.fieldBorder,
     marginLeft: state.gridLayoutReducer.marginLeft,
     marginTop: state.gridLayoutReducer.marginTop,
-    goClicked: state.toolbarReducer.goClicked,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -159,3 +106,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridUI);
+
+//<Button onClick={this.processGrid.bind(this)}>Button</Button>
