@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderUI from "./Header/HeaderComponent.js";
+import ToolbarUI from "./Toolbar/ToolbarComponent.js";
 import FooterUI from "./Footer/FooterComponent.js";
 import GridUI from "./Grid/GridComponent.js";
 import ResultPaneUI from "./ResultPane/ResultPaneComponent.js";
@@ -28,7 +28,7 @@ class LayoutUI extends React.Component {
         <InstructionsUI />
         <AboutUI />
         <ResultPaneUI />
-        <HeaderUI />
+        <ToolbarUI />
         <GridUI />
         <FooterUI />
       </React.Fragment>

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { goClicked } from "./HeaderActions.js";
+import { goClicked } from "./ToolbarActions.js";
 import { AppBar, Toolbar, Typography, Button, Slide } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -27,7 +27,7 @@ const useStyles = (theme) => ({
   },
 });
 
-class HeaderUI extends React.Component {
+class ToolbarUI extends React.Component {
   render() {
     const { classes } = this.props;
     return (
@@ -75,7 +75,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(HeaderUI));
+)(withStyles(useStyles)(ToolbarUI));
 
 /*            <Backdrop
               className={classes.backdrop}

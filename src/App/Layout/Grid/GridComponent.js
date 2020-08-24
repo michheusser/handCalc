@@ -62,7 +62,7 @@ class GridUI extends React.Component {
     //if (this.props.goClicked) {
     this.props.process(this.props.xFields, this.props.yFields, this.fields);
     this.props.openPane();
-    this.props.finishedProcess();
+    //this.props.finishedProcess();
     //}
   }
   render() {
@@ -121,7 +121,7 @@ class GridUI extends React.Component {
         >
           <tbody draggable="false">{table}</tbody>
         </table>
-        <Button>Button</Button>
+        <Button onClick={this.processGrid.bind(this)}>Button</Button>
       </Box>
     );
   }
@@ -135,7 +135,7 @@ const mapStateToProps = (state) => {
     fieldBorder: state.gridLayoutReducer.fieldBorder,
     marginLeft: state.gridLayoutReducer.marginLeft,
     marginTop: state.gridLayoutReducer.marginTop,
-    goClicked: state.headerReducer.goClicked,
+    goClicked: state.toolbarReducer.goClicked,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {

@@ -1,4 +1,4 @@
-let headerReducer = (state = { goClicked: false }, action) => {
+let toolbarReducer = (state = { goClicked: false }, action) => {
   if (action.type === "GO_CLICKED") {
     let newState = { goClicked: true };
     return newState;
@@ -10,4 +10,4 @@ let headerReducer = (state = { goClicked: false }, action) => {
   return state;
 };
 
-export default headerReducer;
+export default toolbarReducer;
