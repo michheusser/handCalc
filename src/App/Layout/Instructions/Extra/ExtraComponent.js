@@ -41,7 +41,7 @@ class ExtraUI extends React.Component {
             touching each other.
             <br />
           </Typography>
-          <img src={fill} height={100} />
+          <img src={fill} height={100} alt="Fill GIF" />
           <Typography component="span" variant="body2">
             <br />
             Make sure you write the symbols in a way that identifies them best
@@ -51,7 +51,8 @@ class ExtraUI extends React.Component {
             "[" and "]")
             <br />
           </Typography>
-          <img src={seven} height={100} /> <img src={one} height={100} />
+          <img src={seven} height={100} alt="Seven GIF" />{" "}
+          <img src={one} height={100} alt="One GIF" />
           <Typography component="span" variant="body2">
             <br />
             Write symbols in a size where the stroke is clearly differentiable.

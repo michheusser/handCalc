@@ -31,7 +31,7 @@ class AnalysisUI extends React.Component {
             the detailed analysis information by clicking on the arrow below the
             evaluated expression <br />
           </Typography>
-          <img src={analysis_pane} height={100} />
+          <img src={analysis_pane} height={100} alt="Analysis Pane GIF" />
           <Typography component="span" variant="body2">
             <br />
             Everytime you write a new expression, every symbol is segmented, and
@@ -40,7 +40,7 @@ class AnalysisUI extends React.Component {
             segments you can get a detailed prediction view for each of them
             <br />
           </Typography>
-          <img src={segments} height={100} />
+          <img src={segments} height={100} alt="Segments GIF" />
           <Typography component="span" variant="body2">
             <br />
             Every neural network has its limitations, and may not always

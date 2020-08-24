@@ -7,26 +7,51 @@ import {
   mouseUp,
   openPane,
 } from "./GridActions";
-import { Box } from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
 import FieldUI from "./Field/FieldComponent";
 
 class GridUI extends React.Component {
   constructor(props) {
     super(props);
-    this.fields = null;
+    this.fields = this.newFieldGrid(this.props.xFields, this.props.yFields);
   }
-  componentDidUpdate() {
-    if (this.props.goClicked) {
-      this.processGrid();
+  newFieldGrid(xFields, yFields) {
+    return new Array(this.props.xFields)
+      .fill(null)
+      .map((_) => new Array(this.props.yFields).fill(false));
+  }
+  copyFields(oldFields, newFields) {
+    const xFieldsMin = Math.min(oldFields.length, newFields.length);
+    const yFieldsMin = Math.min(oldFields[0].length, newFields[0].length);
+    for (let x = 0; x < xFieldsMin; x++) {
+      for (let y = 0; y < yFieldsMin; y++) {
+        newFields[x][y] = oldFields[x][y];
+      }
     }
   }
   updateFields() {
+    let newFields = this.newFieldGrid(this.props.xFields, this.props.yFields);
+    this.copyFields(this.fields, newFields);
+    this.fields = newFields;
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.goClicked) {
+      this.processGrid();
+      return false;
+    }
+    return true;
+  }
+  componentDidUpdate() {
+    //  this.processGrid();
+  }
+
+  /*updateFields() {
     if (!this.props.goClicked) {
       this.fields = new Array(this.props.xFields)
         .fill(null)
         .map((_) => new Array(this.props.yFields).fill(false));
     }
-  }
+  }*/
   setFieldActive(x, y) {
     function setActive(active) {
       this.fields[x][y] = active;
@@ -34,12 +59,14 @@ class GridUI extends React.Component {
     return setActive;
   }
   processGrid() {
+    //if (this.props.goClicked) {
     this.props.process(this.props.xFields, this.props.yFields, this.fields);
     this.props.openPane();
     this.props.finishedProcess();
+    //}
   }
-
   render() {
+    console.log("grid rendered");
     this.updateFields();
     let table = [];
     for (let y = 0; y < this.props.yFields; y++) {
@@ -87,7 +114,6 @@ class GridUI extends React.Component {
           onMouseDown={this.props.mouseDown}
           onMouseUp={this.props.mouseUp}
           onTouchStart={(event) => {
-            console.log(event);
             this.props.mouseDown();
           }}
           onTouchEnd={this.props.mouseUp}
@@ -95,6 +121,7 @@ class GridUI extends React.Component {
         >
           <tbody draggable="false">{table}</tbody>
         </table>
+        <Button>Button</Button>
       </Box>
     );
   }

@@ -4,7 +4,6 @@ import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import erase from "../Media/erase.gif";
 import start from "../Media/start.gif";
 import writing from "../Media/writing.gif";
@@ -37,21 +36,21 @@ class DrawingUI extends React.Component {
             Press the left click of the mouse to draw on the board.
             <br />
           </Typography>
-          <img src={writing} height={100} />
+          <img src={writing} height={100} alt="Writing GIF" />
           <Typography component="span" variant="body2" gutterBottom>
             <br />
             To erase a stroke, use the right click (or SHIFT+left click). To
             reset the whole drawing pane click ... <br />
             <br />
           </Typography>
-          <img src={erase} height={100} />
+          <img src={erase} height={100} alt="Erase GIF" />
           <Typography component="span" variant="body2" gutterBottom>
             <br />
             Once you're happy with your stroke, click on the "START" button to
             trigger the recognition process.
             <br />
           </Typography>
-          <img src={start} height={100} />
+          <img src={start} height={100} alt="Start Button GIF" />
         </CardContent>
       </Card>
     );

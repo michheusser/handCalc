@@ -15,7 +15,7 @@ class IntroductionUI extends React.Component {
 
     return (
       <Card elevation={0}>
-        <CardContent>
+        <CardContent component="div">
           <Typography component="span" variant="h4" gutterBottom>
             Welcome to handCalc!
             <br />
@@ -33,7 +33,7 @@ class IntroductionUI extends React.Component {
             <br />
             <br />
           </Typography>
-          <img src={writing_big} height={200} />
+          <img src={writing_big} height={200} alt="Writing GIF (big)" />
           <Typography component="span" variant="body2">
             <br />
             If you want to dive right in, feel free to press the "Skip Tutorial"

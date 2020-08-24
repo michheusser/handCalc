@@ -17,7 +17,6 @@ import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 
 //import CloseIcon from "@material-ui/icons/Close";
 
@@ -112,17 +111,12 @@ class InstructionsUI extends React.Component {
             <React.Fragment>
               {this.state.activeStep === steps.length ? (
                 <React.Fragment>
-                  <Typography className={classes.instructions}>
-                    <EndUI />
-                  </Typography>
-
+                  <EndUI />
                   <Button onClick={this.handleClose.bind(this)}>Close</Button>
                 </React.Fragment>
               ) : (
                 <React.Fragment>
-                  <Typography className={classes.instructions}>
-                    {getStepContent(this.state.activeStep)}
-                  </Typography>
+                  {getStepContent(this.state.activeStep)}
                   <React.Fragment>
                     <Button
                       disabled={this.state.activeStep === 0}

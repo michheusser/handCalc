@@ -16,7 +16,6 @@ const gridProcessorReducer = (
     predictedExpression: "",
     displayedResult: "",
     result: "",
-    //paneOpen: false,
   },
   action
 ) => {

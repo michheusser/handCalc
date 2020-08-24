@@ -20,7 +20,7 @@ class EndUI extends React.Component {
             <br />
           </Typography>
 
-          <img src={happy} height={250} />
+          <img src={happy} height={250} alt="Happy Writing GIF" />
         </CardContent>
       </Card>
     );
