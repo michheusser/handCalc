@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { goClicked } from "./ToolbarActions.js";
+import { processGrid, openPane } from "./ToolbarActions.js";
 import { AppBar, Toolbar, Typography, Button, Slide } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -28,6 +28,14 @@ const useStyles = (theme) => ({
 });
 
 class ToolbarUI extends React.Component {
+  handleClick() {
+    this.props.processGrid(
+      this.props.xFields,
+      this.props.yFields,
+      this.props.fields
+    );
+    this.props.openPane();
+  }
   render() {
     const { classes } = this.props;
     return (
@@ -46,7 +54,7 @@ class ToolbarUI extends React.Component {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={this.props.goClicked}
+                onClick={this.handleClick.bind(this)}
               >
                 Start
               </Button>
@@ -62,12 +70,18 @@ class ToolbarUI extends React.Component {
 const mapStateToProps = (state) => {
   return {
     show: state.headerFooterReducer.show,
+    fields: state.gridLayoutReducer.fields,
+    xFields: state.gridLayoutReducer.widthFields,
+    yFields: state.gridLayoutReducer.heightFields,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    goClicked: () => {
-      dispatch(goClicked());
+    processGrid: (xFields, yFields, fields) => {
+      dispatch(processGrid(xFields, yFields, fields));
+    },
+    openPane: () => {
+      dispatch(openPane());
     },
   };
 };
