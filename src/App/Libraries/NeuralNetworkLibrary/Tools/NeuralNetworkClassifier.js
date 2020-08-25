@@ -22,12 +22,14 @@ class NeuralNetworkClassifier extends NeuralNetworkTool {
     let likelihood = neuronOutput.map((value) => value / neuronOutputSum);
 
     let maxIndex = neuronOutput.indexOf(Math.max(...neuronOutput));
-    return {
+    const output = {
       neuronOutput: neuronOutput,
       likelihood: likelihood,
       prediction: this.outputMap[maxIndex],
       predictionLikelihood: likelihood[maxIndex],
     };
+
+    return output;
   }
 }
 

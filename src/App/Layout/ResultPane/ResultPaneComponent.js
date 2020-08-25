@@ -64,7 +64,7 @@ class ResultPaneUI extends React.Component {
     this.props.closePane();
   }
   setSelectedSegment() {
-    if (this.props.segments.length) {
+    if (this.props.segmentsLength) {
       this.props.selectSegment(0);
     }
   }
@@ -99,11 +99,10 @@ class ResultPaneUI extends React.Component {
     );
   }
 }
-//<DetailedViewUI />
 
 const mapStateToProps = (state) => {
   return {
-    segments: state.gridProcessorReducer.originalSegments,
+    segmentsLength: state.gridProcessorReducer.originalSegmentsInfo.length,
     open: state.analysisPaneReducer.paneOpen,
   };
 };

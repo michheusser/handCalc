@@ -1,23 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  processGrid,
-  finishedProcess,
-  mouseDown,
-  mouseUp,
-  openPane,
-} from "./GridActions";
-import { Box, Button } from "@material-ui/core";
+import { mouseDown, mouseUp } from "./GridActions";
+import { Box } from "@material-ui/core";
 import FieldUI from "./Field/FieldComponent";
 
 class GridUI extends React.Component {
-  processGrid() {
-    //if (this.props.goClicked) {
-    this.props.process(this.props.xFields, this.props.yFields, this.fields);
-    this.props.openPane();
-    //this.props.finishedProcess();
-    //}
-  }
   render() {
     let table = [];
     for (let y = 0; y < this.props.yFields; y++) {
@@ -62,9 +49,7 @@ class GridUI extends React.Component {
           }}
           onMouseDown={this.props.mouseDown}
           onMouseUp={this.props.mouseUp}
-          onTouchStart={(event) => {
-            this.props.mouseDown();
-          }}
+          onTouchStart={this.props.mouseDown}
           onTouchEnd={this.props.mouseUp}
           draggable="false"
         >
@@ -87,20 +72,11 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    process: (xFields, yFields, fields) => {
-      dispatch(processGrid(xFields, yFields, fields));
-    },
-    finishedProcess: () => {
-      dispatch(finishedProcess());
-    },
     mouseDown: () => {
       dispatch(mouseDown());
     },
     mouseUp: () => {
       dispatch(mouseUp());
-    },
-    openPane: () => {
-      dispatch(openPane());
     },
   };
 };

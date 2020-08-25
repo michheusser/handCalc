@@ -10,7 +10,7 @@ class SymbolListUI extends React.Component {
   render() {
     //  const { classes } = this.props;
 
-    let itemList = new Array(this.props.segments.length)
+    let itemList = new Array(this.props.segmentsLength)
       .fill(null)
       .map((_, idx) => {
         return (
@@ -31,7 +31,7 @@ class SymbolListUI extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    segments: state.gridProcessorReducer.scaledOriginalSegments,
+    segmentsLength: state.gridProcessorReducer.originalSegmentsInfo.length,
   };
 };
 

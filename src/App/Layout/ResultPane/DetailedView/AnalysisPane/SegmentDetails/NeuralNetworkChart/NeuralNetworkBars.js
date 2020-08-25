@@ -44,9 +44,9 @@ class NeuralNetworkBarsUI extends React.Component {
         .map((value, index) => {
           return {
             symbol: this.props.outputMap[index],
-            likelihood: this.props.likelihoods[this.props.selectedSegment][
-              index
-            ],
+            likelihood: this.props.segmentPredictionsInfo[
+              this.props.selectedSegment
+            ].likelihoods[index],
           };
         });
     }
@@ -84,6 +84,7 @@ const mapStateToProps = (state) => {
     outputMap: state.gridProcessorReducer.outputMap,
     selectedSegment: state.analysisPaneReducer.selectedSegment,
     likelihoods: state.gridProcessorReducer.segmentLikelihoods,
+    segmentPredictionsInfo: state.gridProcessorReducer.segmentPredictionsInfo,
   };
 };
 

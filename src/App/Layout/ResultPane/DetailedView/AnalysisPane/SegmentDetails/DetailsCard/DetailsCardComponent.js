@@ -22,7 +22,8 @@ const useStyles = (theme) => ({
 class DetailsCardUI extends React.Component {
   getMessage() {
     return `The neural network identified this symbol with a likelihood of ${Math.round(
-      this.props.predictionLikelihoods[this.props.selectedSegment] * 100
+      this.props.segmentPredictionsInfo[this.props.selectedSegment]
+        .predictionLikelihood * 100
     )}%. If other possible symbols have a comparable likelihood, or the prediction itself is incorrect, please go back to the drawing board and make sure the symbol is more clearly written`;
   }
   standardDeviation(likelihood) {
@@ -42,18 +43,12 @@ class DetailsCardUI extends React.Component {
     const { classes } = this.props;
     let predictionLikelihood = null;
     let prediction = null;
-    let stdDeviation = null;
     if (this.props.selectedSegment !== null) {
-      predictionLikelihood = this.props.predictionLikelihoods[
+      predictionLikelihood = this.props.segmentPredictionsInfo[
         this.props.selectedSegment
-      ];
-      prediction = this.props.predictions[this.props.selectedSegment];
-      stdDeviation =
-        Math.round(
-          this.standardDeviation(
-            this.props.likelihoods[this.props.selectedSegment]
-          ) * 100
-        ) / 100;
+      ].predictionLikelihood;
+      prediction = this.props.segmentPredictionsInfo[this.props.selectedSegment]
+        .prediction;
     }
 
     return (
@@ -71,9 +66,6 @@ class DetailsCardUI extends React.Component {
           Prediction likelihood = {Math.round(predictionLikelihood * 100)}%
         </Typography>
         <Typography align="left" variant="caption" component="h2">
-          Standard deviation = {stdDeviation}
-        </Typography>
-        <Typography align="left" variant="caption" component="h2">
           <br />
           {this.getMessage()}
         </Typography>
@@ -84,10 +76,8 @@ class DetailsCardUI extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    segmentPredictionsInfo: state.gridProcessorReducer.segmentPredictionsInfo,
     selectedSegment: state.analysisPaneReducer.selectedSegment,
-    likelihoods: state.gridProcessorReducer.segmentLikelihoods,
-    predictionLikelihoods: state.gridProcessorReducer.predictionLikelihoods,
-    predictions: state.gridProcessorReducer.segmentPredictions,
   };
 };
 

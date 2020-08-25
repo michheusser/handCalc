@@ -20,15 +20,26 @@ class SegmentUI extends React.Component {
     super(props);
     this.context = null;
   }
-  updateCanvas(ref, idx) {
-    if (ref) {
-      this.context = ref.getContext("2d");
+  updateCanvas(canvas, idx) {
+    if (canvas) {
+      this.context = canvas.getContext("2d");
       const color = { r: 100, g: 100, b: 100 };
-      this.context.putImageData(
+      const image = this.props.segments[idx].tools.gridManipulator.gridToImage(
+        color
+      );
+      /*this.context.putImageData(
         this.props.segments[idx].tools.gridManipulator.gridToImage(color),
         0,
         0
-      );
+      );*/
+      let renderer = document.createElement("canvas");
+      renderer.width = image.width;
+      renderer.height = image.height;
+      renderer.getContext("2d").putImageData(image, 0, 0);
+      this.context.imageSmoothingEnabled = false;
+      // Now we can scale our image, by drawing our second canvas
+      this.context.drawImage(renderer, 0, 0, canvas.width, canvas.height);
+      this.context.imageSmoothingEnabled = false;
     }
   }
   render() {
@@ -53,8 +64,8 @@ class SegmentUI extends React.Component {
           width={40}
           height={40}
           style={{ border: "none", margin: 0, padding: 0 }}
-          ref={(ref) => {
-            this.updateCanvas(ref, this.props.index);
+          ref={(canvas) => {
+            this.updateCanvas(canvas, this.props.index);
           }}
         />
       </Paper>
@@ -63,7 +74,7 @@ class SegmentUI extends React.Component {
 }
 const mapStateToProps = (state) => {
   return {
-    segments: state.gridProcessorReducer.scaledOriginalSegments,
+    segments: state.gridProcessorReducer.originalSegments,
     selectedSegment: state.analysisPaneReducer.selectedSegment,
   };
 };

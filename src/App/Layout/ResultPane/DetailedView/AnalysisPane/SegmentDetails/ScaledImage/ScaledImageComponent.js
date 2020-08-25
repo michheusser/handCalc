@@ -42,15 +42,25 @@ class ScaledImageUI extends React.Component {
     this.context = null;
   }
 
-  updateCanvas(ref) {
-    if (ref && this.props.selectedSegment !== null) {
-      this.context = ref.getContext("2d");
+  updateCanvas(canvas) {
+    if (canvas && this.props.selectedSegment !== null) {
+      this.context = canvas.getContext("2d");
+      console.log(this.context);
 
       let color = { r: 30, g: 30, b: 30 };
       let segment = this.props.segments[this.props.selectedSegment];
 
       let image = segment.tools.gridManipulator.gridToImage(color);
-      this.context.putImageData(image, 0, 0);
+
+      let renderer = document.createElement("canvas");
+      renderer.width = image.width;
+      renderer.height = image.height;
+      renderer.getContext("2d").putImageData(image, 0, 0);
+      this.context.imageSmoothingEnabled = false;
+      // Now we can scale our image, by drawing our second canvas
+      this.context.drawImage(renderer, 0, 0, canvas.width, canvas.height);
+      this.context.imageSmoothingEnabled = false;
+      //this.context.putImageData(image, 0, 0);
     }
   }
 
@@ -79,11 +89,11 @@ class ScaledImageUI extends React.Component {
           width={1}
         >
           <canvas
-            width={150}
-            height={150}
+            width={140}
+            height={140}
             style={{ border: "none" }}
-            ref={(ref) => {
-              this.updateCanvas(ref);
+            ref={(canvas) => {
+              this.updateCanvas(canvas);
             }}
           />
         </Paper>
@@ -95,7 +105,7 @@ class ScaledImageUI extends React.Component {
 const mapStateToProps = (state) => {
   return {
     selectedSegment: state.analysisPaneReducer.selectedSegment,
-    segments: state.gridProcessorReducer.scaledCuratedSegments,
+    segments: state.gridProcessorReducer.curatedSegments,
   };
 };
 
@@ -107,24 +117,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withStyles(useStyles)(ScaledImageUI));
-
-/*
-<Card elevation={1} className={classes.root}>
-  <CardContent className={classes.cardContent}>
-    <Typography
-      className={classes.title}
-      color="textSecondary"
-      gutterBottom
-    ></Typography>
-    <Card variant="outlined" elevation={1} padding={3}>
-      <canvas
-        width={120}
-        height={120}
-        style={{ border: "none" }}
-        ref={(ref) => {
-          this.updateCanvas(ref);
-        }}
-      />
-    </Card>
-  </CardContent>
-</Card>*/

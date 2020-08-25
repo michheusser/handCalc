@@ -132,12 +132,15 @@ class GridScaler extends GridTool {
     xMargin = 0,
     yMargin = 0,
     keepRatio = false,
-    scaleStroke = true
+    scaleStroke = true,
+    initialWrap = true
   ) {
     if (2 * xMargin >= xFields || 2 * yMargin >= yFields) {
       return this.grid;
     }
-    this.grid.tools.gridCropper.wrap();
+    if (initialWrap) {
+      this.grid.tools.gridCropper.wrap();
+    }
     if (!keepRatio) {
       this.scale(xFields - 2 * xMargin, yFields - 2 * yMargin, scaleStroke);
       this.grid.tools.gridCropper.wrap(xMargin, yMargin);

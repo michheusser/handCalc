@@ -2,168 +2,175 @@ import GridGenerator from "../Libraries/GridLibrary/GridGenerator";
 import NeuralNetworkGenerator from "../Libraries/NeuralNetworkLibrary/NeuralNetworkGenerator";
 import neuralNetworkMatrixData from "../Libraries/NeuralNetworkLibrary/Tools/NeuralNetworkMatrixData";
 
-const gridProcessorReducer = (
-  state = {
-    grid: new GridGenerator().createGrid(1, 1),
-    originalSegments: [],
-    curatedSegments: [],
-    scaledOriginalSegments: [],
-    scaledCuratedSegments: [],
-    outputMap: "",
-    segmentLikelihoods: [],
-    segmentPredictions: [],
-    predictionLikelihood: null,
-    predictedExpression: "",
-    displayedResult: "",
-    result: "",
-  },
-  action
-) => {
-  if (action.type === "PROCESS_GRID") {
-    let activeFields = [];
-    for (let x = 0; x < action.payload.fields.length; x++) {
-      for (let y = 0; y < action.payload.fields[0].length; y++) {
-        if (action.payload.fields[x][y]) {
-          activeFields.push([x, y]);
-        }
+const curatedFitData = {
+  xFields: 28,
+  yFields: 28,
+  xMargin: 0,
+  yMargin: 0,
+  keepRatio: true,
+  scaleStroke: true,
+  initialWrap: true,
+};
+
+const originalScaledFitData = {
+  xFields: 40,
+  yFields: 40,
+  xMargin: 0,
+  yMargin: 0,
+  keepRatio: true,
+  scaleStroke: false,
+  initialWrap: false,
+};
+
+const curatedScaledFitData = {
+  xFields: 140,
+  yFields: 140,
+  xMargin: 0,
+  yMargin: 0,
+  keepRatio: true,
+  scaleStroke: false,
+  initialWrap: false,
+};
+
+const outputMap = "0123456789+-*/()";
+const layers = [784, 64, 32, 16];
+const neuralNetwork = new NeuralNetworkGenerator()
+  .createNeuralNetwork(layers)
+  .tools.neuralNetworkManipulator.loadMatrixData(neuralNetworkMatrixData);
+const predictor = neuralNetwork.tools.neuralNetworkClassifier.loadOutputMap(
+  outputMap
+);
+
+const initialState = {
+  grid: new GridGenerator().createGrid(1, 1),
+  segmentPredictionsInfo: [],
+  originalSegmentsInfo: [],
+  curatedSegmentsInfo: [],
+  originalSegments: [],
+  curatedSegments: [],
+  scaledOriginalSegments: [],
+  scaledCuratedSegments: [],
+  outputMap: "",
+  displayedResult: "",
+};
+
+function getActiveFields(fields2DArray) {
+  let activeFields = [];
+  for (let x = 0; x < fields2DArray.length; x++) {
+    for (let y = 0; y < fields2DArray[0].length; y++) {
+      if (fields2DArray[x][y]) {
+        activeFields.push([x, y]);
       }
     }
+  }
+  return activeFields;
+}
+
+function segmentArrayInformation(segmentArray) {
+  return segmentArray.map((segment) => {
+    return {
+      xFields: segment.xFields,
+      yFields: segment.yFields,
+      filledFields: segment.getFilledFields().length,
+    };
+  });
+}
+
+function scaleSegmentArray(segmentArray, scaleData) {
+  return segmentArray.map((segment) => {
+    return segment.tools.gridCloner
+      .clone()
+      .tools.gridScaler.fit(
+        scaleData.xFields,
+        scaleData.yFields,
+        scaleData.xMargin,
+        scaleData.yMargin,
+        scaleData.keepRatio,
+        scaleData.scaleStroke,
+        scaleData.initialWrap
+      );
+  });
+}
+
+function generatePredictionInfo(segmentArray) {
+  return segmentArray.map((segment) => {
+    const output = predictor.classifyGrid(segment);
+    return {
+      likelihoods: output.likelihood,
+      prediction: output.prediction,
+      predictionLikelihood: output.predictionLikelihood,
+    };
+  });
+}
+
+function generateOutputString(segmentPredictionsInfo) {
+  const predictedExpression = segmentPredictionsInfo
+    .map((segment) => {
+      return segment.prediction;
+    })
+    .join("");
+
+  let outputString = "";
+  try {
+    const predictedExpressionEvaluated = eval(predictedExpression).toString();
+    if (predictedExpressionEvaluated === predictedExpression) {
+      outputString = predictedExpression;
+    } else {
+      outputString = predictedExpression + " = " + predictedExpressionEvaluated;
+    }
+  } catch (err) {
+    outputString = predictedExpression;
+  }
+  return outputString;
+}
+
+const gridProcessorReducer = (state = initialState, action) => {
+  if (action.type === "PROCESS_GRID") {
+    const activeFields = getActiveFields(action.payload.fields);
+
     const newGrid = new GridGenerator()
       .createGrid(action.payload.xFields, action.payload.yFields, activeFields)
       .tools.gridCropper.wrap();
 
     const originalSegments = newGrid.tools.gridSegmentator.createSegments();
+    const originalSegmentsInfo = segmentArrayInformation(originalSegments);
 
     if (originalSegments.length === 0) {
-      return state;
+      return initialState;
     }
 
-    const originalScaledFitData = {
-      xFields: 40,
-      yFields: 40,
-      xMargin: 0,
-      yMargin: 0,
-      keepRatio: true,
-      scaleStroke: false,
-    };
+    const curatedSegments = scaleSegmentArray(originalSegments, curatedFitData);
+    const curatedSegmentsInfo = segmentArrayInformation(curatedSegments);
 
-    let scaledOriginalSegments = [];
-    for (let segment of originalSegments) {
-      scaledOriginalSegments.push(
-        segment.tools.gridCloner
-          .clone()
-          .tools.gridScaler.fit(
-            originalScaledFitData.xFields,
-            originalScaledFitData.yFields,
-            originalScaledFitData.xMargin,
-            originalScaledFitData.yMargin,
-            originalScaledFitData.keepRatio,
-            originalScaledFitData.scaleStroke
-          )
-      );
-    }
-
-    const curatedFitData = {
-      xFields: 28,
-      yFields: 28,
-      xMargin: 0,
-      yMargin: 0,
-      keepRatio: true,
-      scaleStroke: true,
-    };
-
-    let curatedSegments = new GridGenerator()
-      .createGrid(action.payload.xFields, action.payload.yFields, activeFields)
-      .tools.gridSegmentator.createSegments(curatedFitData);
-
-    const curatedScaledFitData = {
-      xFields: 150,
-      yFields: 150,
-      scaleStroke: false,
-    };
-
-    let scaledCuratedSegments = [];
-    for (let segment of curatedSegments) {
-      scaledCuratedSegments.push(
-        segment.tools.gridCloner
-          .clone()
-          .tools.gridScaler.scale(
-            curatedScaledFitData.xFields,
-            curatedScaledFitData.yFields,
-            curatedScaledFitData.scaleStroke
-          )
-      );
-    }
-
-    let outputMap = "0123456789+-*/()";
-    let neuralNetwork = new NeuralNetworkGenerator()
-      .createNeuralNetwork([784, 64, 32, 16])
-      .tools.neuralNetworkManipulator.loadMatrixData(neuralNetworkMatrixData);
-    let predictor = neuralNetwork.tools.neuralNetworkClassifier.loadOutputMap(
-      outputMap
+    const scaledOriginalSegments = scaleSegmentArray(
+      originalSegments,
+      originalScaledFitData
     );
 
-    let outputString = "";
-    let outputEvaluated = "";
-    let displayedResult = "";
-    let segmentLikelihoods = [];
-    let segmentPredictions = [];
-    let predictionLikelihoods = [];
-    for (let segment of curatedSegments) {
-      let output = predictor.classifyGrid(segment);
-      segmentPredictions.push(output.prediction);
-      segmentLikelihoods.push(output.likelihood);
-      predictionLikelihoods.push(output.predictionLikelihood);
-    }
-    outputString = segmentPredictions.join("");
+    const scaledCuratedSegments = scaleSegmentArray(
+      curatedSegments,
+      curatedScaledFitData
+    );
 
-    try {
-      outputEvaluated = eval(outputString).toString();
-      if (outputString === outputEvaluated) {
-        displayedResult = outputEvaluated;
-      } else {
-        displayedResult = outputString + " = " + outputEvaluated;
-      }
-    } catch (err) {
-      outputEvaluated = "";
-      displayedResult = outputString;
-    }
+    const segmentPredictionsInfo = generatePredictionInfo(curatedSegments);
+
+    const outputString = generateOutputString(segmentPredictionsInfo);
 
     let newState = {
       grid: newGrid,
+      segmentPredictionsInfo: segmentPredictionsInfo,
+      originalSegmentsInfo: originalSegmentsInfo,
+      curatedSegmentsInfo: curatedSegmentsInfo,
       originalSegments: originalSegments,
       curatedSegments: curatedSegments,
       scaledOriginalSegments: scaledOriginalSegments,
       scaledCuratedSegments: scaledCuratedSegments,
       outputMap: outputMap,
-      predictionLikelihoods: predictionLikelihoods,
-      predictedExpression: outputString,
-      segmentLikelihoods: segmentLikelihoods,
-      segmentPredictions: segmentPredictions,
-      displayedResult: displayedResult,
-      result: outputEvaluated,
-      //paneOpen: true,
+      displayedResult: outputString,
     };
     return newState;
   }
-  /*if (action.type === "RESET_RESULT") {
-    let newState = {
-      grid: new GridGenerator().createGrid(1, 1),
-      originalSegments: [],
-      curatedSegments: [],
-      scaledOriginalSegments: [],
-      scaledCuratedSegments: [],
-      outputMap: "",
-      segmentLikelihoods: [],
-      segmentPredictions: [],
-      predictedExpression: "",
-      predictionLikelihood: null,
-      displayedResult: "",
-      result: "",
-      //paneOpen: false,
-    };
-    return newState;
-  }*/
+
   return state;
 };
 

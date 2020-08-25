@@ -66,7 +66,8 @@ class GridSegmentator extends GridTool {
         fitData.xMargin,
         fitData.yMargin,
         fitData.keepRatio,
-        fitData.scaleStroke
+        fitData.scaleStroke,
+        fitData.initialWrap
       );
     } else {
       this.wrapSegments();
@@ -87,7 +88,8 @@ class GridSegmentator extends GridTool {
     xMargin = 0,
     yMargin = 0,
     keepRatio = true,
-    scaleStroke = true
+    scaleStroke = true,
+    initialWrap = true
   ) {
     for (let segment of this.segments) {
       segment.tools.gridScaler.fit(
@@ -96,7 +98,8 @@ class GridSegmentator extends GridTool {
         xMargin,
         yMargin,
         keepRatio,
-        scaleStroke
+        scaleStroke,
+        initialWrap
       );
     }
     return this.grid;

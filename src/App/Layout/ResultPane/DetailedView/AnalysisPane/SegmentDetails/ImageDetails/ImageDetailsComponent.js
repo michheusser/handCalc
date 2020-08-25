@@ -20,10 +20,10 @@ const useStyles = (theme) => ({
 class ImageDetailsUI extends React.Component {
   getMessage() {
     const message = `The original drawing of this symbol has a total of ${
-      this.props.originalSegments[this.props.selectedSegment].xFields *
-      this.props.originalSegments[this.props.selectedSegment].yFields
+      this.props.originalSegmentsInfo[this.props.selectedSegment].xFields *
+      this.props.originalSegmentsInfo[this.props.selectedSegment].yFields
     } pixels, out of which ${
-      this.props.originalSegments[this.props.selectedSegment].getFilledFields()
+      this.props.originalSegmentsInfo[this.props.selectedSegment].filledFields
         .length
     } are non-empty. If the dimensions are too small, the neural network might have difficulties identifying the symbol with precision`;
     return message;
@@ -42,30 +42,28 @@ class ImageDetailsUI extends React.Component {
       >
         <Typography align="left" variant="caption" component="h2">
           Original segment:{" "}
-          {this.props.originalSegments[this.props.selectedSegment].xFields}x
-          {this.props.originalSegments[this.props.selectedSegment].yFields}{" "}
+          {this.props.originalSegmentsInfo[this.props.selectedSegment].xFields}x
+          {this.props.originalSegmentsInfo[this.props.selectedSegment].yFields}{" "}
           pixels
         </Typography>
         <Typography align="left" variant="caption" component="h2">
           Processed segment:{" "}
-          {this.props.curatedSegments[this.props.selectedSegment].xFields}x
-          {this.props.curatedSegments[this.props.selectedSegment].yFields}{" "}
+          {this.props.curatedSegmentsInfo[this.props.selectedSegment].xFields}x
+          {this.props.curatedSegmentsInfo[this.props.selectedSegment].yFields}{" "}
           pixels
         </Typography>
         <Typography align="left" variant="caption" component="h2">
           Used pixels:{" "}
           {
-            this.props.originalSegments[
-              this.props.selectedSegment
-            ].getFilledFields().length
+            this.props.originalSegmentsInfo[this.props.selectedSegment]
+              .filledFields
           }
         </Typography>
         <Typography align="left" variant="caption" component="h2">
           Used pixels (processed):{" "}
           {
-            this.props.curatedSegments[
-              this.props.selectedSegment
-            ].getFilledFields().length
+            this.props.curatedSegmentsInfo[this.props.selectedSegment]
+              .filledFields
           }
         </Typography>
         <Typography align="left" variant="caption" component="h2">
@@ -79,8 +77,8 @@ class ImageDetailsUI extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    originalSegments: state.gridProcessorReducer.originalSegments,
-    curatedSegments: state.gridProcessorReducer.curatedSegments,
+    originalSegmentsInfo: state.gridProcessorReducer.originalSegmentsInfo,
+    curatedSegmentsInfo: state.gridProcessorReducer.curatedSegmentsInfo,
     selectedSegment: state.analysisPaneReducer.selectedSegment,
   };
 };

@@ -25,8 +25,10 @@ class SegmentDetailsUI extends React.Component {
     let likelihood = null;
     let prediction = null;
     if (this.props.selectedSegment !== null) {
-      likelihood = this.props.likelihoods[this.props.selectedSegment];
-      prediction = this.props.predictions[this.props.selectedSegment];
+      likelihood = this.props.segmentPredictionsInfo[this.props.selectedSegment]
+        .predictionLikelihood;
+      prediction = this.props.segmentPredictionsInfo[this.props.selectedSegment]
+        .prediction;
     }
     return (
       <div className={classes.root}>
@@ -67,8 +69,7 @@ class SegmentDetailsUI extends React.Component {
 const mapStateToProps = (state) => {
   return {
     selectedSegment: state.analysisPaneReducer.selectedSegment,
-    likelihoods: state.gridProcessorReducer.segmentLikelihoods,
-    predictions: state.gridProcessorReducer.segmentPredictions,
+    segmentPredictionsInfo: state.gridProcessorReducer.segmentPredictionsInfo,
   };
 };
 
