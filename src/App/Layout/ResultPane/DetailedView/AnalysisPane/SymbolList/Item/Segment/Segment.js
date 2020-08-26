@@ -24,7 +24,7 @@ class SegmentUI extends React.Component {
     if (canvas) {
       this.context = canvas.getContext("2d");
       const color = { r: 100, g: 100, b: 100 };
-      const image = this.props.segments[idx].tools.gridManipulator.gridToImage(
+      const image = this.props.segments[idx].tools.manipulator.gridToImage(
         color
       );
 

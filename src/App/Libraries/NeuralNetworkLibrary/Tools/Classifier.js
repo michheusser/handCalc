@@ -1,6 +1,6 @@
-import NeuralNetworkTool from "./NeuralNetworkTool";
+import Tool from "./Tool";
 
-class NeuralNetworkClassifier extends NeuralNetworkTool {
+class Classifier extends Tool {
   constructor(outputMap = null) {
     super();
     this.outputMap = outputMap;
@@ -10,10 +10,8 @@ class NeuralNetworkClassifier extends NeuralNetworkTool {
     return this;
   }
   classifyGrid(grid) {
-    let vectorizedGrid = grid.tools.gridManipulator.gridToArray();
-    let neuronOutput = this.network.tools.neuralNetworkActivator.evaluate(
-      vectorizedGrid
-    );
+    let vectorizedGrid = grid.tools.manipulator.gridToArray();
+    let neuronOutput = this.network.tools.activator.evaluate(vectorizedGrid);
 
     let neuronOutputSum = neuronOutput.reduce(function (a, b) {
       return a + b;
@@ -33,4 +31,4 @@ class NeuralNetworkClassifier extends NeuralNetworkTool {
   }
 }
 
-export default NeuralNetworkClassifier;
+export default Classifier;

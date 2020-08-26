@@ -54,18 +54,18 @@ class NeuralNetwork {
     return this;
   }
 
-  addTool(neuralNetworkTool) {
+  addTool(tool) {
     if (
-      neuralNetworkTool.__proto__.__proto__.constructor.name !==
-      "NeuralNetworkTool"
+      tool.__proto__.__proto__.constructor.name !==
+      "Tool"
     ) {
       console.log("Uncompatible. No tool was added.");
       return this;
     }
-    neuralNetworkTool.network = this;
-    this.tools[neuralNetworkTool.name] = neuralNetworkTool;
+    tool.network = this;
+    this.tools[tool.name] = tool;
     /*console.log(
-      `Tool added! Name: ${neuralNetworkTool.name}, Type: ${neuralNetworkTool.__proto__.constructor.name}`
+      `Tool added! Name: ${tool.name}, Type: ${tool.__proto__.constructor.name}`
     );*/
     return this;
   }

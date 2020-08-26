@@ -49,7 +49,7 @@ class ScaledImage extends React.Component {
       let color = { r: 30, g: 30, b: 30 };
       let segment = this.props.segments[this.props.selectedSegment];
 
-      let image = segment.tools.gridManipulator.gridToImage(color);
+      let image = segment.tools.manipulator.gridToImage(color);
 
       let renderer = document.createElement("canvas");
       renderer.width = image.width;

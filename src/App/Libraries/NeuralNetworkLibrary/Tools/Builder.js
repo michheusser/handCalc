@@ -1,7 +1,7 @@
-import NeuralNetworkTool from "./NeuralNetworkTool";
+import Tool from "./Tool";
 import NeuronLayer from "../NeuralNetwork/NeuronLayer";
 
-class NeuralNetworkBuilder extends NeuralNetworkTool {
+class Builder extends Tool {
   connect(backLayer, frontLayer) {
     for (let backNeuron of backLayer) {
       for (let frontNeuron of frontLayer) {
@@ -32,4 +32,4 @@ class NeuralNetworkBuilder extends NeuralNetworkTool {
     return this.buildLayers(...layerSizes).buildConnections();
   }
 }
-export default NeuralNetworkBuilder;
+export default Builder;

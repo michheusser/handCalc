@@ -1,6 +1,6 @@
-import GridGenerator from "../Libraries/GridLibrary/GridGenerator";
-import NeuralNetworkGenerator from "../Libraries/NeuralNetworkLibrary/NeuralNetworkGenerator";
-import neuralNetworkMatrixData from "../Libraries/NeuralNetworkLibrary/Tools/NeuralNetworkMatrixData";
+import GridGenerator from "../Libraries/GridLibrary/Generator";
+import NeuralNetworkGenerator from "../Libraries/NeuralNetworkLibrary/Generator";
+import neuralNetworkMatrixData from "../Assets/NeuralNetwork/MatrixData";
 
 const curatedFitData = {
   xFields: 28,
@@ -16,10 +16,8 @@ const outputMap = "0123456789+-*/()";
 const layers = [784, 64, 32, 16];
 const neuralNetwork = new NeuralNetworkGenerator()
   .createNeuralNetwork(layers)
-  .tools.neuralNetworkManipulator.loadMatrixData(neuralNetworkMatrixData);
-const predictor = neuralNetwork.tools.neuralNetworkClassifier.loadOutputMap(
-  outputMap
-);
+  .tools.manipulator.loadMatrixData(neuralNetworkMatrixData);
+const predictor = neuralNetwork.tools.classifier.loadOutputMap(outputMap);
 
 const initialState = {
   activeFields: [],
@@ -56,9 +54,9 @@ function segmentArrayInformation(segmentArray) {
 
 function scaleSegmentArray(segmentArray, scaleData) {
   return segmentArray.map((segment) => {
-    return segment.tools.gridCloner
+    return segment.tools.cloner
       .clone()
-      .tools.gridScaler.fit(
+      .tools.scaler.fit(
         scaleData.xFields,
         scaleData.yFields,
         scaleData.xMargin,
@@ -147,11 +145,11 @@ const gridProcessorReducer = (state = initialState, action) => {
 
     const newGrid = new GridGenerator()
       .createGrid(action.payload.xFields, action.payload.yFields, activeFields)
-      .tools.gridCropper.wrap();
+      .tools.cropper.wrap();
 
-    const originalSegments = newGrid.tools.gridSegmentator.createSegments();
+    const originalSegments = newGrid.tools.segmentator.createSegments();
     const originalSegmentsInfo = segmentArrayInformation(originalSegments);
-    newGrid.tools.gridSegmentator.makeSquareSegments();
+    newGrid.tools.segmentator.makeSquareSegments();
 
     const curatedSegments = scaleSegmentArray(originalSegments, curatedFitData);
     const curatedSegmentsInfo = segmentArrayInformation(curatedSegments);

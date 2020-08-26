@@ -1,9 +1,9 @@
-import GridTool from "./GridTool";
-import GridGenerator from "../GridGenerator";
+import Tool from "./Tool";
+import Generator from "../Generator";
 
-class GridCloner extends GridTool {
+class Cloner extends Tool {
   clone() {
-    let clonedGrid = new GridGenerator().createGrid(
+    let clonedGrid = new Generator().createGrid(
       this.grid.xFields,
       this.grid.yFields
     );
@@ -14,4 +14,4 @@ class GridCloner extends GridTool {
   }
 }
 
-export default GridCloner;
+export default Cloner;

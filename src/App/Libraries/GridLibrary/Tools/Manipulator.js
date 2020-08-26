@@ -1,6 +1,6 @@
-import GridTool from "./GridTool";
+import Tool from "./Tool";
 
-class GridManipulator extends GridTool {
+class Manipulator extends Tool {
   gridToArray() {
     const array = [];
     for (let y = 0; y < this.grid.yFields; y++) {
@@ -25,4 +25,4 @@ class GridManipulator extends GridTool {
   }
 }
 
-export default GridManipulator;
+export default Manipulator;

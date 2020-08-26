@@ -1,7 +1,7 @@
-import NeuralNetworkTool from "./NeuralNetworkTool";
+import Tool from "./Tool";
 import NeuralNetworkData from "../Data/NeuralNetworkData";
 
-class NeuralNetworkManipulator extends NeuralNetworkTool {
+class Manipulator extends Tool {
   initialize(value = null) {
     // for (let layer of this.network) {
     //   layer.initialize(value);
@@ -29,4 +29,4 @@ class NeuralNetworkManipulator extends NeuralNetworkTool {
   }
   toString() {}
 }
-export default NeuralNetworkManipulator;
+export default Manipulator;

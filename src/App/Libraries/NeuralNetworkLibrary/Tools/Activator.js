@@ -1,6 +1,6 @@
-import NeuralNetworkTool from "./NeuralNetworkTool";
+import Tool from "./Tool";
 
-class NeuralNetworkActivator extends NeuralNetworkTool {
+class Activator extends Tool {
   evaluate(inputList) {
     // list of input activators for the first layer
     return this.network
@@ -10,4 +10,4 @@ class NeuralNetworkActivator extends NeuralNetworkTool {
   }
 }
 
-export default NeuralNetworkActivator;
+export default Activator;

@@ -1,8 +1,8 @@
-import GridTool from "./GridTool";
+import Tool from "./Tool";
 
-import GridGenerator from "../GridGenerator";
+import Generator from "../Generator";
 
-class GridSegmentator extends GridTool {
+class Segmentator extends Tool {
   // Takes a grid as an input and creates grids of equal size containing each agglomeration of filled fields
   constructor() {
     super();
@@ -42,12 +42,12 @@ class GridSegmentator extends GridTool {
     // Segments the grid and allocates the segments in this.segments.
 
     this.clearSegments();
-    let grid = this.grid.tools.gridCloner.clone(); // creates clone of original grid
+    let grid = this.grid.tools.cloner.clone(); // creates clone of original grid
 
     for (let y = 0; y < grid.yFields; y++) {
       for (let x = 0; x < grid.xFields; x++) {
         if (grid.getField(x, y).isFilled) {
-          let gridSegment = new GridGenerator().createGrid(
+          let gridSegment = new Generator().createGrid(
             grid.xFields,
             grid.yFields
           );
@@ -78,7 +78,7 @@ class GridSegmentator extends GridTool {
 
   wrapSegments() {
     for (let segment of this.segments) {
-      segment.tools.gridCropper.wrap();
+      segment.tools.cropper.wrap();
     }
     return this.grid;
   }
@@ -92,7 +92,7 @@ class GridSegmentator extends GridTool {
     initialWrap = true
   ) {
     for (let segment of this.segments) {
-      segment.tools.gridScaler.fit(
+      segment.tools.scaler.fit(
         xFields,
         yFields,
         xMargin,
@@ -106,7 +106,7 @@ class GridSegmentator extends GridTool {
   }
   makeSquareSegments() {
     for (let segment of this.segments) {
-      segment.tools.gridScaler.makeSquare();
+      segment.tools.scaler.makeSquare();
     }
     return this.grid;
   }
@@ -137,4 +137,4 @@ class GridSegmentator extends GridTool {
   }
 }
 
-export default GridSegmentator;
+export default Segmentator;

@@ -1,7 +1,7 @@
-import GridTool from "./GridTool";
+import Tool from "./Tool";
 import Grid from "../Grid/Grid";
 
-class GridScaler extends GridTool {
+class Scaler extends Tool {
   // Decorator for grids, adding additional functionalities (scaling)
 
   isCorner(x, y, position) {
@@ -139,14 +139,14 @@ class GridScaler extends GridTool {
       return this.grid;
     }
     if (initialWrap) {
-      this.grid.tools.gridCropper.wrap();
+      this.grid.tools.cropper.wrap();
     }
     if (!keepRatio) {
       this.scale(xFields - 2 * xMargin, yFields - 2 * yMargin, scaleStroke);
-      this.grid.tools.gridCropper.wrap(xMargin, yMargin);
+      this.grid.tools.cropper.wrap(xMargin, yMargin);
       return this.grid;
     }
-    let [xMin, xMax, yMin, yMax] = this.grid.tools.gridAligner.limits();
+    let [xMin, xMax, yMin, yMax] = this.grid.tools.aligner.limits();
     let height = yMax - yMin + 1;
     let width = xMax - xMin + 1;
     let scaleRatio = height / width;
@@ -163,12 +163,12 @@ class GridScaler extends GridTool {
         scaleStroke
       );
     }
-    this.grid.tools.gridCropper.crop(
+    this.grid.tools.cropper.crop(
       xFields - 2 * yMargin,
       yFields - 2 * yMargin,
       true
     );
-    this.grid.tools.gridCropper.addMargins(xMargin, yMargin);
+    this.grid.tools.cropper.addMargins(xMargin, yMargin);
     return this.grid;
   }
   makeSquare() {
@@ -185,4 +185,4 @@ class GridScaler extends GridTool {
   }
 }
 
-export default GridScaler;
+export default Scaler;

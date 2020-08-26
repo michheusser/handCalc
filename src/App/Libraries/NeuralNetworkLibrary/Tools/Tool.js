@@ -1,4 +1,4 @@
-class NeuralNetworkTool {
+class Tool {
   constructor() {
     this.network = null;
     this.name =
@@ -7,4 +7,4 @@ class NeuralNetworkTool {
   }
 }
 
-export default NeuralNetworkTool;
+export default Tool;

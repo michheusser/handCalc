@@ -1,23 +1,23 @@
 import Grid from "./Grid/Grid";
-import GridCloner from "./Tools/GridCloner";
-import GridAligner from "./Tools/GridAligner";
-import GridCropper from "./Tools/GridCropper";
-import GridScaler from "./Tools/GridScaler";
-import GridSegmentator from "./Tools/GridSegmentator";
-import GridManipulator from "./Tools/GridManipulator";
+import Cloner from "./Tools/Cloner";
+import Aligner from "./Tools/Aligner";
+import Cropper from "./Tools/Cropper";
+import Scaler from "./Tools/Scaler";
+import Segmentator from "./Tools/Segmentator";
+import Manipulator from "./Tools/Manipulator";
 
-class GridGenerator {
+class Generator {
   constructor() {
     this.tools = [];
   }
   loadTools() {
     this.tools.push(
-      new GridCloner(),
-      new GridAligner(),
-      new GridCropper(),
-      new GridScaler(),
-      new GridSegmentator(),
-      new GridManipulator()
+      new Cloner(),
+      new Aligner(),
+      new Cropper(),
+      new Scaler(),
+      new Segmentator(),
+      new Manipulator()
     );
     return this;
   }
@@ -44,4 +44,4 @@ class GridGenerator {
   }
 }
 
-export default GridGenerator;
+export default Generator;

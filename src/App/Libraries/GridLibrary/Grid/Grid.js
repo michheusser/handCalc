@@ -65,14 +65,14 @@ class Grid {
     }
     return this;
   }
-  addTool(gridTool) {
-    if (gridTool.__proto__.__proto__.constructor.name !== "GridTool") {
+  addTool(tool) {
+    if (tool.__proto__.__proto__.constructor.name !== "Tool") {
       console.log("Uncompatible. No tool was added.");
       return this;
     }
-    gridTool.grid = this;
-    this.tools[gridTool.name] = gridTool;
-    //console.log(`Tool added! Name: ${gridTool.name}, Type: ${gridTool.__proto__.constructor.name}`);
+    tool.grid = this;
+    this.tools[tool.name] = tool;
+    //console.log(`Tool added! Name: ${tool.name}, Type: ${tool.__proto__.constructor.name}`);
     return this;
   }
   replaceFields(grid) {

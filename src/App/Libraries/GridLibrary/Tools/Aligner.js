@@ -1,6 +1,6 @@
-import GridTool from "./GridTool";
+import Tool from "./Tool";
 
-class GridAligner extends GridTool {
+class Aligner extends Tool {
   // Decorator for grids, adding additional functionalities (aligning / centering)
   limits() {
     let xMin = this.grid.xFields - 1;
@@ -27,7 +27,7 @@ class GridAligner extends GridTool {
     if (xOffset === 0 && yOffset === 0) {
       return this.grid;
     }
-    let tempGrid = this.grid.tools.gridCloner.clone();
+    let tempGrid = this.grid.tools.cloner.clone();
     for (let field of this.grid.fields) {
       let tempField = tempGrid.getField(
         field.coordinate.x - xOffset,
@@ -50,4 +50,4 @@ class GridAligner extends GridTool {
     return this.grid;
   }
 }
-export default GridAligner;
+export default Aligner;
