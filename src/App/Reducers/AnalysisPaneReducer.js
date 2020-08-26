@@ -2,7 +2,7 @@ let analysisPaneReducer = (
   state = { paneOpen: false, selectedSegment: 0 },
   action
 ) => {
-  if (action.type === "OPEN_PANE") {
+  if (action.type === "PROCESS_GRID") {
     let newState = { paneOpen: true, selectedSegment: 0 };
     return newState;
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { processGrid, openPane } from "./ToolbarActions.js";
+import { processGrid } from "./ToolbarActions.js";
 import { AppBar, Toolbar, Typography, Button, Slide } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -34,7 +34,6 @@ class ToolbarUI extends React.Component {
       this.props.yFields,
       this.props.fields
     );
-    this.props.openPane();
   }
   render() {
     const { classes } = this.props;
@@ -82,9 +81,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     processGrid: (xFields, yFields, fields) => {
       dispatch(processGrid(xFields, yFields, fields));
     },
-    openPane: () => {
-      dispatch(openPane());
-    },
   };
 };
 
@@ -92,10 +88,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withStyles(useStyles)(ToolbarUI));
-
-/*            <Backdrop
-              className={classes.backdrop}
-              open={this.props.processOngoing}
-            >
-              <CircularProgress color="inherit" />
-            </Backdrop>*/

@@ -1,6 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { closeInstructions } from "./InstructionsActions";
+import {
+  closeInstructions,
+  nextStep,
+  backStep,
+  resetStep,
+} from "./InstructionsActions";
 import { withStyles } from "@material-ui/core/styles";
 
 import IntroductionUI from "./Introduction/IntroductionComponent.js";
@@ -11,7 +16,7 @@ import EndUI from "./End/EndComponent.js";
 
 //import IconButton from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-//import DialogActions from "@material-ui/core/DialogActions";
+import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -21,9 +26,6 @@ import Button from "@material-ui/core/Button";
 //import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = (theme) => ({
-  root: {
-    width: "100%",
-  },
   backButton: {
     marginRight: theme.spacing(1),
   },
@@ -32,8 +34,10 @@ const useStyles = (theme) => ({
     marginBottom: theme.spacing(1),
   },
   dialogActions: {
-    margin: theme.spacing(0),
-    padding: theme.spacing(0),
+    display: "flex",
+    justifyContent: "center",
+    margin: theme.spacing(1),
+    padding: theme.spacing(1),
   },
   iconButton: {
     margin: theme.spacing(0),
@@ -42,6 +46,10 @@ const useStyles = (theme) => ({
   closeIcon: {
     margin: theme.spacing(0),
     padding: theme.spacing(0),
+  },
+  dialogPaper: {
+    minHeight: "80vh",
+    maxHeight: "80vh",
   },
 });
 
@@ -65,23 +73,19 @@ function getStepContent(stepIndex) {
 }
 
 class InstructionsUI extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { activeStep: 0 };
-  }
   handleClose() {
     this.props.closePane();
   }
   handleNext() {
-    this.setState({ activeStep: this.state.activeStep + 1 });
+    this.props.nextStep();
   }
 
   handleBack() {
-    this.setState({ activeStep: this.state.activeStep - 1 });
+    this.props.backStep();
   }
 
   handleReset() {
-    this.setState({ activeStep: 0 });
+    this.props.resetStep();
   }
 
   render() {
@@ -95,51 +99,37 @@ class InstructionsUI extends React.Component {
         onClose={this.handleClose.bind(this)}
         disableBackdropClick={false}
         aria-labelledby="max-width-dialog-title"
+        classes={{ paper: classes.dialogPaper }}
       >
-        <DialogContent>
-          <React.Fragment>
-            <Stepper
-              className={classes.root}
-              activeStep={this.state.activeStep}
-            >
-              {steps.map((label) => (
-                <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-            <React.Fragment>
-              {this.state.activeStep === steps.length ? (
-                <React.Fragment>
-                  <EndUI />
-                  <Button onClick={this.handleClose.bind(this)}>Close</Button>
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
-                  {getStepContent(this.state.activeStep)}
-                  <React.Fragment>
-                    <Button
-                      disabled={this.state.activeStep === 0}
-                      onClick={this.handleBack.bind(this)}
-                      className={classes.backButton}
-                    >
-                      Back
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={this.handleNext.bind(this)}
-                    >
-                      {this.state.activeStep === steps.length - 1
-                        ? "Finish"
-                        : "Next"}
-                    </Button>
-                  </React.Fragment>
-                </React.Fragment>
-              )}
-            </React.Fragment>
-          </React.Fragment>
-        </DialogContent>
+        <Stepper activeStep={this.props.activeStep}>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        <DialogContent>{getStepContent(this.props.activeStep)}</DialogContent>
+        <DialogActions className={classes.dialogActions}>
+          <Button
+            variant="outlined"
+            disabled={this.props.activeStep === 0}
+            onClick={this.handleBack.bind(this)}
+            className={classes.backButton}
+          >
+            Back
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={
+              this.props.activeStep === steps.length - 1
+                ? this.handleClose.bind(this)
+                : this.handleNext.bind(this)
+            }
+          >
+            {this.props.activeStep === steps.length - 1 ? "Finish" : "Next"}
+          </Button>
+        </DialogActions>
       </Dialog>
     );
   }
@@ -148,6 +138,7 @@ class InstructionsUI extends React.Component {
 const mapStateToProps = (state) => {
   return {
     open: state.instructionsReducer.paneOpen,
+    activeStep: state.instructionsReducer.activeStep,
   };
 };
 
@@ -155,6 +146,15 @@ const mapDispatchToProps = (dispatch) => {
   return {
     closePane: () => {
       dispatch(closeInstructions());
+    },
+    nextStep: () => {
+      dispatch(nextStep());
+    },
+    backStep: () => {
+      dispatch(backStep());
+    },
+    resetStep: () => {
+      dispatch(resetStep());
     },
   };
 };
@@ -174,3 +174,34 @@ export default connect(
     <CloseIcon />
   </IconButton>
 </DialogActions>*/
+
+/*<React.Fragment>
+  {this.props.activeStep === steps.length ? (
+    <React.Fragment>
+      <EndUI />
+      <Button onClick={this.handleClose.bind(this)}>Close</Button>
+    </React.Fragment>
+  ) : (
+    <React.Fragment>
+      {getStepContent(this.props.activeStep)}
+      <React.Fragment>
+        <Button
+          disabled={this.props.activeStep === 0}
+          onClick={this.handleBack.bind(this)}
+          className={classes.backButton}
+        >
+          Back
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={this.handleNext.bind(this)}
+        >
+          {this.props.activeStep === steps.length - 1
+            ? "Finish"
+            : "Next"}
+        </Button>
+      </React.Fragment>
+    </React.Fragment>
+  )}
+</React.Fragment>*/

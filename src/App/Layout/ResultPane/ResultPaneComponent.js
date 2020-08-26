@@ -70,7 +70,6 @@ class ResultPaneUI extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    console.log("rendering...");
     this.setSelectedSegment();
 
     return (

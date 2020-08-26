@@ -4,10 +4,3 @@ export const processGrid = (xFields, yFields, fields) => {
     payload: { xFields: xFields, yFields: yFields, fields: fields },
   };
 };
-
-export const openPane = () => {
-  return {
-    type: "OPEN_PANE",
-    payload: {},
-  };
-};
