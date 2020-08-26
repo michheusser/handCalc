@@ -104,6 +104,12 @@ class GridSegmentator extends GridTool {
     }
     return this.grid;
   }
+  makeSquareSegments() {
+    for (let segment of this.segments) {
+      segment.tools.gridScaler.makeSquare();
+    }
+    return this.grid;
+  }
   centerOfMass(segment) {
     let xM = 0;
     let filledFields = 0;

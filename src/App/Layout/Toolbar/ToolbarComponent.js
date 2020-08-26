@@ -45,7 +45,7 @@ class ToolbarUI extends React.Component {
           in={this.props.show}
           timeout={{ enter: 800, exit: 800 }}
         >
-          <AppBar position="fixed" color="primary">
+          <AppBar position="fixed" color="primary" elevation={0}>
             <Toolbar>
               <MenuUI />
               <Typography variant="h6" className={classes.title}>
@@ -55,6 +55,7 @@ class ToolbarUI extends React.Component {
                 variant="contained"
                 color="secondary"
                 onClick={this.handleClick.bind(this)}
+                disabled={this.props.buttonDisabled}
               >
                 Start
               </Button>
@@ -73,6 +74,7 @@ const mapStateToProps = (state) => {
     fields: state.gridLayoutReducer.fields,
     xFields: state.gridLayoutReducer.widthFields,
     yFields: state.gridLayoutReducer.heightFields,
+    buttonDisabled: state.gridLayoutReducer.emptyGrid,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {

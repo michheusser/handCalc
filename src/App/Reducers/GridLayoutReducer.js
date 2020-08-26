@@ -24,6 +24,7 @@ let gridLayoutReducer = (state, action) => {
       marginLeft: marginLeft,
       marginTop: marginTop,
       fields: fields,
+      emptyGrid: true,
     };
 
     return newState;
@@ -45,11 +46,8 @@ let gridLayoutReducer = (state, action) => {
     let fields = newFieldGrid(widthFields, heightFields);
     copyFields(state.fields, fields);
 
-    /*for (let x = 0; x < Math.min(widthFields, state.widthFields); x++) {
-      for (let y = 0; y < Math.min(heightFields, state.heightFields); y++) {
-        fields[x][y] = state.fields[x][y];
-      }
-    }*/
+    const emptyGrid = areEmpty(fields, widthFields, heightFields);
+
     const newState = {
       width: width,
       height: height,
@@ -61,6 +59,7 @@ let gridLayoutReducer = (state, action) => {
       marginLeft: marginLeft,
       marginTop: marginTop,
       fields: fields,
+      emptyGrid: emptyGrid,
     };
 
     return newState;
@@ -71,11 +70,15 @@ let gridLayoutReducer = (state, action) => {
       fields[x] = [...state.fields[x]];
     }
     fields[action.payload.x][action.payload.y] = action.payload.isFilled;
+    let emptyGrid = false;
+    if (!action.payload.isFilled) {
+      emptyGrid = areEmpty(fields, state.widthFields, state.heightFields);
+    }
     const newState = {
       ...state,
       fields: fields,
+      emptyGrid: emptyGrid,
     };
-
     return newState;
   }
 
@@ -114,4 +117,15 @@ function copyFields(oldFields, newFields) {
       newFields[x][y] = oldFields[x][y];
     }
   }
+}
+
+function areEmpty(fields, width, height) {
+  for (let x = 0; x < width; x++) {
+    for (let y = 0; y < height; y++) {
+      if (fields[x][y]) {
+        return false;
+      }
+    }
+  }
+  return true;
 }

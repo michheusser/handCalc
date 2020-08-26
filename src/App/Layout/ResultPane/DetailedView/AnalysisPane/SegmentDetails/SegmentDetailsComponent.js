@@ -22,14 +22,7 @@ const useStyles = (theme) => ({
 class SegmentDetailsUI extends React.Component {
   render() {
     const { classes } = this.props;
-    let likelihood = null;
-    let prediction = null;
-    if (this.props.selectedSegment !== null) {
-      likelihood = this.props.segmentPredictionsInfo[this.props.selectedSegment]
-        .predictionLikelihood;
-      prediction = this.props.segmentPredictionsInfo[this.props.selectedSegment]
-        .prediction;
-    }
+
     return (
       <div className={classes.root}>
         <Grid container spacing={0}>
@@ -52,10 +45,7 @@ class SegmentDetailsUI extends React.Component {
             </Typography>
           </Grid>
           <Grid align="left" item xs={6}>
-            <NeuralNetworkBarsUI
-              likelihood={likelihood}
-              prediction={prediction}
-            />
+            <NeuralNetworkBarsUI />
           </Grid>
           <Grid item xs={6}>
             <DetailsCardUI />

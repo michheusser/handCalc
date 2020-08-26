@@ -45,7 +45,6 @@ class ScaledImageUI extends React.Component {
   updateCanvas(canvas) {
     if (canvas && this.props.selectedSegment !== null) {
       this.context = canvas.getContext("2d");
-      console.log(this.context);
 
       let color = { r: 30, g: 30, b: 30 };
       let segment = this.props.segments[this.props.selectedSegment];

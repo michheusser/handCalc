@@ -171,6 +171,18 @@ class GridScaler extends GridTool {
     this.grid.tools.gridCropper.addMargins(xMargin, yMargin);
     return this.grid;
   }
+  makeSquare() {
+    this.fit(
+      Math.max(this.grid.xFields, this.grid.yFields),
+      Math.max(this.grid.xFields, this.grid.yFields),
+      0,
+      0,
+      true,
+      false,
+      true
+    );
+    return this.grid;
+  }
 }
 
 export default GridScaler;

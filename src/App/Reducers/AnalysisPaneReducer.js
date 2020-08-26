@@ -1,9 +1,9 @@
 let analysisPaneReducer = (
-  state = { paneOpen: false, selectedSegment: null },
+  state = { paneOpen: false, selectedSegment: 0 },
   action
 ) => {
   if (action.type === "OPEN_PANE") {
-    let newState = { paneOpen: true, selectedSegment: state.selectedSegment };
+    let newState = { paneOpen: true, selectedSegment: 0 };
     return newState;
   }
   if (action.type === "CLOSE_PANE") {

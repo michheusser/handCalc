@@ -27,11 +27,7 @@ class SegmentUI extends React.Component {
       const image = this.props.segments[idx].tools.gridManipulator.gridToImage(
         color
       );
-      /*this.context.putImageData(
-        this.props.segments[idx].tools.gridManipulator.gridToImage(color),
-        0,
-        0
-      );*/
+
       let renderer = document.createElement("canvas");
       renderer.width = image.width;
       renderer.height = image.height;

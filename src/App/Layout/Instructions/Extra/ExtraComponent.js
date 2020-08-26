@@ -61,6 +61,24 @@ class ExtraUI extends React.Component {
             the neural network to clearly identify the symbol
             <br />
           </Typography>
+          <Typography component="span" variant="body2" gutterBottom>
+            <br />
+            If you don't have enough horizontal space to write your whole
+            expression, feel free to use the whole drawing pane. The
+            segmentation algorithm will process and order every sign according
+            to its center of mass in horizontal direction ignoring whether some
+            are higher or lower than others. <br />
+            <br />
+          </Typography>
+          <Typography component="span" variant="body2">
+            <br />
+            In general, be aware that the way we understand certain handwritten
+            signs may different than a neural network with a tiny fraction of
+            the capacity of a human brain. In some cases it might require small
+            changes in a drawing to completely change the prediction. In case a
+            sign might not be recognized, go back and try to make it clearer.
+            <br />
+          </Typography>
         </CardContent>
       </Card>
     );

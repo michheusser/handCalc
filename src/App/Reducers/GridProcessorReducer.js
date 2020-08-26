@@ -12,26 +12,6 @@ const curatedFitData = {
   initialWrap: true,
 };
 
-const originalScaledFitData = {
-  xFields: 40,
-  yFields: 40,
-  xMargin: 0,
-  yMargin: 0,
-  keepRatio: true,
-  scaleStroke: false,
-  initialWrap: false,
-};
-
-const curatedScaledFitData = {
-  xFields: 140,
-  yFields: 140,
-  xMargin: 0,
-  yMargin: 0,
-  keepRatio: true,
-  scaleStroke: false,
-  initialWrap: false,
-};
-
 const outputMap = "0123456789+-*/()";
 const layers = [784, 64, 32, 16];
 const neuralNetwork = new NeuralNetworkGenerator()
@@ -42,14 +22,12 @@ const predictor = neuralNetwork.tools.neuralNetworkClassifier.loadOutputMap(
 );
 
 const initialState = {
-  grid: new GridGenerator().createGrid(1, 1),
+  activeFields: [],
   segmentPredictionsInfo: [],
   originalSegmentsInfo: [],
   curatedSegmentsInfo: [],
   originalSegments: [],
   curatedSegments: [],
-  scaledOriginalSegments: [],
-  scaledCuratedSegments: [],
   outputMap: "",
   displayedResult: "",
 };
@@ -112,8 +90,13 @@ function generateOutputString(segmentPredictionsInfo) {
 
   let outputString = "";
   try {
-    const predictedExpressionEvaluated = eval(predictedExpression).toString();
-    if (predictedExpressionEvaluated === predictedExpression) {
+    const predictedExpressionEvaluated = (
+      Math.round(eval(predictedExpression) * 100) / 100
+    ).toString();
+    if (
+      predictedExpressionEvaluated === predictedExpression ||
+      isNaN(predictedExpressionEvaluated)
+    ) {
       outputString = predictedExpression;
     } else {
       outputString = predictedExpression + " = " + predictedExpressionEvaluated;
@@ -124,9 +107,43 @@ function generateOutputString(segmentPredictionsInfo) {
   return outputString;
 }
 
+function equalActiveFields(activeFieldsA, activeFieldsB) {
+  if (activeFieldsA.length === activeFieldsB.length) {
+    for (let i = 0; i < activeFieldsA.length; i++) {
+      if (!equalField(activeFieldsA[i], activeFieldsB[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+  return false;
+}
+
+function equalField(fieldA, fieldB) {
+  if (fieldA[0] === fieldB[0] && fieldA[1] === fieldB[1]) {
+    return true;
+  }
+  return false;
+}
+
+function maxActiveFields(activeFields) {
+  const minVals = [1, 1];
+  const maxValues = activeFields.reduce((acc, currVal) => {
+    return [Math.max(acc[0], currVal[0]), Math.max(acc[1], currVal[1])];
+  }, minVals);
+  return maxValues;
+}
+
 const gridProcessorReducer = (state = initialState, action) => {
   if (action.type === "PROCESS_GRID") {
     const activeFields = getActiveFields(action.payload.fields);
+    if (activeFields.length === 0) {
+      return initialState;
+    }
+    if (equalActiveFields(activeFields, state.activeFields)) {
+      console.log("equal grids");
+      return state;
+    }
 
     const newGrid = new GridGenerator()
       .createGrid(action.payload.xFields, action.payload.yFields, activeFields)
@@ -134,37 +151,22 @@ const gridProcessorReducer = (state = initialState, action) => {
 
     const originalSegments = newGrid.tools.gridSegmentator.createSegments();
     const originalSegmentsInfo = segmentArrayInformation(originalSegments);
-
-    if (originalSegments.length === 0) {
-      return initialState;
-    }
+    newGrid.tools.gridSegmentator.makeSquareSegments();
 
     const curatedSegments = scaleSegmentArray(originalSegments, curatedFitData);
     const curatedSegmentsInfo = segmentArrayInformation(curatedSegments);
-
-    const scaledOriginalSegments = scaleSegmentArray(
-      originalSegments,
-      originalScaledFitData
-    );
-
-    const scaledCuratedSegments = scaleSegmentArray(
-      curatedSegments,
-      curatedScaledFitData
-    );
 
     const segmentPredictionsInfo = generatePredictionInfo(curatedSegments);
 
     const outputString = generateOutputString(segmentPredictionsInfo);
 
     let newState = {
-      grid: newGrid,
+      activeFields: activeFields,
       segmentPredictionsInfo: segmentPredictionsInfo,
       originalSegmentsInfo: originalSegmentsInfo,
       curatedSegmentsInfo: curatedSegmentsInfo,
       originalSegments: originalSegments,
       curatedSegments: curatedSegments,
-      scaledOriginalSegments: scaledOriginalSegments,
-      scaledCuratedSegments: scaledCuratedSegments,
       outputMap: outputMap,
       displayedResult: outputString,
     };
