@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import NeuralNetworkBarsUI from "./NeuralNetworkChart/NeuralNetworkBars";
-import DetailsCardUI from "./DetailsCard/DetailsCardComponent";
-import ImageDetailsUI from "./ImageDetails/ImageDetailsComponent";
-import ScaledImageUI from "./ScaledImage/ScaledImageComponent";
+import NeuralNetworkChart from "./NeuralNetworkChart/NeuralNetworkChart";
+import NeuralNetworkDetails from "./NeuralNetworkDetails/NeuralNetworkDetails";
+import ImageDetails from "./ImageDetails/ImageDetails";
+import ScaledImage from "./ScaledImage/ScaledImage";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -19,7 +19,7 @@ const useStyles = (theme) => ({
   },
 });
 
-class SegmentDetailsUI extends React.Component {
+class SegmentDetails extends React.Component {
   render() {
     const { classes } = this.props;
 
@@ -32,10 +32,10 @@ class SegmentDetailsUI extends React.Component {
             </Typography>
           </Grid>
           <Grid align="left" item xs={4}>
-            <ScaledImageUI />
+            <ScaledImage />
           </Grid>
           <Grid item xs={8}>
-            <ImageDetailsUI />
+            <ImageDetails />
           </Grid>
         </Grid>
         <Grid container spacing={0}>
@@ -45,10 +45,10 @@ class SegmentDetailsUI extends React.Component {
             </Typography>
           </Grid>
           <Grid align="left" item xs={6}>
-            <NeuralNetworkBarsUI />
+            <NeuralNetworkChart />
           </Grid>
           <Grid item xs={6}>
-            <DetailsCardUI />
+            <NeuralNetworkDetails />
           </Grid>
         </Grid>
       </div>
@@ -70,12 +70,12 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(SegmentDetailsUI));
+)(withStyles(useStyles)(SegmentDetails));
 
 /*<div height={400}>
-  <ImageDetailsUI />
-  <ScaledImageUI />
-  <DetailsCardUI />
-  <NeuralNetworkBarsUI likelihood={likelihood} prediction={prediction} />
+  <ImageDetails />
+  <ScaledImage />
+  <NeuralNetworkDetails />
+  <NeuralNetworkChart likelihood={likelihood} prediction={prediction} />
 </div>
   */

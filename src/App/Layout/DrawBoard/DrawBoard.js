@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { mouseDown, mouseUp } from "./GridActions";
+import { mouseDown, mouseUp } from "./Actions";
 import { Box } from "@material-ui/core";
-import FieldUI from "./Field/FieldComponent";
+import Field from "./Field/Field";
 
-class GridUI extends React.Component {
+class DrawBoard extends React.Component {
   render() {
     let table = [];
     for (let y = 0; y < this.props.yFields; y++) {
@@ -12,7 +12,7 @@ class GridUI extends React.Component {
         <tr key={y}>
           {new Array(this.props.xFields).fill(null).map((_, x) => {
             return (
-              <FieldUI
+              <Field
                 key={`ID${y}&${x}`}
                 fieldSize={this.props.fieldSize}
                 border={this.props.fieldBorder}
@@ -81,6 +81,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(GridUI);
+export default connect(mapStateToProps, mapDispatchToProps)(DrawBoard);
 
 //<Button onClick={this.processGrid.bind(this)}>Button</Button>

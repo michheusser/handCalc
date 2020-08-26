@@ -35,7 +35,7 @@ const useStyles = (theme) => ({
   },
 });
 
-class NeuralNetworkBarsUI extends React.Component {
+class NeuralNetworkChart extends React.Component {
   render() {
     let data = [];
     if (this.props.selectedSegment !== null) {
@@ -95,4 +95,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(NeuralNetworkBarsUI));
+)(withStyles(useStyles)(NeuralNetworkChart));

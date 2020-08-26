@@ -10,7 +10,7 @@ const useStyles = (theme) => ({
   },
 });
 
-class FooterUI extends React.Component {
+class Footer extends React.Component {
   render() {
     return (
       <Slide
@@ -44,4 +44,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(FooterUI));
+)(withStyles(useStyles)(Footer));

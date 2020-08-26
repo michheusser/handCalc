@@ -1,5 +1,5 @@
 import React from "react";
-import LayoutUI from "./Layout/LayoutComponent.js";
+import Layout from "./Layout/Layout.js";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./Theme";
 import { connect } from "react-redux";
@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <LayoutUI />
+      <Layout />
     </ThemeProvider>
   );
 }

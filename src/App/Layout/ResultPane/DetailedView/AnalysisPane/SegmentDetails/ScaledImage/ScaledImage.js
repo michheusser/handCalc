@@ -35,7 +35,7 @@ const useStyles = (theme) => ({
   },
 });
 
-class ScaledImageUI extends React.Component {
+class ScaledImage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -115,4 +115,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(ScaledImageUI));
+)(withStyles(useStyles)(ScaledImage));

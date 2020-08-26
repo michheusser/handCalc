@@ -10,7 +10,7 @@ import one from "../Media/1.gif";
 //
 const useStyles = (theme) => ({});
 
-class ExtraUI extends React.Component {
+class Extra extends React.Component {
   render() {
     //  const { classes } = this.props;
 
@@ -116,4 +116,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(ExtraUI));
+)(withStyles(useStyles)(Extra));

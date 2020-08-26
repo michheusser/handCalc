@@ -10,7 +10,7 @@ import writing from "../Media/writing.gif";
 //
 const useStyles = (theme) => ({});
 
-class DrawingUI extends React.Component {
+class Drawing extends React.Component {
   render() {
     //const { classes } = this.props;
 
@@ -68,4 +68,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(DrawingUI));
+)(withStyles(useStyles)(Drawing));

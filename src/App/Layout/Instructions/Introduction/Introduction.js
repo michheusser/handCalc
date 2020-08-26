@@ -9,7 +9,7 @@ import writing_big from "../Media/writing_big.gif";
 //
 const useStyles = (theme) => ({});
 
-class IntroductionUI extends React.Component {
+class Introduction extends React.Component {
   render() {
     //const { classes } = this.props;
 
@@ -63,4 +63,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(IntroductionUI));
+)(withStyles(useStyles)(Introduction));

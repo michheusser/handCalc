@@ -9,7 +9,7 @@ import segments from "../Media/segments.gif";
 //
 const useStyles = (theme) => ({});
 
-class AnalysisUI extends React.Component {
+class Analysis extends React.Component {
   render() {
     //  const { classes } = this.props;
 
@@ -69,4 +69,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(AnalysisUI));
+)(withStyles(useStyles)(Analysis));

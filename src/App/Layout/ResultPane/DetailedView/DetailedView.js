@@ -10,7 +10,7 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import AnalysisPaneUI from "./AnalysisPane/AnalysisPaneComponent.js";
+import AnalysisPane from "./AnalysisPane/AnalysisPane.js";
 
 const AccordionSummary = withStyles({
   root: {
@@ -42,7 +42,7 @@ const useStyles = (theme) => ({
   },
 });
 
-class DetailedViewUI extends React.Component {
+class DetailedView extends React.Component {
   render() {
     const { classes } = this.props;
 
@@ -59,7 +59,7 @@ class DetailedViewUI extends React.Component {
           </AccordionSummary>
 
           <AccordionDetails className={classes.accordionDetails}>
-            <AnalysisPaneUI />
+            <AnalysisPane />
           </AccordionDetails>
         </Accordion>
       </div>
@@ -78,6 +78,6 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(DetailedViewUI));
+)(withStyles(useStyles)(DetailedView));
 
-//<SymbolListUI />
+//<SymbolList />

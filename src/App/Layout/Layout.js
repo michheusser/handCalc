@@ -1,14 +1,14 @@
 import React from "react";
-import ToolbarUI from "./Toolbar/ToolbarComponent.js";
-import FooterUI from "./Footer/FooterComponent.js";
-import GridUI from "./Grid/GridComponent.js";
-import ResultPaneUI from "./ResultPane/ResultPaneComponent.js";
-import InstructionsUI from "./Instructions/InstructionsComponent.js";
-import AboutUI from "./About/AboutComponent.js";
+import Header from "./Header/Header.js";
+import Footer from "./Footer/Footer.js";
+import DrawBoard from "./DrawBoard/DrawBoard.js";
+import ResultPane from "./ResultPane/ResultPane.js";
+import Instructions from "./Instructions/Instructions.js";
+import About from "./About/About.js";
 import { connect } from "react-redux";
-import { windowResize } from "./LayoutActions.js";
+import { windowResize } from "./Actions.js";
 
-class LayoutUI extends React.Component {
+class Layout extends React.Component {
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions.bind(this));
@@ -25,12 +25,12 @@ class LayoutUI extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <InstructionsUI />
-        <AboutUI />
-        <ResultPaneUI />
-        <ToolbarUI />
-        <GridUI />
-        <FooterUI />
+        <Instructions />
+        <About />
+        <ResultPane />
+        <Header />
+        <DrawBoard />
+        <Footer />
       </React.Fragment>
     );
   }
@@ -45,4 +45,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LayoutUI);
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

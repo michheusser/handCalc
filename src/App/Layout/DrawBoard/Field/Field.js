@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { changeField } from "./FieldActions.js";
 // Actions
 
-class FieldUI extends React.Component {
+class Field extends React.Component {
   toggleTouch(event) {
     event.persist();
     event.preventDefault();
@@ -63,6 +63,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FieldUI);
+export default connect(mapStateToProps, mapDispatchToProps)(Field);
 
 //

@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { processGrid } from "./ToolbarActions.js";
+import { processGrid } from "./Actions.js";
 import { AppBar, Toolbar, Typography, Button, Slide } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
-import MenuUI from "./Menu/MenuComponent.js";
+import Menu from "./Menu/Menu.js";
 //import Backdrop from "@material-ui/core/Backdrop";
 //import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -27,7 +27,7 @@ const useStyles = (theme) => ({
   },
 });
 
-class ToolbarUI extends React.Component {
+class Header extends React.Component {
   handleClick() {
     this.props.processGrid(
       this.props.xFields,
@@ -46,7 +46,7 @@ class ToolbarUI extends React.Component {
         >
           <AppBar position="fixed" color="primary" elevation={0}>
             <Toolbar>
-              <MenuUI />
+              <Menu />
               <Typography variant="h6" className={classes.title}>
                 handCalc
               </Typography>
@@ -87,4 +87,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(ToolbarUI));
+)(withStyles(useStyles)(Header));

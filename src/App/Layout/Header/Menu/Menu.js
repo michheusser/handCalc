@@ -11,7 +11,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import PersonIcon from "@material-ui/icons/Person";
-import { openInstructions, openAbout } from "./MenuActions.js";
+import { openInstructions, openAbout } from "./Actions.js";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -24,7 +24,7 @@ const useStyles = (theme) => ({
   },
 });
 
-class MenuUI extends React.Component {
+class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -146,4 +146,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(MenuUI));
+)(withStyles(useStyles)(Menu));

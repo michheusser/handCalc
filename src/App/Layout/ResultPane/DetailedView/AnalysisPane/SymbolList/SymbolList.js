@@ -1,12 +1,12 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import ItemUI from "./Item/ItemComponent.js";
+import Item from "./Item/Item.js";
 import Grid from "@material-ui/core/Grid";
 
 const useStyles = (theme) => ({});
 
-class SymbolListUI extends React.Component {
+class SymbolList extends React.Component {
   render() {
     //  const { classes } = this.props;
 
@@ -15,7 +15,7 @@ class SymbolListUI extends React.Component {
       .map((_, idx) => {
         return (
           <Grid elevation={0} key={idx} item>
-            <ItemUI index={idx} />
+            <Item index={idx} />
           </Grid>
         );
       });
@@ -42,11 +42,11 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(SymbolListUI));
+)(withStyles(useStyles)(SymbolList));
 
 /*<div>{segmentList}</div>*/
 
-/*<ItemUI
+/*<Item
   key={idx}
   index={idx}
   selectSegment={this.props.selectSegment}

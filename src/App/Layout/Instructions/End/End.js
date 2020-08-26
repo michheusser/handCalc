@@ -8,7 +8,7 @@ import happy from "../Media/happy.gif";
 //
 const useStyles = (theme) => ({});
 
-class EndUI extends React.Component {
+class End extends React.Component {
   render() {
     //const { classes } = this.props;
 
@@ -38,4 +38,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(EndUI));
+)(withStyles(useStyles)(End));

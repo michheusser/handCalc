@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import SymbolListUI from "./SymbolList/SymbolListComponent.js";
-import SegmentDetailsUI from "./SegmentDetails/SegmentDetailsComponent.js";
+import SymbolList from "./SymbolList/SymbolList.js";
+import SegmentDetails from "./SegmentDetails/SegmentDetails.js";
 import Divider from "@material-ui/core/Divider";
 //
 
@@ -19,7 +19,7 @@ const useStyles = (theme) => ({
   },
 });
 
-class AnalysisPaneUI extends React.Component {
+class AnalysisPane extends React.Component {
   render() {
     const { classes } = this.props;
 
@@ -28,13 +28,13 @@ class AnalysisPaneUI extends React.Component {
         <Grid container spacing={1}>
           <Grid item xs={12}>
             <Paper elevation={0} className={classes.paper}>
-              <SymbolListUI />
+              <SymbolList />
             </Paper>
             <Divider />
           </Grid>
           <Grid item xs={12}>
             <Paper elevation={0} className={classes.paper}>
-              <SegmentDetailsUI />
+              <SegmentDetails />
             </Paper>
           </Grid>
         </Grid>
@@ -54,4 +54,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(AnalysisPaneUI));
+)(withStyles(useStyles)(AnalysisPane));

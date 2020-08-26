@@ -19,7 +19,7 @@ const useStyles = (theme) => ({
   },
 });
 
-class DetailsCardUI extends React.Component {
+class NeuralNetworkDetails extends React.Component {
   getMessage() {
     return `The neural network identified this symbol with a likelihood of ${Math.round(
       this.props.segmentPredictionsInfo[this.props.selectedSegment]
@@ -88,4 +88,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(DetailsCardUI));
+)(withStyles(useStyles)(NeuralNetworkDetails));

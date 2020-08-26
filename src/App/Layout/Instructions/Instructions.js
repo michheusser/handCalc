@@ -1,18 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  closeInstructions,
-  nextStep,
-  backStep,
-  resetStep,
-} from "./InstructionsActions";
+import { closeInstructions, nextStep, backStep, resetStep } from "./Actions";
 import { withStyles } from "@material-ui/core/styles";
 
-import IntroductionUI from "./Introduction/IntroductionComponent.js";
-import DrawingUI from "./Drawing/DrawingComponent.js";
-import AnalysisUI from "./Analysis/AnalysisComponent.js";
-import ExtraUI from "./Extra/ExtraComponent.js";
-import EndUI from "./End/EndComponent.js";
+import Introduction from "./Introduction/Introduction.js";
+import Drawing from "./Drawing/Drawing.js";
+import Analysis from "./Analysis/Analysis.js";
+import Extra from "./Extra/Extra.js";
+import End from "./End/End.js";
 
 //import IconButton from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -60,19 +55,19 @@ function getSteps() {
 function getStepContent(stepIndex) {
   switch (stepIndex) {
     case 0:
-      return <IntroductionUI />;
+      return <Introduction />;
     case 1:
-      return <DrawingUI />;
+      return <Drawing />;
     case 2:
-      return <AnalysisUI />;
+      return <Analysis />;
     case 3:
-      return <ExtraUI />;
+      return <Extra />;
     default:
       return "Unknown stepIndex";
   }
 }
 
-class InstructionsUI extends React.Component {
+class Instructions extends React.Component {
   handleClose() {
     this.props.closePane();
   }
@@ -162,7 +157,7 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(InstructionsUI));
+)(withStyles(useStyles)(Instructions));
 
 /*<DialogActions className={classes.dialogActions}>
   <IconButton
@@ -178,7 +173,7 @@ export default connect(
 /*<React.Fragment>
   {this.props.activeStep === steps.length ? (
     <React.Fragment>
-      <EndUI />
+      <End />
       <Button onClick={this.handleClose.bind(this)}>Close</Button>
     </React.Fragment>
   ) : (

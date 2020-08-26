@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { openPane, closePane, segmentSelected } from "./ResultPaneActions";
+import { openPane, closePane, segmentSelected } from "./Actions";
 import { withStyles } from "@material-ui/core/styles";
-import DetailedViewUI from "./DetailedView/DetailedViewComponent.js";
+import DetailedView from "./DetailedView/DetailedView.js";
 
 //
 
@@ -59,7 +59,7 @@ const useStyles = (theme) => ({
   },
 });
 
-class ResultPaneUI extends React.Component {
+class ResultPane extends React.Component {
   handleClose() {
     this.props.closePane();
   }
@@ -93,7 +93,7 @@ class ResultPaneUI extends React.Component {
           </IconButton>
         </DialogActions>
         <DialogContent className={classes.dialogContent}>
-          <DetailedViewUI />
+          <DetailedView />
         </DialogContent>
       </Dialog>
     );
@@ -124,4 +124,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(ResultPaneUI));
+)(withStyles(useStyles)(ResultPane));

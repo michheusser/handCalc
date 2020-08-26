@@ -17,7 +17,7 @@ const useStyles = (theme) => ({
   },
 });
 
-class ImageDetailsUI extends React.Component {
+class ImageDetails extends React.Component {
   getMessage() {
     const message = `The original drawing of this symbol has a total of ${
       this.props.originalSegmentsInfo[this.props.selectedSegment].xFields *
@@ -90,7 +90,7 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(ImageDetailsUI));
+)(withStyles(useStyles)(ImageDetails));
 
 /*<Card elevation={1} className={classes.root}>
   <CardContent>

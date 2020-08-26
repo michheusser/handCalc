@@ -2,8 +2,8 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
-import SegmentUI from "./Segment/SegmentComponent.js";
-import { segmentSelected } from "./ItemActions.js";
+import SegmentUI from "./Segment/Segment.js";
+import { segmentSelected } from "./Actions.js";
 
 const useStyles = (theme) => ({
   paper: {
@@ -15,7 +15,7 @@ const useStyles = (theme) => ({
   },
 });
 
-class ItemUI extends React.Component {
+class Item extends React.Component {
   handleClick(event) {
     this.props.selectSegment(this.props.index);
   }
@@ -52,4 +52,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(ItemUI));
+)(withStyles(useStyles)(Item));
