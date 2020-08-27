@@ -1,6 +1,13 @@
+/*
+Copyright 2020, Michel Heusser
+ALl rights reserved
+https://github.com/michheusser
+*/
+
 import React from "react";
 import { connect } from "react-redux";
-import { closeAbout } from "./Actions";
+//import { closeAbout } from "./Actions";
+import { closeAbout } from ".../Actions/About";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/Button";

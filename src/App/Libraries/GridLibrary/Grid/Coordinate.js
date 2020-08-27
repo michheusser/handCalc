@@ -1,3 +1,9 @@
+/*
+Copyright 2020, Michel Heusser
+ALl rights reserved
+https://github.com/michheusser
+*/
+
 class Coordinate {
   // Defines a coordinate within a specified environment (e.g. Grid)
   constructor(x, y) {

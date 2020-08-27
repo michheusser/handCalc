@@ -1,3 +1,9 @@
+/*
+Copyright 2020, Michel Heusser
+ALl rights reserved
+https://github.com/michheusser
+*/
+
 let headerFooterReducer = (state = { show: true }, action) => {
   if (action.type === "GRID_MOUSE_DOWN") {
     let newState = { show: false };

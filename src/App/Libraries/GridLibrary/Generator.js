@@ -1,3 +1,9 @@
+/*
+Copyright 2020, Michel Heusser
+ALl rights reserved
+https://github.com/michheusser
+*/
+
 import Grid from "./Grid/Grid";
 import Cloner from "./Tools/Cloner";
 import Aligner from "./Tools/Aligner";

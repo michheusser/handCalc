@@ -1,3 +1,9 @@
+/*
+Copyright 2020, Michel Heusser
+ALl rights reserved
+https://github.com/michheusser
+*/
+
 let instructionsReducer = (
   state = { paneOpen: true, activeStep: 0 },
   action

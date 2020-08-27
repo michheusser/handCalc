@@ -1,3 +1,9 @@
+/*
+Copyright 2020, Michel Heusser
+ALl rights reserved
+https://github.com/michheusser
+*/
+
 import Tool from "./Tool";
 
 class Manipulator extends Tool {

@@ -1,3 +1,9 @@
+/*
+Copyright 2020, Michel Heusser
+ALl rights reserved
+https://github.com/michheusser
+*/
+
 let analysisPaneReducer = (
   state = { paneOpen: false, selectedSegment: 0 },
   action

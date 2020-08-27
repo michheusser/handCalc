@@ -1,3 +1,9 @@
+/*
+Copyright 2020, Michel Heusser
+ALl rights reserved
+https://github.com/michheusser
+*/
+
 import React from "react";
 import { AppBar, Toolbar, Typography, Slide } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";

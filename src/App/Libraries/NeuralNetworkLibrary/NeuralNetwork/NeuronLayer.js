@@ -1,3 +1,9 @@
+/*
+Copyright 2020, Michel Heusser
+ALl rights reserved
+https://github.com/michheusser
+*/
+
 import Neuron from "./Neuron";
 import NeuronLayerData from "../Data/NeuronLayerData";
 

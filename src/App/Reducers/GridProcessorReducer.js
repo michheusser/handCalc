@@ -1,3 +1,9 @@
+/*
+Copyright 2020, Michel Heusser
+ALl rights reserved
+https://github.com/michheusser
+*/
+
 import GridGenerator from "../Libraries/GridLibrary/Generator";
 import NeuralNetworkGenerator from "../Libraries/NeuralNetworkLibrary/Generator";
 import neuralNetworkMatrixData from "../Assets/NeuralNetwork/MatrixData";

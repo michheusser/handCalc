@@ -1,3 +1,9 @@
+/*
+Copyright 2020, Michel Heusser
+ALl rights reserved
+https://github.com/michheusser
+*/
+
 import ActivationFunctions from "./ActivationFunctions";
 import NeuronConnection from "./NeuronConnection";
 import NeuronData from "../Data/NeuronData";

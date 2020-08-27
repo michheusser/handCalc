@@ -1,3 +1,9 @@
+/*
+Copyright 2020, Michel Heusser
+ALl rights reserved
+https://github.com/michheusser
+*/
+
 import NeuronLayer from "./NeuronLayer";
 import NeuralNetworkData from "../Data/NeuralNetworkData";
 
@@ -55,10 +61,7 @@ class NeuralNetwork {
   }
 
   addTool(tool) {
-    if (
-      tool.__proto__.__proto__.constructor.name !==
-      "Tool"
-    ) {
+    if (tool.__proto__.__proto__.constructor.name !== "Tool") {
       console.log("Uncompatible. No tool was added.");
       return this;
     }
