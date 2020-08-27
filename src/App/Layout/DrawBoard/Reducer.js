@@ -4,9 +4,9 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
-import GridGenerator from "./Libraries/GridLibrary/Generator";
-import NeuralNetworkGenerator from "./Libraries/NeuralNetworkLibrary/Generator";
-import neuralNetworkMatrixData from "./NeuralNetwork/MatrixData";
+import GridGenerator from "../../../Libraries/GridLibrary/Generator";
+import NeuralNetworkGenerator from "../../../Libraries/NeuralNetworkLibrary/Generator";
+import neuralNetworkMatrixData from "../../../Assets/NeuralNetwork/MatrixData";
 
 const curatedFitData = {
   xFields: 28,
@@ -90,7 +90,7 @@ function generateOutputString(segmentPredictionsInfo) {
     .map((segment) => {
       return segment.prediction;
     })
-    .join("");
+    .join(" ");
 
   let outputString = "";
   try {

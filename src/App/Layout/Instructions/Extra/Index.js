@@ -10,9 +10,9 @@ import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import fill from "../Media/fill.gif";
-import seven from "../Media/7.gif";
-import one from "../Media/1.gif";
+import fill from "../../../../Assets/Media/fill.gif";
+import seven from "../../../../Assets/Media/7.gif";
+import one from "../../../../Assets/Media/1.gif";
 //
 const useStyles = (theme) => ({});
 

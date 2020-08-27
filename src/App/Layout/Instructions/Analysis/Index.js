@@ -10,8 +10,8 @@ import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import analysis_pane from "../Media/analysis.gif";
-import segments from "../Media/segments.gif";
+import analysis_pane from "../../../../Assets/Media/analysis.gif";
+import segments from "../../../../Assets/Media/segments.gif";
 //
 const useStyles = (theme) => ({});
 
