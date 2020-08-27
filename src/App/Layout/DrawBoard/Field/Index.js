@@ -7,7 +7,7 @@ https://github.com/michheusser
 // Libraries
 import React from "react";
 import { connect } from "react-redux";
-import { changeField } from "./FieldActions.js";
+import { changeField } from "./Actions.js";
 // Actions
 
 class Field extends React.Component {
@@ -58,7 +58,7 @@ class Field extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    active: state.gridLayoutReducer.fields[ownProps.x][ownProps.y],
+    active: state.layoutReducer.fields[ownProps.x][ownProps.y],
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {

@@ -6,10 +6,10 @@ https://github.com/michheusser
 
 import React from "react";
 import { connect } from "react-redux";
-import NeuralNetworkChart from "./NeuralNetworkChart/NeuralNetworkChart";
-import NeuralNetworkDetails from "./NeuralNetworkDetails/NeuralNetworkDetails";
-import ImageDetails from "./ImageDetails/ImageDetails";
-import ScaledImage from "./ScaledImage/ScaledImage";
+import NeuralNetworkChart from "./NeuralNetworkChart/Index";
+import NeuralNetworkDetails from "./NeuralNetworkDetails/Index";
+import ImageDetails from "./ImageDetails/Index";
+import ScaledImage from "./ScaledImage/Index";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -64,8 +64,8 @@ class SegmentDetails extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    selectedSegment: state.analysisPaneReducer.selectedSegment,
-    segmentPredictionsInfo: state.gridProcessorReducer.segmentPredictionsInfo,
+    selectedSegment: state.resultPaneReducer.selectedSegment,
+    segmentPredictionsInfo: state.drawBoardReducer.segmentPredictionsInfo,
   };
 };
 

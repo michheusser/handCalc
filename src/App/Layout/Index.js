@@ -5,12 +5,12 @@ https://github.com/michheusser
 */
 
 import React from "react";
-import Header from "./Header/Header.js";
-import Footer from "./Footer/Footer.js";
-import DrawBoard from "./DrawBoard/DrawBoard.js";
-import ResultPane from "./ResultPane/ResultPane.js";
-import Instructions from "./Instructions/Instructions.js";
-import About from "./About/About.js";
+import Header from "./Header/Index.js";
+import Footer from "./Footer/Index.js";
+import DrawBoard from "./DrawBoard/Index.js";
+import ResultPane from "./ResultPane/Index.js";
+import Instructions from "./Instructions/Index.js";
+import About from "./About/Index.js";
 import { connect } from "react-redux";
 import { windowResize } from "./Actions.js";
 

@@ -4,9 +4,9 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
-import GridGenerator from "../Libraries/GridLibrary/Generator";
-import NeuralNetworkGenerator from "../Libraries/NeuralNetworkLibrary/Generator";
-import neuralNetworkMatrixData from "../Assets/NeuralNetwork/MatrixData";
+import GridGenerator from "./Libraries/GridLibrary/Generator";
+import NeuralNetworkGenerator from "./Libraries/NeuralNetworkLibrary/Generator";
+import neuralNetworkMatrixData from "./NeuralNetwork/MatrixData";
 
 const curatedFitData = {
   xFields: 28,
@@ -138,7 +138,7 @@ function maxActiveFields(activeFields) {
   return maxValues;
 }
 
-const gridProcessorReducer = (state = initialState, action) => {
+const drawBoardReducer = (state = initialState, action) => {
   if (action.type === "PROCESS_GRID") {
     const activeFields = getActiveFields(action.payload.fields);
     if (activeFields.length === 0) {
@@ -180,4 +180,4 @@ const gridProcessorReducer = (state = initialState, action) => {
   return state;
 };
 
-export default gridProcessorReducer;
+export default drawBoardReducer;

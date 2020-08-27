@@ -6,11 +6,11 @@ https://github.com/michheusser
 
 import React from "react";
 import { connect } from "react-redux";
-import { processGrid } from "./Actions.js";
+import { processGrid, clearGrid } from "./Actions.js";
 import { AppBar, Toolbar, Typography, Button, Slide } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
-import Menu from "./Menu/Menu.js";
+import Menu from "./Menu/Index.js";
 //import Backdrop from "@material-ui/core/Backdrop";
 //import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -34,12 +34,15 @@ const useStyles = (theme) => ({
 });
 
 class Header extends React.Component {
-  handleClick() {
+  handleStart() {
     this.props.processGrid(
       this.props.xFields,
       this.props.yFields,
       this.props.fields
     );
+  }
+  handleClear() {
+    this.props.clearGrid();
   }
   render() {
     const { classes } = this.props;
@@ -59,10 +62,18 @@ class Header extends React.Component {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={this.handleClick.bind(this)}
+                onClick={this.handleStart.bind(this)}
                 disabled={this.props.buttonDisabled}
               >
                 Start
+              </Button>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={this.handleClear.bind(this)}
+                disabled={this.props.buttonDisabled}
+              >
+                Clear
               </Button>
             </Toolbar>
           </AppBar>
@@ -75,17 +86,20 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    show: state.headerFooterReducer.show,
-    fields: state.gridLayoutReducer.fields,
-    xFields: state.gridLayoutReducer.widthFields,
-    yFields: state.gridLayoutReducer.heightFields,
-    buttonDisabled: state.gridLayoutReducer.emptyGrid,
+    show: state.headerReducer.show,
+    fields: state.layoutReducer.fields,
+    xFields: state.layoutReducer.widthFields,
+    yFields: state.layoutReducer.heightFields,
+    buttonDisabled: state.layoutReducer.emptyGrid,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     processGrid: (xFields, yFields, fields) => {
       dispatch(processGrid(xFields, yFields, fields));
+    },
+    clearGrid: () => {
+      dispatch(clearGrid());
     },
   };
 };

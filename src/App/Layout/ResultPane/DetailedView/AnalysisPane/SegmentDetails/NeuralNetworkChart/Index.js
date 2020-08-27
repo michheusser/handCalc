@@ -87,10 +87,10 @@ class NeuralNetworkChart extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    outputMap: state.gridProcessorReducer.outputMap,
-    selectedSegment: state.analysisPaneReducer.selectedSegment,
-    likelihoods: state.gridProcessorReducer.segmentLikelihoods,
-    segmentPredictionsInfo: state.gridProcessorReducer.segmentPredictionsInfo,
+    outputMap: state.drawBoardReducer.outputMap,
+    selectedSegment: state.resultPaneReducer.selectedSegment,
+    likelihoods: state.drawBoardReducer.segmentLikelihoods,
+    segmentPredictionsInfo: state.drawBoardReducer.segmentPredictionsInfo,
   };
 };
 

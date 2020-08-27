@@ -82,8 +82,8 @@ class NeuralNetworkDetails extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    segmentPredictionsInfo: state.gridProcessorReducer.segmentPredictionsInfo,
-    selectedSegment: state.analysisPaneReducer.selectedSegment,
+    segmentPredictionsInfo: state.drawBoardReducer.segmentPredictionsInfo,
+    selectedSegment: state.resultPaneReducer.selectedSegment,
   };
 };
 

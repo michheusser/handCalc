@@ -9,11 +9,11 @@ import { connect } from "react-redux";
 import { closeInstructions, nextStep, backStep, resetStep } from "./Actions";
 import { withStyles } from "@material-ui/core/styles";
 
-import Introduction from "./Introduction/Introduction.js";
-import Drawing from "./Drawing/Drawing.js";
-import Analysis from "./Analysis/Analysis.js";
-import Extra from "./Extra/Extra.js";
-import End from "./End/End.js";
+import Introduction from "./Introduction/Index.js";
+import Drawing from "./Drawing/Index.js";
+import Analysis from "./Analysis/Index.js";
+import Extra from "./Extra/Index.js";
+import End from "./End/Index.js";
 
 //import IconButton from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";

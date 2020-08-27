@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "./Layout/Layout.js";
+import Layout from "./Layout/Index";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./Theme";
 import { connect } from "react-redux";

@@ -8,7 +8,7 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
-import SegmentUI from "./Segment/Segment.js";
+import SegmentUI from "./Segment/Index.js";
 import { segmentSelected } from "./Actions.js";
 
 const useStyles = (theme) => ({

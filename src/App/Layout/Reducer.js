@@ -4,8 +4,8 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
-let gridLayoutReducer = (state, action) => {
-  if (typeof state === "undefined") {
+let layoutReducer = (state, action) => {
+  if (typeof state === "undefined" || action.type === "CLEAR_GRID") {
     const width = window.innerWidth;
     const height = window.innerHeight;
     const fieldBorder = 1;
@@ -107,7 +107,7 @@ const calculateDimensions = (width, height, shortFields, border) => {
   return [widthFields, heightFields, fieldSize, marginLeft, marginTop];
 };
 
-export default gridLayoutReducer;
+export default layoutReducer;
 
 function newFieldGrid(xFields, yFields) {
   return new Array(xFields)

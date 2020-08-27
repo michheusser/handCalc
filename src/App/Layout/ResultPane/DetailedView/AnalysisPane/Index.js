@@ -9,8 +9,8 @@ import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import SymbolList from "./SymbolList/SymbolList.js";
-import SegmentDetails from "./SegmentDetails/SegmentDetails.js";
+import SymbolList from "./SymbolList/Index.js";
+import SegmentDetails from "./SegmentDetails/Index.js";
 import Divider from "@material-ui/core/Divider";
 //
 

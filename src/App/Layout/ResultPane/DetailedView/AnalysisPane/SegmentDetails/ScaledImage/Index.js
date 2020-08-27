@@ -109,8 +109,8 @@ class ScaledImage extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    selectedSegment: state.analysisPaneReducer.selectedSegment,
-    segments: state.gridProcessorReducer.curatedSegments,
+    selectedSegment: state.resultPaneReducer.selectedSegment,
+    segments: state.drawBoardReducer.curatedSegments,
   };
 };
 

@@ -7,7 +7,7 @@ https://github.com/michheusser
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import Item from "./Item/Item.js";
+import Item from "./Item/Index.js";
 import Grid from "@material-ui/core/Grid";
 
 const useStyles = (theme) => ({});
@@ -37,7 +37,7 @@ class SymbolList extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    segmentsLength: state.gridProcessorReducer.originalSegmentsInfo.length,
+    segmentsLength: state.drawBoardReducer.originalSegmentsInfo.length,
   };
 };
 

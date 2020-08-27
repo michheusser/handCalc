@@ -4,7 +4,7 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
-let headerFooterReducer = (state = { show: true }, action) => {
+let footerReducer = (state = { show: true }, action) => {
   if (action.type === "GRID_MOUSE_DOWN") {
     let newState = { show: false };
     return newState;
@@ -16,4 +16,4 @@ let headerFooterReducer = (state = { show: true }, action) => {
   return state;
 };
 
-export default headerFooterReducer;
+export default footerReducer;

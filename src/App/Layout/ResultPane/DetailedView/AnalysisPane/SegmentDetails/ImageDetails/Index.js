@@ -83,9 +83,9 @@ class ImageDetails extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    originalSegmentsInfo: state.gridProcessorReducer.originalSegmentsInfo,
-    curatedSegmentsInfo: state.gridProcessorReducer.curatedSegmentsInfo,
-    selectedSegment: state.analysisPaneReducer.selectedSegment,
+    originalSegmentsInfo: state.drawBoardReducer.originalSegmentsInfo,
+    curatedSegmentsInfo: state.drawBoardReducer.curatedSegmentsInfo,
+    selectedSegment: state.resultPaneReducer.selectedSegment,
   };
 };
 

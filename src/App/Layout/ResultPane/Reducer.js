@@ -4,7 +4,7 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
-let analysisPaneReducer = (
+let resultPaneReducer = (
   state = { paneOpen: false, selectedSegment: 0 },
   action
 ) => {
@@ -27,4 +27,4 @@ let analysisPaneReducer = (
   return state;
 };
 
-export default analysisPaneReducer;
+export default resultPaneReducer;

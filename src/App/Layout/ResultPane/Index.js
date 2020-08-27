@@ -8,7 +8,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { openPane, closePane, segmentSelected } from "./Actions";
 import { withStyles } from "@material-ui/core/styles";
-import DetailedView from "./DetailedView/DetailedView.js";
+import DetailedView from "./DetailedView/Index.js";
 
 //
 
@@ -108,8 +108,8 @@ class ResultPane extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    segmentsLength: state.gridProcessorReducer.originalSegmentsInfo.length,
-    open: state.analysisPaneReducer.paneOpen,
+    segmentsLength: state.drawBoardReducer.originalSegmentsInfo.length,
+    open: state.resultPaneReducer.paneOpen,
   };
 };
 

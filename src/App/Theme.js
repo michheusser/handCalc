@@ -23,7 +23,7 @@ const theme = createMuiTheme({
   },
   palette: {
     common: {
-      blue: `${myWhite}`,
+      white: `${myWhite}`,
       green: `${myGreen}`,
     },
     primary: { main: `${myGreen}` },

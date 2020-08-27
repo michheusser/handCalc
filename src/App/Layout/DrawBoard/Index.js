@@ -8,7 +8,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { mouseDown, mouseUp } from "./Actions";
 import { Box } from "@material-ui/core";
-import Field from "./Field/Field";
+import Field from "./Field/Index";
 
 class DrawBoard extends React.Component {
   render() {
@@ -57,6 +57,7 @@ class DrawBoard extends React.Component {
           onMouseUp={this.props.mouseUp}
           onTouchStart={this.props.mouseDown}
           onTouchEnd={this.props.mouseUp}
+          onKeyDown={(event) => console.log(event)}
           draggable="false"
         >
           <tbody draggable="false">{table}</tbody>
@@ -68,12 +69,12 @@ class DrawBoard extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    xFields: state.gridLayoutReducer.widthFields,
-    yFields: state.gridLayoutReducer.heightFields,
-    fieldSize: state.gridLayoutReducer.fieldSize,
-    fieldBorder: state.gridLayoutReducer.fieldBorder,
-    marginLeft: state.gridLayoutReducer.marginLeft,
-    marginTop: state.gridLayoutReducer.marginTop,
+    xFields: state.layoutReducer.widthFields,
+    yFields: state.layoutReducer.heightFields,
+    fieldSize: state.layoutReducer.fieldSize,
+    fieldBorder: state.layoutReducer.fieldBorder,
+    marginLeft: state.layoutReducer.marginLeft,
+    marginTop: state.layoutReducer.marginTop,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {

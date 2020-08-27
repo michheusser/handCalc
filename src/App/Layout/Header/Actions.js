@@ -10,3 +10,10 @@ export const processGrid = (xFields, yFields, fields) => {
     payload: { xFields: xFields, yFields: yFields, fields: fields },
   };
 };
+
+export const clearGrid = () => {
+  return {
+    type: "CLEAR_GRID",
+    payload: {},
+  };
+};

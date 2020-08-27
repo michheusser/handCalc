@@ -76,8 +76,8 @@ class SegmentUI extends React.Component {
 }
 const mapStateToProps = (state) => {
   return {
-    segments: state.gridProcessorReducer.originalSegments,
-    selectedSegment: state.analysisPaneReducer.selectedSegment,
+    segments: state.drawBoardReducer.originalSegments,
+    selectedSegment: state.resultPaneReducer.selectedSegment,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {

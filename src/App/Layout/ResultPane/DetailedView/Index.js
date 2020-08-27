@@ -16,7 +16,7 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import AnalysisPane from "./AnalysisPane/AnalysisPane.js";
+import AnalysisPane from "./AnalysisPane/Index.js";
 
 const AccordionSummary = withStyles({
   root: {
@@ -74,7 +74,7 @@ class DetailedView extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { result: state.gridProcessorReducer.displayedResult };
+  return { result: state.drawBoardReducer.displayedResult };
 };
 
 const mapDispatchToProps = (dispatch) => {
