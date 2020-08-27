@@ -4,28 +4,39 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
+// Redux (State Management)
+import { connect } from "react-redux";
+// Actions
+import { windowResize } from "./Actions.js";
+// Components
 import Header from "./Header/Index.js";
 import Footer from "./Footer/Index.js";
 import DrawBoard from "./DrawBoard/Index.js";
 import ResultPane from "./ResultPane/Index.js";
 import Instructions from "./Instructions/Index.js";
 import About from "./About/Index.js";
-import { connect } from "react-redux";
-import { windowResize } from "./Actions.js";
 
+// **************************** COMPONENT ****************************
 class Layout extends React.Component {
+  // Sets the overall layout of the main components
   componentDidMount() {
+    // Sets the event listeners when the window is resized and dispatches the action of
+    // the window resize
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions.bind(this));
   }
   componentWillUnmount() {
+    // Removes the event listener once the component is unmounted to avoid errors / memory leaks
     window.removeEventListener(
       "resize",
       this.updateWindowDimensions.bind(this)
     );
   }
   updateWindowDimensions() {
+    // Dispatches the action to resize the window and update the layout reducer
     this.props.updateDimensions(window.innerWidth, window.innerHeight);
   }
   render() {
@@ -42,6 +53,7 @@ class Layout extends React.Component {
   }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {};
 };
@@ -51,4 +63,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

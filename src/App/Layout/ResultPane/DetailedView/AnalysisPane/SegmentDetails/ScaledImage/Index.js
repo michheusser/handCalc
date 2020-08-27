@@ -4,11 +4,17 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
+// Redux (State Management)
 import { connect } from "react-redux";
-import { withStyles } from "@material-ui/core/styles";
+// Material UI (Components)
 import Paper from "@material-ui/core/Paper";
+// Material UI (Design)
+import { withStyles } from "@material-ui/core/styles";
 
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({
   root: {},
   cardContent: {
@@ -41,10 +47,11 @@ const useStyles = (theme) => ({
   },
 });
 
+// **************************** COMPONENT ****************************
 class ScaledImage extends React.Component {
+  // Displays the image of the processed version of the selected segment
   constructor(props) {
     super(props);
-
     this.context = null;
   }
 
@@ -107,6 +114,7 @@ class ScaledImage extends React.Component {
   }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {
     selectedSegment: state.resultPaneReducer.selectedSegment,
@@ -118,6 +126,7 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps

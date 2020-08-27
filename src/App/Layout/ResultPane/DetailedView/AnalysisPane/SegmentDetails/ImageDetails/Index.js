@@ -4,13 +4,17 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
+// Redux (State Management)
 import { connect } from "react-redux";
+// Material UI (Components)
+import { Paper, Typography } from "@material-ui/core";
+// Material UI (Design)
 import { withStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
 
-//
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({
   paper: {
     margin: 0,
@@ -23,8 +27,12 @@ const useStyles = (theme) => ({
   },
 });
 
+// **************************** COMPONENT ****************************
 class ImageDetails extends React.Component {
+  // Displays the details around the selected drawn segment, including the original segment
+  // dimensions and the dimensions of the processed segment feed into the neural network
   getMessage() {
+    // Generates the message to be shown next to the scaled segment in the analysis pane
     const message = `The original drawing of this symbol has a total of ${
       this.props.originalSegmentsInfo[this.props.selectedSegment].xFields *
       this.props.originalSegmentsInfo[this.props.selectedSegment].yFields
@@ -81,6 +89,7 @@ class ImageDetails extends React.Component {
   }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {
     originalSegmentsInfo: state.drawBoardReducer.originalSegmentsInfo,
@@ -93,31 +102,8 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withStyles(useStyles)(ImageDetails));
-
-/*<Card elevation={1} className={classes.root}>
-  <CardContent>
-    <Typography
-      align="left"
-      className={classes.title}
-      color="textSecondary"
-      gutterBottom
-    ></Typography>
-    <Typography align="left" variant="body2" component="h2">
-      Original segment: 15x15 pixels
-    </Typography>
-    <Typography align="left" variant="body2" component="p">
-      Processed segment: 28x28 pixels
-    </Typography>
-    <Typography align="left" variant="body2" component="p">
-      Used pixels: 8
-    </Typography>
-    <Typography align="left" variant="body2" component="p">
-      Used pixels (after processing): 8
-    </Typography>
-  </CardContent>
-</Card>
-    */

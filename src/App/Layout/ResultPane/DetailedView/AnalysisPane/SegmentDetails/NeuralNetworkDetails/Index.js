@@ -4,13 +4,17 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
+// Redux (State Management)
 import { connect } from "react-redux";
+// Material UI (Components)
+import { Paper, Typography } from "@material-ui/core";
+// Material UI (Design)
 import { withStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
 
-//
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({
   root: {
     padding: 0,
@@ -25,26 +29,18 @@ const useStyles = (theme) => ({
   },
 });
 
+// **************************** COMPONENT ****************************
 class NeuralNetworkDetails extends React.Component {
+  // Displays the prediction details around the selected segment upon feeding it into the
+  // neural network
   getMessage() {
+    // Generates the message to be shown next to the neural network output data analysis chart
     return `The neural network identified this symbol with a likelihood of ${Math.round(
       this.props.segmentPredictionsInfo[this.props.selectedSegment]
         .predictionLikelihood * 100
     )}%. If other possible symbols have a comparable likelihood, or the prediction itself is incorrect, please go back to the drawing board and make sure the symbol is more clearly written`;
   }
-  standardDeviation(likelihood) {
-    let average = 0;
-    for (let i = 0; i < likelihood.length; i++) {
-      average += i * likelihood[i];
-    }
-    average = average / likelihood.length;
-    let variance = 0;
-    for (let i = 0; i < likelihood.length; i++) {
-      variance += Math.pow(i - average, 2) * likelihood[i];
-    }
-    variance = Math.sqrt(variance);
-    return variance;
-  }
+
   render() {
     const { classes } = this.props;
     let predictionLikelihood = null;
@@ -80,6 +76,7 @@ class NeuralNetworkDetails extends React.Component {
   }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {
     segmentPredictionsInfo: state.drawBoardReducer.segmentPredictionsInfo,
@@ -91,6 +88,7 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps

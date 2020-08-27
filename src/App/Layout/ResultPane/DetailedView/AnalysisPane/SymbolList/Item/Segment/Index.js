@@ -4,12 +4,18 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-
+// Redux (State Management)
 import { connect } from "react-redux";
+// Material UI (Components)
+import Paper from "@material-ui/core/Paper";
+// Material UI (Design)
+import { withStyles } from "@material-ui/core/styles";
+// Diverse
 
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({
   canvas: { margin: 0, padding: 0 },
   paper: {
@@ -21,7 +27,9 @@ const useStyles = (theme) => ({
   },
 });
 
-class SegmentUI extends React.Component {
+// **************************** COMPONENT ****************************
+class Segment extends React.Component {
+  // Handles the canvas element that scales the processed image and displays it.
   constructor(props) {
     super(props);
     this.context = null;
@@ -30,16 +38,18 @@ class SegmentUI extends React.Component {
     if (canvas) {
       this.context = canvas.getContext("2d");
       const color = { r: 100, g: 100, b: 100 };
+      // Converts the segments as grid-objects to Image Data readable by a canvas
       const image = this.props.segments[idx].tools.manipulator.gridToImage(
         color
       );
 
-      let renderer = document.createElement("canvas");
+      // Creates an artificial canvas to scale the images, extract them and place them in the
+      // actual canvas to be shown
+      const renderer = document.createElement("canvas");
       renderer.width = image.width;
       renderer.height = image.height;
       renderer.getContext("2d").putImageData(image, 0, 0);
       this.context.imageSmoothingEnabled = false;
-      // Now we can scale our image, by drawing our second canvas
       this.context.drawImage(renderer, 0, 0, canvas.width, canvas.height);
       this.context.imageSmoothingEnabled = false;
     }
@@ -74,6 +84,8 @@ class SegmentUI extends React.Component {
     );
   }
 }
+
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {
     segments: state.drawBoardReducer.originalSegments,
@@ -84,7 +96,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {};
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(SegmentUI));
+)(withStyles(useStyles)(Segment));

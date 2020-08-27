@@ -4,21 +4,28 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
+// Redux (State Management)
 import { connect } from "react-redux";
+// Material UI (Components)
+import { Typography, Card, CardContent } from "@material-ui/core";
+// Material UI (Design)
 import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+// Diverse
 import analysis_pane from "../../../../Assets/Media/analysis.gif";
 import segments from "../../../../Assets/Media/segments.gif";
-//
+
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({});
 
+// **************************** COMPONENT ****************************
 class Analysis extends React.Component {
+  // Displays the tutorial part explaining the analysis pane. There are no functional components,
+  // only text and images
   render() {
     //  const { classes } = this.props;
-
     return (
       <Card elevation={0}>
         <CardContent>
@@ -64,6 +71,7 @@ class Analysis extends React.Component {
   }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {};
 };
@@ -72,6 +80,7 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps

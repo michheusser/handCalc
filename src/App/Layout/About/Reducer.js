@@ -4,13 +4,16 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
-let aboutReducer = (state = { paneOpen: false }, action) => {
+// **************************** REDUCER ****************************
+const aboutReducer = (state = { paneOpen: false }, action) => {
+  // Handles wether the the component is open or closed with the corresponding
+  // open/close actions
   if (action.type === "CLOSE_ABOUT") {
-    let newState = { paneOpen: false };
+    const newState = { paneOpen: false };
     return newState;
   }
   if (action.type === "OPEN_ABOUT") {
-    let newState = { paneOpen: true };
+    const newState = { paneOpen: true };
     return newState;
   }
   return state;

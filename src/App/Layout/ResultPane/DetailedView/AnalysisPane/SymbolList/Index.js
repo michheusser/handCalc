@@ -4,15 +4,24 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
+// Redux (State Management)
 import { connect } from "react-redux";
+// Components
 import Item from "./Item/Index.js";
+// Material UI (Components)
 import Grid from "@material-ui/core/Grid";
+// Material UI (Design)
+import { withStyles } from "@material-ui/core/styles";
 
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({});
 
+// **************************** COMPONENT ****************************
 class SymbolList extends React.Component {
+  // Handles the overall layout for the symbol list to select segments.
   render() {
     //  const { classes } = this.props;
 
@@ -35,6 +44,7 @@ class SymbolList extends React.Component {
   }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {
     segmentsLength: state.drawBoardReducer.originalSegmentsInfo.length,
@@ -45,15 +55,8 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withStyles(useStyles)(SymbolList));
-
-/*<div>{segmentList}</div>*/
-
-/*<Item
-  key={idx}
-  index={idx}
-  selectSegment={this.props.selectSegment}
-/>*/

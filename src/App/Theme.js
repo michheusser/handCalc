@@ -1,3 +1,10 @@
+/*
+Copyright 2020, Michel Heusser
+ALl rights reserved
+https://github.com/michheusser
+*/
+
+// **************************** IMPORTS ****************************
 import { createMuiTheme } from "@material-ui/core/styles";
 
 //const myBlue = "#20358a";

@@ -1,17 +1,33 @@
-import React from "react";
-import Layout from "./Layout/Index";
-import { ThemeProvider } from "@material-ui/core/styles";
-import theme from "./Theme";
-import { connect } from "react-redux";
+/*
+Copyright 2020, Michel Heusser
+ALl rights reserved
+https://github.com/michheusser
+*/
 
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Layout />
-    </ThemeProvider>
-  );
+// **************************** IMPORTS ****************************
+// React (Core)
+import React from "react";
+// Redux (State Management)
+import { connect } from "react-redux";
+// Components
+import Layout from "./Layout/Index";
+// Material UI (Design)
+import { ThemeProvider } from "@material-ui/core/styles";
+// Diverse
+import theme from "./Theme";
+
+// **************************** COMPONENT ****************************
+class App extends React.Component {
+  render() {
+    return (
+      <ThemeProvider theme={theme}>
+        <Layout />
+      </ThemeProvider>
+    );
+  }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {};
 };
@@ -19,4 +35,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {};
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -4,23 +4,33 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
-import clsx from "clsx";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import { IconButton } from "@material-ui/core";
+// Redux (State Management)
+import { connect } from "react-redux";
+// Actions
+import { openInstructions, openAbout } from "./Actions.js";
+// Material UI (Components)
+import {
+  Drawer,
+  List,
+  Divider,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  IconButton,
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import PersonIcon from "@material-ui/icons/Person";
-import { openInstructions, openAbout } from "./Actions.js";
-import { connect } from "react-redux";
+// Material UI (Design)
 import { withStyles } from "@material-ui/core/styles";
+// Diverse
+import clsx from "clsx";
 
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({
   list: {
     width: 250,
@@ -30,7 +40,10 @@ const useStyles = (theme) => ({
   },
 });
 
+// **************************** COMPONENT ****************************
 class Menu extends React.Component {
+  // Handles the menu in the header, and displays the elements to access the about pane,
+  // the instructions, and the github repository
   constructor(props) {
     super(props);
     this.state = {
@@ -134,6 +147,8 @@ class Menu extends React.Component {
     );
   }
 }
+
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {};
 };
@@ -149,6 +164,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps

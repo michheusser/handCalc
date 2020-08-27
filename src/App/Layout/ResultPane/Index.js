@@ -4,22 +4,27 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
+// Redux (State Management)
 import { connect } from "react-redux";
+// Actions
 import { openPane, closePane, segmentSelected } from "./Actions";
-import { withStyles } from "@material-ui/core/styles";
+// Components
 import DetailedView from "./DetailedView/Index.js";
-
-//
-
-import IconButton from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-//import DialogContentText from "@material-ui/core/DialogContentText";
-
+// Material UI (Components)
+import {
+  IconButton,
+  Dialog,
+  DialogActions,
+  DialogContent,
+} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
+// Material UI (Design)
+import { withStyles } from "@material-ui/core/styles";
 
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({
   closeButton: {
     minWidth: 0,
@@ -65,11 +70,16 @@ const useStyles = (theme) => ({
   },
 });
 
+// **************************** COMPONENT ****************************
 class ResultPane extends React.Component {
+  // Handles the container dialog that appears when the grid has been processed to show the
+  // predicted result and the details
   handleClose() {
+    // Dispatches the action to close the result pane
     this.props.closePane();
   }
   setSelectedSegment() {
+    // Dispatches the action to change the selected segment
     if (this.props.segmentsLength) {
       this.props.selectSegment(0);
     }
@@ -106,6 +116,7 @@ class ResultPane extends React.Component {
   }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {
     segmentsLength: state.drawBoardReducer.originalSegmentsInfo.length,
@@ -127,6 +138,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps

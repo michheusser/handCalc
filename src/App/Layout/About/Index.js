@@ -4,19 +4,27 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
+// Redux (State Management)
 import { connect } from "react-redux";
+// Actions
 import { closeAbout } from "./Actions";
-import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import Link from "@material-ui/core/Link";
-
+// Material UI (Components)
+import {
+  Typography,
+  IconButton,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  Link,
+} from "@material-ui/core/";
 import CloseIcon from "@material-ui/icons/Close";
+// Material UI (Design)
+import { withStyles } from "@material-ui/core/styles";
 
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({
   closeButton: {
     minWidth: 0,
@@ -62,7 +70,10 @@ const useStyles = (theme) => ({
   },
 });
 
+// **************************** COMPONENT ****************************
 class About extends React.Component {
+  // Component displaying project and license information (accessed through the app menu).
+  // No functionalities besides showing text and links.
   handleClose() {
     this.props.closePane();
   }
@@ -154,8 +165,8 @@ class About extends React.Component {
     );
   }
 }
-//<DetailedView />
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {
     open: state.aboutReducer.paneOpen,
@@ -170,6 +181,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps

@@ -4,24 +4,25 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
+// Redux (State Management)
 import { connect } from "react-redux";
+// Material UI (Components)
+import { Card, CardContent, Typography } from "@material-ui/core";
+// Material UI (Design)
 import { withStyles } from "@material-ui/core/styles";
-
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-//import { formatPrefix } from "d3-format";
-//import { scaleLog } from "d3-scale";
+// Diverse
 import {
   Chart,
   BarSeries,
   ArgumentAxis,
   ValueAxis,
 } from "@devexpress/dx-react-chart-material-ui";
-
 import { Animation, ValueScale } from "@devexpress/dx-react-chart";
 
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({
   root: {},
   chart: { padding: 0, paddingBottom: theme.spacing(1) },
@@ -41,9 +42,13 @@ const useStyles = (theme) => ({
   },
 });
 
+// **************************** COMPONENT ****************************
 class NeuralNetworkChart extends React.Component {
+  // Displays the output likelihood of the neural network upon feeding of the selected
+  // processed image
   render() {
     let data = [];
+    // Puts together the neural network output data to be displayed by the Chart object
     if (this.props.selectedSegment !== null) {
       data = new Array(this.props.outputMap.length)
         .fill(null)
@@ -85,6 +90,7 @@ class NeuralNetworkChart extends React.Component {
   }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {
     outputMap: state.drawBoardReducer.outputMap,
@@ -98,6 +104,7 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps

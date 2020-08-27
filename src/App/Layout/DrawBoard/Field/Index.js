@@ -4,18 +4,27 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
-// Libraries
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
+// Redux (State Management)
 import { connect } from "react-redux";
-import { changeField } from "./Actions.js";
 // Actions
+import { changeField } from "./Actions.js";
 
+// **************************** COMPONENT ****************************
 class Field extends React.Component {
+  // FIeld components out of which the drawing board is composed from. Fields that are clicked
+  // update the state of the gridboard in the layout reducer.
   toggleTouch(event) {
+    // Handles touch commands.
+    // Under construction...
     event.persist();
     event.preventDefault();
   }
   toggle(event) {
+    // Handles toggling of the field within the drawing board and dispatches the change field
+    // event to update the layout reducer state
     event.persist();
     if (event.buttons === 1) {
       event.preventDefault();
@@ -26,11 +35,11 @@ class Field extends React.Component {
     }
   }
   render() {
-    let styleCell = {
+    const styleCell = {
       border: `${this.props.border}px solid #CCCCCC`,
       padding: "0",
     };
-    let styleSquare = {
+    const styleSquare = {
       height: `${this.props.fieldSize}px`,
       width: `${this.props.fieldSize}px`,
       background: this.props.active
@@ -56,6 +65,7 @@ class Field extends React.Component {
   }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state, ownProps) => {
   return {
     active: state.layoutReducer.fields[ownProps.x][ownProps.y],
@@ -69,6 +79,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(mapStateToProps, mapDispatchToProps)(Field);
-
-//

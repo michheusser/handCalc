@@ -4,16 +4,21 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
+// Redux (State Management)
 import { connect } from "react-redux";
+// Actions
 import { processGrid, clearGrid } from "./Actions.js";
+// Components
+import Menu from "./Menu/Index.js";
+// Material UI (Components)
 import { AppBar, Toolbar, Typography, Button, Slide } from "@material-ui/core";
+// Material UI (Design)
 import { withStyles } from "@material-ui/core/styles";
 
-import Menu from "./Menu/Index.js";
-//import Backdrop from "@material-ui/core/Backdrop";
-//import CircularProgress from "@material-ui/core/CircularProgress";
-
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
@@ -33,8 +38,12 @@ const useStyles = (theme) => ({
   },
 });
 
+// **************************** COMPONENT ****************************
 class Header extends React.Component {
+  // Handles the header component which contains the menu and the buttons to process and
+  // clear the grid. It slides off the screen when drawing on the drawboard is happening
   handleStart() {
+    // Dispatches the action with the drawing or the drawboard reducer to process it
     this.props.processGrid(
       this.props.xFields,
       this.props.yFields,
@@ -42,6 +51,7 @@ class Header extends React.Component {
     );
   }
   handleClear() {
+    // Clears the grid
     this.props.clearGrid();
   }
   render() {
@@ -82,8 +92,8 @@ class Header extends React.Component {
     );
   }
 }
-//<div className={classes.toolbarMargin}></div>;
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {
     show: state.headerReducer.show,
@@ -104,6 +114,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps

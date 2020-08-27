@@ -1,5 +1,11 @@
-import { createStore, combineReducers } from "redux";
+/*
+Copyright 2020, Michel Heusser
+ALl rights reserved
+https://github.com/michheusser
+*/
 
+// **************************** IMPORTS ****************************
+import { createStore, combineReducers } from "redux";
 import drawBoardReducer from "./App/Layout/DrawBoard/Reducer";
 import resultPaneReducer from "./App/Layout/ResultPane/Reducer";
 import layoutReducer from "./App/Layout/Reducer";
@@ -8,7 +14,7 @@ import footerReducer from "./App/Layout/Footer/Reducer.js";
 import instructionsReducer from "./App/Layout/Instructions/Reducer.js";
 import aboutReducer from "./App/Layout/About/Reducer.js";
 
-// Define the Reducers that will always be present in the application
+// **************************** REDUCER SETUP ****************************
 const initialReducers = {
   headerReducer: headerReducer,
   footerReducer: footerReducer,

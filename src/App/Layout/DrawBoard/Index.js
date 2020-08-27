@@ -4,15 +4,25 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
+// Redux (State Management)
 import { connect } from "react-redux";
+// Actions
 import { mouseDown, mouseUp } from "./Actions";
-import { Box } from "@material-ui/core";
+// Components
 import Field from "./Field/Index";
+// Material UI (Components)
+import { Box } from "@material-ui/core";
 
+// **************************** COMPONENT ****************************
 class DrawBoard extends React.Component {
+  // Component handling the draw board (grid), composed of all clickable field components.
+  // The grid is rerendered everytime the window is resized.
   render() {
     let table = [];
+    // Creates the table containing the fields of the drawing board
     for (let y = 0; y < this.props.yFields; y++) {
       table.push(
         <tr key={y}>
@@ -67,6 +77,7 @@ class DrawBoard extends React.Component {
   }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {
     xFields: state.layoutReducer.widthFields,
@@ -88,6 +99,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(mapStateToProps, mapDispatchToProps)(DrawBoard);
-
-//<Button onClick={this.processGrid.bind(this)}>Button</Button>

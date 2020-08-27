@@ -4,13 +4,21 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
+// Redux (State Management)
 import { connect } from "react-redux";
-import Paper from "@material-ui/core/Paper";
-import SegmentUI from "./Segment/Index.js";
+// Actions
 import { segmentSelected } from "./Actions.js";
+// Components
+import Segment from "./Segment/Index.js";
+// Material UI (Components)
+import Paper from "@material-ui/core/Paper";
+// Material UI (Design)
+import { withStyles } from "@material-ui/core/styles";
 
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({
   paper: {
     margin: 0,
@@ -21,8 +29,13 @@ const useStyles = (theme) => ({
   },
 });
 
+// **************************** COMPONENT ****************************
 class Item extends React.Component {
+  // High level element containing the segment image within the symbol list. When clicked, it
+  // changes the state to have the selected element, which in turn updates the details within the
+  // components of the analysis pane
   handleClick(event) {
+    // Dispatches the action to change a selected segment
     this.props.selectSegment(this.props.index);
   }
   render() {
@@ -37,12 +50,13 @@ class Item extends React.Component {
         width={1}
         onClick={this.handleClick.bind(this)}
       >
-        <SegmentUI index={this.props.index} />
+        <Segment index={this.props.index} />
       </Paper>
     );
   }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {};
 };
@@ -55,6 +69,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps

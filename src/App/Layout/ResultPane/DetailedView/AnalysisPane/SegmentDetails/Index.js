@@ -4,16 +4,22 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
+// Redux (State Management)
 import { connect } from "react-redux";
+// Components
 import NeuralNetworkChart from "./NeuralNetworkChart/Index";
 import NeuralNetworkDetails from "./NeuralNetworkDetails/Index";
 import ImageDetails from "./ImageDetails/Index";
 import ScaledImage from "./ScaledImage/Index";
-import Grid from "@material-ui/core/Grid";
+// Material UI (Components)
+import { Grid, Typography } from "@material-ui/core";
+// Material UI (Design)
 import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({
   root: {
     flexGrow: 1,
@@ -25,7 +31,9 @@ const useStyles = (theme) => ({
   },
 });
 
+// **************************** COMPONENT ****************************
 class SegmentDetails extends React.Component {
+  // Sets out the overall grid layout for the detailed information around the selected segments
   render() {
     const { classes } = this.props;
 
@@ -62,6 +70,7 @@ class SegmentDetails extends React.Component {
   }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {
     selectedSegment: state.resultPaneReducer.selectedSegment,
@@ -73,15 +82,8 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withStyles(useStyles)(SegmentDetails));
-
-/*<div height={400}>
-  <ImageDetails />
-  <ScaledImage />
-  <NeuralNetworkDetails />
-  <NeuralNetworkChart likelihood={likelihood} prediction={prediction} />
-</div>
-  */

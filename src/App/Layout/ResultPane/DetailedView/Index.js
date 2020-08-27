@@ -4,20 +4,21 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
+// Redux (State Management)
 import { connect } from "react-redux";
+// Components
+import AnalysisPane from "./AnalysisPane/Index.js";
+// Material UI (Components)
+import { Accordion, AccordionDetails, Typography } from "@material-ui/core";
+import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+// Material UI (Design)
 import { withStyles } from "@material-ui/core/styles";
 
-//
-import Accordion from "@material-ui/core/Accordion";
-//import AccordionSummary from "@material-ui/core/AccordionSummary";
-import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
-import AnalysisPane from "./AnalysisPane/Index.js";
-
+// **************************** STYLING ****************************
 const AccordionSummary = withStyles({
   root: {
     flexDirection: "column",
@@ -48,7 +49,10 @@ const useStyles = (theme) => ({
   },
 });
 
+// **************************** COMPONENT ****************************
 class DetailedView extends React.Component {
+  // Renders the accordion showing the predicted result upon drawing that can be expanded to
+  // display the details of the predictions
   render() {
     const { classes } = this.props;
 
@@ -73,6 +77,7 @@ class DetailedView extends React.Component {
   }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return { result: state.drawBoardReducer.displayedResult };
 };
@@ -81,9 +86,8 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withStyles(useStyles)(DetailedView));
-
-//<SymbolList />

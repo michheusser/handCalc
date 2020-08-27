@@ -4,28 +4,33 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
+// Redux (State Management)
 import { connect } from "react-redux";
+// Actions
 import { closeInstructions, nextStep, backStep, resetStep } from "./Actions";
-import { withStyles } from "@material-ui/core/styles";
-
+// Components
 import Introduction from "./Introduction/Index.js";
 import Drawing from "./Drawing/Index.js";
 import Analysis from "./Analysis/Index.js";
 import Extra from "./Extra/Index.js";
 import End from "./End/Index.js";
+// Material UI (Components)
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  Stepper,
+  Step,
+  StepLabel,
+  Button,
+} from "@material-ui/core";
+// Material UI (Design)
+import { withStyles } from "@material-ui/core/styles";
 
-//import IconButton from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
-import Button from "@material-ui/core/Button";
-
-//import CloseIcon from "@material-ui/icons/Close";
-
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({
   backButton: {
     marginRight: theme.spacing(1),
@@ -54,6 +59,7 @@ const useStyles = (theme) => ({
   },
 });
 
+// **************************** FUNCTIONS ****************************
 function getSteps() {
   return ["Introduction", "Drawing", "Analysis", "Extra"];
 }
@@ -73,19 +79,25 @@ function getStepContent(stepIndex) {
   }
 }
 
+// **************************** COMPONENT ****************************
 class Instructions extends React.Component {
+  // Handles the instructions pane shown when the web-app is loaded, or accessed through the menu.
   handleClose() {
+    // Dispatches the action to close the pane
     this.props.closePane();
   }
   handleNext() {
+    // Dispatches the action to go to the next step
     this.props.nextStep();
   }
 
   handleBack() {
+    // Dispatches the action to go to the previous step
     this.props.backStep();
   }
 
   handleReset() {
+    // Dispatches the action to go to the first step
     this.props.resetStep();
   }
 
@@ -136,6 +148,7 @@ class Instructions extends React.Component {
   }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {
     open: state.instructionsReducer.paneOpen,
@@ -160,49 +173,8 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withStyles(useStyles)(Instructions));
-
-/*<DialogActions className={classes.dialogActions}>
-  <IconButton
-    size="small"
-    onClick={this.handleClose.bind(this)}
-    className={classes.closeButton}
-    color="primary"
-  >
-    <CloseIcon />
-  </IconButton>
-</DialogActions>*/
-
-/*<React.Fragment>
-  {this.props.activeStep === steps.length ? (
-    <React.Fragment>
-      <End />
-      <Button onClick={this.handleClose.bind(this)}>Close</Button>
-    </React.Fragment>
-  ) : (
-    <React.Fragment>
-      {getStepContent(this.props.activeStep)}
-      <React.Fragment>
-        <Button
-          disabled={this.props.activeStep === 0}
-          onClick={this.handleBack.bind(this)}
-          className={classes.backButton}
-        >
-          Back
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={this.handleNext.bind(this)}
-        >
-          {this.props.activeStep === steps.length - 1
-            ? "Finish"
-            : "Next"}
-        </Button>
-      </React.Fragment>
-    </React.Fragment>
-  )}
-</React.Fragment>*/

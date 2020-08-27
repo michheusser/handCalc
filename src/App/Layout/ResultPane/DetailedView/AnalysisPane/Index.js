@@ -4,16 +4,20 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
+// Redux (State Management)
 import { connect } from "react-redux";
-import { withStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
+// Components
 import SymbolList from "./SymbolList/Index.js";
 import SegmentDetails from "./SegmentDetails/Index.js";
-import Divider from "@material-ui/core/Divider";
-//
+// Material UI (Components)
+import { Paper, Grid, Divider } from "@material-ui/core";
+// Material UI (Design)
+import { withStyles } from "@material-ui/core/styles";
 
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({
   root: {
     flexGrow: 1,
@@ -25,7 +29,11 @@ const useStyles = (theme) => ({
   },
 });
 
+// **************************** COMPONENT ****************************
 class AnalysisPane extends React.Component {
+  // Sets out the overall grid layout for the detailed view in the analysis pane containing both
+  // the container with the detailed images and cards and the symbol list that allows to
+  // chose different segments to analyse
   render() {
     const { classes } = this.props;
 
@@ -49,6 +57,7 @@ class AnalysisPane extends React.Component {
   }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {};
 };
@@ -57,6 +66,7 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps

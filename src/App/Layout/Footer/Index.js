@@ -4,11 +4,17 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
-import { AppBar, Toolbar, Typography, Slide } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
+// Redux (State Management)
 import { connect } from "react-redux";
+// Material UI (Components)
+import { AppBar, Toolbar, Typography, Slide } from "@material-ui/core";
+// Material UI (Design)
+import { withStyles } from "@material-ui/core/styles";
 
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({
   appBar: {
     bottom: 0,
@@ -16,7 +22,10 @@ const useStyles = (theme) => ({
   },
 });
 
+// **************************** COMPONENT ****************************
 class Footer extends React.Component {
+  // Component handling the footer. It only displays text and slides off the screen when drawing
+  // is happening.
   render() {
     return (
       <Slide
@@ -40,6 +49,7 @@ class Footer extends React.Component {
   }
 }
 
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return { show: state.footerReducer.show };
 };
@@ -47,6 +57,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {};
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps

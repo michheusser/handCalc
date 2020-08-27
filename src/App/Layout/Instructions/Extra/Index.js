@@ -4,19 +4,27 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
+// React (Core)
 import React from "react";
+// Redux (State Management)
 import { connect } from "react-redux";
+// Material UI (Components)
+import { Typography, Card, CardContent } from "@material-ui/core";
+// Material UI (Design)
 import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+// Diverse
 import fill from "../../../../Assets/Media/fill.gif";
 import seven from "../../../../Assets/Media/7.gif";
 import one from "../../../../Assets/Media/1.gif";
-//
+
+// **************************** STYLING ****************************
 const useStyles = (theme) => ({});
 
+// **************************** COMPONENT ****************************
 class Extra extends React.Component {
+  // Displays the tutorial part explaining extra advice around usage. There are no functional
+  // components, only text and images
   render() {
     //  const { classes } = this.props;
 
@@ -91,26 +99,7 @@ class Extra extends React.Component {
   }
 }
 
-/*<Typography variant="body2">
-  To evaluate the following points are important: <br />
-  - All connected pixels are agglomerated and cut as indepenent symbol
-  segments, so make sure that all of the parts of a symbol are
-  touching each other (gif of five clicking on the missing part
-  between the upper and lower)
-  <br />
-  - Make sure you write the symbols in a way that identifies them best
-  from similar ones, where the neural network is more prone confuse
-  them (e.g. always crossing the "7", not forgetting the head of a
-  "1", not forgetting the square head and tail of the square brackets
-  "[" and "]")
-  <br />
-  - Write symbols in a size where the stroke is clearly
-  differentiable. Although each symbol is processed and resized to
-  occupy a 28 by 28 grid, there might not be enough information in a
-  small stroke for the neural network to clearly identify the symbol
-  <br />
-</Typography>*/
-
+// ***************** REDUX STATE/DISPATCH CONNECTION ******************
 const mapStateToProps = (state) => {
   return {};
 };
@@ -119,6 +108,7 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
+// ************ EXPORT, STYLING AND SUBSCRIPTION TO STATE *************
 export default connect(
   mapStateToProps,
   mapDispatchToProps

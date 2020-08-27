@@ -4,6 +4,7 @@ ALl rights reserved
 https://github.com/michheusser
 */
 
+// **************************** IMPORTS ****************************
 import weights from "./SavedNetwork/weights.json";
 import bias from "./SavedNetwork/bias.json";
 
