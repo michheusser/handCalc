@@ -8,7 +8,7 @@ handCalc is a handwritten calculator for simple numerical expressions.
 You can access the app through the following link: https://www.handcalc.io
 
 ## The App's Core Functionalities
-In this section the core capabilities of the app will be discussed in depth, to understand better what the most importan components are doing in the background.
+In this section the core capabilities of the app will be discussed in depth, to understand better what the most important components are doing in the background.
 ### Machine Learning Kernel
 As expected, the machine learning kernel is the app's main capability (and topic, for that matter). The
 
