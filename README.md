@@ -20,8 +20,8 @@ Lorem ipsum
 ## The Projects Architecture in a Nutshell
 This project was built with an MVC (Model-View-Controller) design pattern in mind. Although there's currently server-side, using Redux as a state management library allowed for a state, and data-flow infrastructure that is consistent to the MVC pattern, and will allow in the future for a straight-forward transfer to a server with it's dedicated database.
 
-### View (The App's Components)
 ### Model (The Store and State)
+### View (The App's Components)
 ### Controller (Actions and Reducers)
 ## UI / UX Design:
 ### Lorem Ipsum
