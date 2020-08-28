@@ -1,8 +1,9 @@
 # handCalc
 handCalc is a handwritten calculator for simple numerical expressions. 
 * **Machine Learning based:** handCalc works with a 4-layered neural-network kernel, which has been trained with more than 200'000 handwritten symbols. Since the recognition algorithm is not yet perfect, this tool provides the analysis tools to play and understand better how a neural network may react and change its decision pattern depending on its different inputs and their variations.
-* **Custom made libraries:** The main goal of this project was not to build a sophisticated tool with existing libraries like TensorFlow, Keras, or PyTorch, but rather to create a simple, but functional custom-made tool, using image-processing and neural-network libraries built from scratch, that can be easy to understand to adapt to other projects.
-* **Based in react:**
+* **Custom made libraries:** The main goal of this project was not to build a complex and sophisticated tool with existing libraries like TensorFlow, Keras, or PyTorch, but rather to create a simple, but functional custom-made tool, using image-processing and neural-network libraries built from scratch in both JavaScript and Python, that are easy to understand and adapt to other projects.
+* **Based in React:** The tool was created using react using JavaScript using a straight-forward project structure and component hierarchy, as well as an uncomplicated state management structure and data-flow using Redux.
+* **Future versions:** Currently, handCalc renders components and performs data-processing and machine-learning algorithms directly on the browser, considering they're not particularly ressource-intensive. However for future versions, server-side capabilities will be added, like saving of inputted symbols, and further training of the neural network. Furthermore, a mobile version will be available optimized for iOS and Android (since currently, the drawing board is not optimized for touch-screens).
 
 
 ## Sub-title
