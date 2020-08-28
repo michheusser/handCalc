@@ -9,15 +9,15 @@ handCalc is a handwritten calculator for simple numerical expressions.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 To launch the project and development server, you can use the following script on the project folder:
-`npm start` (Runs the app in the development mode)
+<br/>`npm start` _(Runs the app in the development mode)_
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-To build the project use the following script
-`npm run build` (Builds the app for production to the `build` folder)
+To build the project use the following script:
+<br/>`npm run build` _(Builds the app for production to the `build` folder)_
 
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
