@@ -21,6 +21,7 @@ code
 ├── .gitnore                             # git specific file (git-ignored files)
 ├── package.json                         # npm dependency file
 ├── package-lock.json                    # npm dependency file
+│
 ├── App                                  # App components (See Component Hierarchy section)
 │   └── ...                              
 │
@@ -42,7 +43,7 @@ code
 ├── storeSetup.js                        # Redux Reducer Setup
 └── index.js                             # Root React file rendering the components in the App-folder into the root HTML
 
-
+```
 
 # Further information (React):
 
