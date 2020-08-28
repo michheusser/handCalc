@@ -1,5 +1,8 @@
-# Title 
-Lorem Ipsum
+# handCalc
+handCalc is a handwritten calculator for simple numerical expressions. 
+* **Machine Learning based:** 
+* **Custom made libraries:**
+* **Based in react:**
 
 ## Sub-title
 Lorem Ipsum
@@ -7,9 +10,6 @@ Lorem Ipsum
 ### Sub-sub title
 Lorem Ipsum
 
-```
-code
-```
 
 ## Main Project Structure
 ```
@@ -32,9 +32,9 @@ code
 │      ├── SavedNetwork                  # Contains the .json files containing the numerical data for the neural network
 │         ├── bias.json                  # Neuron bias data
 │         └── weights.json               # Neuron input weights data
-│      └── MatrixData.js                 # Filie compiling data into a JavaScript variables
+│      └── MatrixData.js                 # File compiling data into a JavaScript variables
 │
-├── Libraries                            # Neural Network and Image processing libraries (See Custom Libraries section)
+├── Libraries                            # Custom Neural Network and Image processing libraries (See Custom Libraries section)
 │   ├── gridTools                        # Grid / Image processing library
 │      └── ... 
 │   └── nnTools                          # Neural Network library
