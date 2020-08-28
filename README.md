@@ -5,7 +5,8 @@ handCalc is a handwritten calculator for simple numerical expressions.
 * **Based in React:** The tool was created using React (https://reactjs.org/) on JavaScript, using a straight-forward project structure and component hierarchy, as well as an uncomplicated state management structure and data-flow using Redux (https://redux.js.org/), and a design powered by Material UI (https://material-ui.com/).
 * **Future versions:** Currently, handCalc renders components and performs data-processing and machine-learning algorithms directly on the browser, considering they're not particularly ressource-intensive. However for future versions, a server-side API that includes server-side capabilities (based on Java Spring Boot) will be added. Among others, the saving of inputted symbols (dataset augmentation) to a database, and further server-side training of the neural network will be possible. Furthermore, a mobile version will be available optimized for iOS and Android (since currently, the drawing board is not optimized for touch-screens).
 
-## The Projects Architecture in a Nutshell:
+## The Projects Architecture in a Nutshell
+
 
 
 ## The App's Core:
