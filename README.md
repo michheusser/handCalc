@@ -39,6 +39,10 @@ https://github.com/michheusser/neural-network-training
 https://www.kaggle.com/michelheusser/handwritten-digits-and-operators
 
 ### Data Set Creation and Processing
+Inherently this Python library started by having the same core image-processing capabilities as the one in JavaScript. These include stroke scaling, fitting, and segmentating. However, it turned out to be more powerful since it was greatly enhanced not only to deal with batches of real photographs of handwritten signs, clean them, normalize, and segmentate them to create image datasets, but also to artificially augment datasets with rotations, and stretches. Since the handwritten symbols used for the dataset were much bigger than their thickness (on average less than a pixel width on a 28x28 pixel grid), I manage to create a high quality dataset containing thin strokes of handwritten signs. 
+
+The datasets not only contain the purest information about strokes themselves, but can be easly enhanced if one wanted to include noise, or make the strokes thicker. Furthermore, since they were scaled and manipulated with virtually the same algorithms than in the JavaScript library, this ensures consitency accross the training sets and the handwritten signs inputted in the application. 
+
 ### Training Algorithm
 
 ## The Projects Architecture in a Nutshell
