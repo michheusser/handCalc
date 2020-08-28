@@ -32,10 +32,10 @@ Conceptionally, the biggest challenge when dealing with the neural network in th
 
 Hereafter I will present the main ideas behind both libraries and the dataset used, but for more detailed information, please visit the following links:
 
-Neural Network Training / Image Processing / Dataset Creation libraries:
+**Neural Network Training / Image Processing / Dataset Creation libraries:**<br/>
 https://github.com/michheusser/neural-network-training
 
-Dataset Download and Documentation:
+**Dataset Download and Documentation:**<br/>
 https://www.kaggle.com/michelheusser/handwritten-digits-and-operators
 
 ### Data Set Creation and Processing
