@@ -5,32 +5,27 @@ handCalc is a handwritten calculator for simple numerical expressions.
 * **Based in React:** The tool was created using React (https://reactjs.org/) on JavaScript, using a straight-forward project structure and component hierarchy, as well as an uncomplicated state management structure and data-flow using Redux (https://redux.js.org/), and a design powered by Material UI (https://material-ui.com/).
 * **Future versions:** Currently, handCalc renders components and performs data-processing and machine-learning algorithms directly on the browser, considering they're not particularly ressource-intensive. However for future versions, server-side capabilities will be added, like saving of inputted symbols, and further training of the neural network. Furthermore, a mobile version will be available optimized for iOS and Android (since currently, the drawing board is not optimized for touch-screens).
 
-## Project Launching
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## The App's Core:
+Lorem ipsum
+### Machine Learning Kernel
+Lorem ipsum
+### Drawing Board Image Processing
+Lorem ipsum
 
-To launch the project and development server, you can use the following script on the project folder:
-### **```npm start```** _(Runs the app in the development mode)_
+## Neural Network Training
+### Data Set Creation and Processing
+### Training Algorithm
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## UI / UX Design:
+### Lorem Ipsum
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Component Architecture
+### Main Structure
 
-To build the project use the following script:
-### **```npm run build```** _(Builds the app for production to the 'build' folder)_
+## Libraries Architecture
+### Main Structure
 
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-### Sub-sub title
-Lorem Ipsum
-
-
-## Main Project Structure
+## Main Project Folder Structure
 ```
 .public
 ├── index.html                           # Root html file, where the app is rendered
@@ -63,4 +58,24 @@ Lorem Ipsum
 └── index.js                             # Root React file rendering the components in the App-folder into the root HTML
 
 ```
+## Project Launching
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+To launch the project and development server, you can use the following script on the project folder:
+### **```npm start```** _(Runs the app in the development mode)_
+
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
+
+To build the project use the following script:
+### **```npm run build```** _(Builds the app for production to the 'build' folder)_
+
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
