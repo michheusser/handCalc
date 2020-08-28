@@ -54,7 +54,6 @@ This project was built with an MVC (Model-View-Controller) design pattern in min
 ### Model (The Store and State)
 ### View (The App's Components)
 ### Controller (Actions and Reducers)
-## UI / UX Design:
 ### Lorem Ipsum
 
 ## Component Architecture
@@ -63,6 +62,7 @@ This project was built with an MVC (Model-View-Controller) design pattern in min
 ## Libraries Architecture
 ### Main Structure
 
+## User Interface (UI) / User Experience (UX) Design :
 ## Main Project Folder Structure
 ```
 .public
