@@ -9,11 +9,14 @@ You can access the app through the following link: https://www.handcalc.io
 
 ## The App's Core Functionalities
 In this section the core capabilities of the app will be discussed in depth, to understand better what the most important components are doing in the background.
-### Machine Learning Kernel
-As expected, the machine learning kernel is the app's main capability (and topic, for that matter). The
 
 ### Drawing Board Image Processing
-Lorem ipsum
+One of the main capabilities of the app is to dynamically render a responsive drawing board which serves as an input interface for the user to write a mathematical expression. Once the expression is written, the app uses a custom-made grid manipulation library which contains all the basic image processing capabilities (cropping, shifting, etc.), including an image segmentator which agglomerates the different written signs onto independent grids, and a scaling function which resizes image to the input dimensions of the machine learning algorithm. The effective recognition of the handwritten signs is greatly due to said image scaling function, which works by resizing the stroke itself: every pixel is scaled only once onto the resized image, and the pixels inbetween (for example in a line) are interpolated. This ensures that the stroke remains thin, containing the purest information about the sign, even when the image is made bigger.  
+
+### Machine Learning Kernel
+Behind the app's interface, there's a neural network kernel trained to predict handwritten signs of 28x28 dimensions (black/white). The neural network object is part of a purely object oriented library containing the functionalities to deal with neural networks and the data around it. 
+
+
 
 ## Neural Network Training
 ### Data Set Creation and Processing
