@@ -13,6 +13,10 @@ code
 
 ## Project Structure
 ```
+.public
+├── index.html                           # Root html file, where the app is rendered
+└── ...                                  # Further icon files / metadata
+
 .src
 ├── datatools                            # Data manipulation and image processing package
 │   ├── __init__.py                      # Initialization of package
