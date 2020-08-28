@@ -28,7 +28,15 @@ Behind the app's interface, there's a deep feedforward neural network kernel of 
 Once the scaled grid object for each independent segment has been created out of the drawing board, the neural network receives it, and feeds it through the neural network. Considering this is just an array of mostly matrix operations, the browsers performance is more than enough to deal with this step, and no server-side or GPU computations are necessary. The predictions of each sign are then ordered and evaluated, and in the case of a possible mathematical result, this one is showed.
 
 ## Neural Network Training
-Conceptionally, the biggest challenge when dealing with the neural network in this application, was with its training, rather than the actual recognition and classification of symbols. 
+Conceptionally, the biggest challenge when dealing with the neural network in this application, was with its training, rather than the actual recognition and classification of symbols. Although the creation of the app can be coding intensive and time consuming, most of the hard algorithm optimization work went to the creation of the data creation and image processing library, and to the training library for the neural network, both written in Python.
+
+Hereafter I will present the main ideas behind both libraries and the dataset used, but for more detailed information, please visit the following links:
+
+Neural Network Training / Image Processing / Dataset Creation libraries:
+https://github.com/michheusser/neural-network-training
+
+Dataset Download and Documentation:
+https://www.kaggle.com/michelheusser/handwritten-digits-and-operators
 
 ### Data Set Creation and Processing
 ### Training Algorithm
