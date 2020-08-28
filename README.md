@@ -113,7 +113,7 @@ To build the project use the following script:
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+The app is then ready to be deployed. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+For more information consult the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
