@@ -5,11 +5,7 @@ handCalc is a handwritten calculator for simple numerical expressions.
 * **Based in React:** The tool was created using React (https://reactjs.org/) on JavaScript, using a straight-forward project structure and component hierarchy, as well as an uncomplicated state management structure and data-flow using Redux (https://redux.js.org/), and a design powered by Material UI (https://material-ui.com/).
 * **Future versions:** Currently, handCalc renders components and performs data-processing and machine-learning algorithms directly on the browser, considering they're not particularly ressource-intensive. However for future versions, a server-side API that includes server-side capabilities (based on Java Spring Boot) will be added. Among others, the saving of inputted symbols (dataset augmentation) to a database, and further server-side training of the neural network will be possible. Furthermore, a mobile version will be available optimized for iOS and Android (since currently, the drawing board is not optimized for touch-screens).
 
-## The Projects Architecture in a Nutshell
-
-
-
-## The App's Core:
+## The App's Core Functionalities
 In this section the core capabilities of the app will be discussed in depth, to understand better what the most importan components are doing in the background.
 ### Machine Learning Kernel
 As expected, the machine learning kernel is the app's main capability (and topic, for that matter). The
@@ -21,6 +17,12 @@ Lorem ipsum
 ### Data Set Creation and Processing
 ### Training Algorithm
 
+## The Projects Architecture in a Nutshell
+This project was built with an MVC (Model-View-Controller) design pattern in mind. Although there's currently server-side, using Redux as a state management library allowed for a state, and data-flow infrastructure that is consistent to the MVC pattern, and will allow in the future for a straight-forward transfer to a server with it's dedicated database.
+
+### View (The App's Components)
+### Model (The Store and State)
+### Controller (Actions and Reducers)
 ## UI / UX Design:
 ### Lorem Ipsum
 
