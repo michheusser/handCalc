@@ -13,7 +13,7 @@ In this section the core capabilities of the app will be discussed in depth, to 
 ### Drawing Board Image Processing
 One of the main capabilities of the app is to dynamically render a responsive drawing board which serves as an input interface for the user to write a mathematical expression. Once the expression is written, the app uses a custom-made grid manipulation library which contains all the basic image processing capabilities (cropping, shifting, etc.), including an image segmentator which recursively agglomerates the different written signs onto independent grids, and a scaling function which resizes each segment to the input dimensions of the machine learning algorithm.
 
-The effective recognition of the handwritten signs is greatly due to said image scaling function, which works by resizing the stroke itself: every pixel is mapped only once onto the resized image, and the pixels inbetween (for example in a line) are interpolated. This ensures that the stroke remains thin, containing the purest information about the stroke, even when the image is made bigger.  
+The effective recognition of the handwritten signs is greatly due to said image scaling function, which works by resizing the stroke itself: every pixel is mapped only once onto the resized image, and the pixels inbetween (for example in a line) are interpolated. This ensures that the stroke remains thin, containing the purest information about the stroke, even when the image is made bigger. This is important, because the data set used to train the neural network was created using the same algorithm (see section "Data Set Creation and Processing")
 
 _Unscaled Image (14x14 pixels):_<br/>
 ![alt text](https://github.com/michheusser/symbol-neural-network/blob/master/src/Assets/Media/7_unscaled.png)
@@ -23,12 +23,13 @@ _Scaled Image (28x28 pixels):_<br/>
 
 
 ### Machine Learning Kernel
-Behind the app's interface, there's a neural network kernel trained to predict handwritten signs of 28x28 dimensions (black/white). The neural network object is part of a purely object oriented library containing the functionalities to deal with neural networks and the data around it. 
+Behind the app's interface, there's a deep feedforward neural network kernel of four layers, trained to predict handwritten signs of 28x28 dimensions (black/white) onto an array of 16 possible symbols: all numerical digits (0-9), and basic operators ("plus", "minus", "times", "divided", "open bracket", "closed bracket"). The neural network object is part of a purely object-oriented library containing the functionalities to deal with neural networks and the data around it. 
 
-
-
+Once the scaled grid object for each independent segment has been created out of the drawing board, the neural network receives it, and feeds it through the neural network. Considering this is just an array of mostly matrix operations, the browsers performance is more than enough to deal with this step, and no server-side or GPU computations are necessary. The predictions of each sign are then ordered and evaluated, and in the case of a possible mathematical result, this one is showed.
 
 ## Neural Network Training
+Conceptionally, the biggest challenge when dealing with the neural network in this application, was with its training, rather than the actual recognition and classification of symbols. 
+
 ### Data Set Creation and Processing
 ### Training Algorithm
 
