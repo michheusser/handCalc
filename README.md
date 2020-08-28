@@ -11,41 +11,37 @@ Lorem Ipsum
 code
 ```
 
-## Project Structure
+## Main Project Structure
 ```
 .public
 ├── index.html                           # Root html file, where the app is rendered
 └── ...                                  # Further icon files / metadata
 
 .src
-├── datatools                            # Data manipulation and image processing package
-│   ├── __init__.py                      # Initialization of package
-│   ├── dataset_processor.py             # API module to provide high-level functionalities
-│   ├── io_datapoint.py                  # Datapoint module containing the input-output class to work with the neural network
-│   └── Image_processing                 # Image processing sub-package
-│      ├── __init__.py                   # Sub-package initialization
-│      ├── image_data.py                 # Module containing the custom image-data object
-│      ├── manipulator.py                # Module containing object for image manipulations transformations
-│      └── segmentator.py                # Module containing object to segment images containing several symbols
+├── .gitnore                             # git specific file (git-ignored files)
+├── package.json                         # npm dependency file
+├── package-lock.json                    # npm dependency file
+├── App                                  # App components (See Component Hierarchy section)
+│   └── ...                              
 │
-├── nntools                              # Neural Network Training package
-│   ├── __init__.py                      # Initialization of package
-│   ├── manipulator.py                   # API module to provide high-level functionalities 
-│   └── tools                            # Sub-package with specific modules
-│      ├── __init__.py                   # Initialization of sub-package
-│      ├── neural_network.py             # Module containing the neural-network class
-│      ├── classifier.py                 # Module containing the object to classify outputs on a neural network
-│      ├── validator.py                  # Module containing the object to validate a neural network on a dataset
-│      └── trainer.py                    # Module containing the object to train a natural network on a dataset
+├── Assets                               # Various data ressources for the project
+│   ├── Media                            # Gif images used for the project
+│      └── ... 
+│   └── NeuralNetwork                    # Exported neural network data from the training libraries in python
+│      ├── SavedNetwork                  # Contains the .json files containing the numerical data for the neural network
+│         ├── bias.json                  # Neuron bias data
+│         └── weights.json               # Neuron input weights data
+│      └── MatrixData.js                 # Filie compiling data into a JavaScript variables
 │
-├── main_dataset_creation.py             # Script containing steps for the creation of data
-├── main_neural_network_training.py      # Script containing steps for the training of a neural network
+├── Libraries                            # Neural Network and Image processing libraries (See Custom Libraries section)
+│   ├── gridTools                        # Grid / Image processing library
+│      └── ... 
+│   └── nnTools                          # Neural Network library
+│      └── ...                           
 │
-└── Saved Networks                       # Main folder for saved trained neural networks
-    ├── Current                          # Default folder where a neural network is saved (see main_neural_network_training.py)
-    ├── Best                             # Manually saved files for neural network with best validation reults 
-    └── ...                              # Further saved networks
-```
+├── storeSetup.js                        # Redux Reducer Setup
+└── index.js                             # Root React file rendering the components in the App-folder into the root HTML
+
 
 
 # Further information (React):
