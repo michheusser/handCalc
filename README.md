@@ -13,10 +13,10 @@ In this section the core capabilities of the app will be discussed in depth, to 
 ### Drawing Board Image Processing
 One of the main capabilities of the app is to dynamically render a responsive drawing board which serves as an input interface for the user to write a mathematical expression. Once the expression is written, the app uses a custom-made grid manipulation library which contains all the basic image processing capabilities (cropping, shifting, etc.), including an image segmentator which agglomerates the different written signs onto independent grids, and a scaling function which resizes image to the input dimensions of the machine learning algorithm. The effective recognition of the handwritten signs is greatly due to said image scaling function, which works by resizing the stroke itself: every pixel is scaled only once onto the resized image, and the pixels inbetween (for example in a line) are interpolated. This ensures that the stroke remains thin, containing the purest information about the sign, even when the image is made bigger.  
 
-Unscaled Image (14x14 pixels):
+Unscaled Image (14x14 pixels):<br/>
 ![alt text](https://github.com/michheusser/symbol-neural-network/blob/master/src/Assets/Media/7_unscaled.png)
 
-Scaled Image (28x28 pixels):
+Scaled Image (28x28 pixels):<br/>
 ![alt text](https://github.com/michheusser/symbol-neural-network/blob/master/src/Assets/Media/7_scaled.png)
 
 
