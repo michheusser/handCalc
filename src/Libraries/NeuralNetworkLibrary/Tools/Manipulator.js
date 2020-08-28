@@ -2,10 +2,9 @@ import Tool from "./Tool";
 import NeuralNetworkData from "../Data/NeuralNetworkData";
 
 class Manipulator extends Tool {
+  // Provides the high level methods to deal with a neural network's data
   initialize(value = null) {
-    // for (let layer of this.network) {
-    //   layer.initialize(value);
-    // }
+    // Initializes the neural network
     for (let i = 1; i < this.network.layers.length; i++) {
       this.network.layers[i].initialize(value);
     }
@@ -13,20 +12,23 @@ class Manipulator extends Tool {
     return this.network;
   }
   loadData(networkData) {
+    // Loads the data object onto a neural network
     this.network.loadData(networkData);
     return this.network;
   }
   extractData() {
+    // Extracts the data object out of a neural network
     return this.network.getData();
   }
-  extractMatrixData() {
-    const data = this.extractData();
-    return data.getDataArray();
-  }
   loadMatrixData(matrixData) {
+    // Loads the data onto a neural network as an array of matrices
     this.network.loadData(new NeuralNetworkData().loadDataArray(matrixData));
     return this.network;
   }
-  toString() {}
+  extractMatrixData() {
+    // Extracts the data out of a neural network as an array of matrices
+    const data = this.extractData();
+    return data.getDataArray();
+  }
 }
 export default Manipulator;

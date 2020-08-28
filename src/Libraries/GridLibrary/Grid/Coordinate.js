@@ -11,28 +11,34 @@ class Coordinate {
     this._y = y;
   }
   set x(
-    xNew // Protect x from being changed
+    // Protect x from being changed
+    xNew
   ) {
     console.log("x coordinate cannot be changed!");
   }
   get x() {
+    // Getter for x
     return this._x;
   }
   set y(
-    yNew // Protect y from being changed
+    // Protect y from being changed
+    yNew
   ) {
     console.log("y coordinate cannot be changed!");
   }
   get y() {
+    // Getter for y
     return this._y;
   }
   equal(coordinate) {
+    // compares two coordinates and returns true if their coordinates are equal
     if (this.x === coordinate.x && this.y === coordinate.y) {
       return true;
     }
     return false;
   }
   toString() {
+    // Returns the string representation
     return `Coordinate: x = ${this._x}, y = ${this._y}`;
   }
 }

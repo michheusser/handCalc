@@ -8,6 +8,7 @@ import Neuron from "./Neuron";
 import NeuronLayerData from "../Data/NeuronLayerData";
 
 class NeuronLayer {
+  // Contains the values and methods of a neuron layer in the context of a neural network.
   constructor() {
     this.neurons = [];
   }
@@ -22,15 +23,18 @@ class NeuronLayer {
     }; // when done == true, value is not returned anymore
   }
   addNeuron(neuron = new Neuron(), ...neurons) {
+    // Adds neuron at the end of the layer the layer
     this.neurons.push(neuron, ...neurons);
     return this;
   }
   fill(layerSize) {
+    // Fills the layer with the specified amount of neurons
     for (let i = 0; i < layerSize; i++) {
       this.addNeuron();
     }
     return this;
   }
+  // Connects all the neurons of one layer to all the inputs of a second one
   connectInput(backLayer, weight = null) {
     for (let backNeuron of backLayer) {
       for (let frontNeuron of this) {
@@ -40,17 +44,20 @@ class NeuronLayer {
     return this;
   }
   initialize(value = null) {
+    // Initializes all the neurons in the layer
     for (let neuron of this) {
       neuron.initialize(value);
     }
   }
   loadActivation(activation) {
+    // Loads an activation array to all the neurons in the layer
     for (let i = 0; i < this.neurons.length; i++) {
       this.neurons[i].loadActivation(activation[i]);
     }
     return this;
   }
   getActivation() {
+    // gets the activations from all the neurons in the layer
     let activation = [];
     for (let neuron of this) {
       activation.push(neuron.getActivation());
@@ -58,15 +65,15 @@ class NeuronLayer {
     return activation;
   }
   activate() {
-    //let counter = 0;
+    // Activates all the neurons in the layers according tho the activation formula using
+    // the weights, bias, activations of input neurons, and activation function
     for (let neuron of this) {
-      //console.log(`Neuron: ${counter}`);
-      //counter++;
       neuron.activate();
     }
     return this;
   }
   getData() {
+    // Generates a neuron layer data object from the neuron layer object
     let neuronLayerData = new NeuronLayerData();
     for (let neuron of this) {
       neuronLayerData.neuronData.push(neuron.getData());
@@ -74,17 +81,18 @@ class NeuronLayer {
     return neuronLayerData;
   }
   loadData(layerData = null) {
+    // Loads the data from a neuron layer data object to the neuron layer object itself
     if (layerData === null) {
       return this;
     }
     for (let i = 0; i < this.neurons.length; i++) {
       this.neurons[i].loadData(layerData.neuronData[i]);
     }
-    //console.log("Layer data loaded.");
     return this;
   }
   toString() {
-    let string = `  * Neuron Layer with ${this.neurons.length} neurons:\n`;
+    // Returns the string representation
+    const string = `  * Neuron Layer with ${this.neurons.length} neurons:\n`;
     for (let neuron of this) {
       return (string += `    ** ` + neuron.toString() + `\n`);
     }

@@ -9,11 +9,8 @@ import Grid from "../Grid/Grid";
 
 class Cropper extends Tool {
   // Decorator for grids, adding additional functionalities (cropping)
-  crop(
-    xFields,
-    yFields,
-    align = false // crops grid to a new grid of the given dimension. If the dimensions are bigger, new empty fields are added.
-  ) {
+  crop(xFields, yFields, align = false) {
+    // crops grid to a new grid of the given dimension. If the dimensions are bigger, new empty fields are added.
     if (xFields < 1) {
       xFields = 1;
     }
@@ -39,6 +36,7 @@ class Cropper extends Tool {
     return this.grid;
   }
   addMargins(xMargin = 0, yMargin = 0) {
+    // Adds margins to the grid increasing it's size
     if (xMargin < 0 || yMargin < 0) {
       return this;
     }
@@ -49,13 +47,11 @@ class Cropper extends Tool {
     this.grid.tools.aligner.shift(xMargin, yMargin);
     return this.grid;
   }
-  wrap(
-    xMargin = 0,
-    yMargin = 0 // crops from both sides to the smallest possible grid with margins (if selected the smalles possible square grid).
-  ) {
-    let [xMin, xMax, yMin, yMax] = this.grid.tools.aligner.limits();
-    let height = yMax - yMin + 1;
-    let width = xMax - xMin + 1;
+  wrap(xMargin = 0, yMargin = 0) {
+    // crops from both sides to the smallest possible grid with margins (if selected the smalles possible square grid).
+    const [xMin, xMax, yMin, yMax] = this.grid.tools.aligner.limits();
+    const height = yMax - yMin + 1;
+    const width = xMax - xMin + 1;
     this.grid.tools.aligner.shift(-xMin, -yMin);
     this.grid.tools.cropper.crop(width + 2 * xMargin, height + 2 * yMargin);
     this.grid.tools.aligner.shift(xMargin, yMargin);

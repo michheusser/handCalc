@@ -13,12 +13,15 @@ class Field {
     this.isFilled = isFilled;
   }
   set coordinate(coord) {
+    // Protects the field's coordinate
     console.log("Coordinate of a field cannot be changed!");
   }
   get coordinate() {
+    // Getter for coordinate
     return this._coordinate;
   }
   equal(field) {
+    // Compares the field with the one in the argument
     if (
       this.coordinate.equal(field.coordinate) &&
       this.isFilled === field.isFilled

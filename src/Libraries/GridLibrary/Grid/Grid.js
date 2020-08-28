@@ -25,22 +25,16 @@ class Grid {
     this.tools = {};
   }
   getField(x, y) {
+    // Returns the field with the given coordinate
     for (let field of this.fields) {
       if (field.coordinate.x === x && field.coordinate.y === y) {
         return field;
       }
     }
     return null;
-    /*if(y*this.xFields + x < this.fields.length){
-      let field = this.fields[y*this.xFields + x];
-      if(field.coordinate.x === x && field.coordinate.y === y){return field;}
-    }
-    return null;*/
   }
-  fill(
-    x,
-    y // fills the field with given coordinates (field.isFilled = true). returns true if anything was changed, false otherwise
-  ) {
+  fill(x, y) {
+    // fills the field with given coordinates (field.isFilled = true). returns true if anything was changed, false otherwise
     let field = this.getField(x, y);
     if (field !== null) {
       if (!field.isFilled) {
@@ -49,10 +43,8 @@ class Grid {
     }
     return this;
   }
-  clear(
-    x,
-    y // clears the field with given coordinates (field.isFilled = false). returns true if anything was changed, false otherwise
-  ) {
+  clear(x, y) {
+    // clears the field with given coordinates (field.isFilled = false). returns true if anything was changed, false otherwise
     let field = this.getField(x, y);
     if (field != null) {
       if (field.isFilled) {
@@ -61,10 +53,8 @@ class Grid {
     }
     return this;
   }
-  toggle(
-    x,
-    y // toggles the field with given coordinates (field.isFilled toggled to false/true). returns true if anything was changed, false otherwise (i.e. no field found with those coordinates)
-  ) {
+  toggle(x, y) {
+    // toggles the field with given coordinates (field.isFilled toggled to false/true). returns true if anything was changed, false otherwise (i.e. no field found with those coordinates)
     let field = this.getField(x, y);
     if (field !== null) {
       field.isFilled = !field.isFilled;
@@ -72,16 +62,19 @@ class Grid {
     return this;
   }
   addTool(tool) {
+    // adds a tool to the grid
     if (tool.__proto__.__proto__.constructor.name !== "Tool") {
+      // Checks if the tool is of the right subclass
       console.log("Uncompatible. No tool was added.");
       return this;
     }
     tool.grid = this;
     this.tools[tool.name] = tool;
-    //console.log(`Tool added! Name: ${tool.name}, Type: ${tool.__proto__.constructor.name}`);
     return this;
   }
   replaceFields(grid) {
+    // Replaces the values of fields of one grid with the values of the fields of the
+    // one in the argument
     this.xFields = grid.xFields;
     this.yFields = grid.yFields;
     this.fields = [];
@@ -96,6 +89,7 @@ class Grid {
     return this;
   }
   getFilledFields() {
+    // Returns an array with the fields that are filled
     let filledFields = [];
     for (let field of this.fields) {
       if (field.isFilled) {
@@ -104,21 +98,6 @@ class Grid {
     }
     return filledFields;
   }
-  /*equalFilledFields(grid) {
-    if (this.xFields === grid.xFields && this.yFields === grid.yFields) {
-      const filledFields = this.getFilledFields();
-      const newFilledFields = newGrid.getFilledFields();
-      const equalGrids = true;
-      if (filledFields.length === newFilledFields.length) {
-        for (let i = 0; i < filledFields.length; i++) {
-          if (!filledFields[i].equal(newFilledFields[i])) {
-            break;
-          }
-        }
-      }
-    }
-    return false;
-  }*/
   toString() {
     // Displays grid as text (empty fields as 0's filled fields as 1's)
     let text = `Grid: width = ${this.xFields}, height = ${this.yFields}\n`;

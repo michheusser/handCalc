@@ -9,6 +9,8 @@ import Tool from "./Tool";
 class Aligner extends Tool {
   // Decorator for grids, adding additional functionalities (aligning / centering)
   limits() {
+    // Calculates the limits of the smallest square encapsulating all filled
+    // fields in the grid
     let xMin = this.grid.xFields - 1;
     let xMax = 0;
     let yMin = this.grid.yFields - 1;
@@ -30,6 +32,8 @@ class Aligner extends Tool {
     return [xMin, xMax, yMin, yMax];
   }
   shift(xOffset, yOffset) {
+    // Shifts the filled fields within the grid. If a filled field goes above the
+    // grid's limits, the information is lost
     if (xOffset === 0 && yOffset === 0) {
       return this.grid;
     }

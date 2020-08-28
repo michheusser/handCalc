@@ -1,25 +1,29 @@
 import Tool from "./Tool";
 
 class Classifier extends Tool {
+  // Contains the methods to classify the output of a neural network upon
+  // feedforwarding a certain input
   constructor(outputMap = null) {
     super();
     this.outputMap = outputMap;
   }
   loadOutputMap(outputMap) {
+    // Loads the output map corresponding to the clasification of output neurons
     this.outputMap = outputMap;
     return this;
   }
   classifyGrid(grid) {
-    let vectorizedGrid = grid.tools.manipulator.gridToArray();
-    let neuronOutput = this.network.tools.activator.evaluate(vectorizedGrid);
+    // Classifies a certain grid object according to the inpputed output vector
+    const vectorizedGrid = grid.tools.manipulator.gridToArray();
+    const neuronOutput = this.network.tools.activator.evaluate(vectorizedGrid);
 
-    let neuronOutputSum = neuronOutput.reduce(function (a, b) {
+    const neuronOutputSum = neuronOutput.reduce(function (a, b) {
       return a + b;
     }, 0);
 
-    let likelihood = neuronOutput.map((value) => value / neuronOutputSum);
+    const likelihood = neuronOutput.map((value) => value / neuronOutputSum);
 
-    let maxIndex = neuronOutput.indexOf(Math.max(...neuronOutput));
+    const maxIndex = neuronOutput.indexOf(Math.max(...neuronOutput));
     const output = {
       neuronOutput: neuronOutput,
       likelihood: likelihood,

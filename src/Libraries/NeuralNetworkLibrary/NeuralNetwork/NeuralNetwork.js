@@ -23,10 +23,12 @@ class NeuralNetwork {
     }; // when done == true, value is not returned anymore
   }
   addLayer(layer = new NeuronLayer(), ...layers) {
+    // Adds a new layer at the end of the neural network
     this.layers.push(layer, ...layers);
     return this;
   }
   getData() {
+    // Generates a neural network data object from the neural network object
     let neuralNetworkData = new NeuralNetworkData();
     for (let i = 0; i < this.layers.length; i++) {
       neuralNetworkData.layerData.push(this.layers[i].getData());
@@ -34,6 +36,7 @@ class NeuralNetwork {
     return neuralNetworkData;
   }
   loadData(networkData = null) {
+    // Loads a neural network data object to the neural network object
     if (networkData === null) {
       return this;
     }
@@ -43,36 +46,36 @@ class NeuralNetwork {
     return this;
   }
   loadActivation(activation, layer) {
+    // Loads an activation to a certain layer (e.g. the input layer)
     this.layers[layer].loadActivation(activation);
     return this;
   }
   getActivation(layer) {
-    //console.log(this.layers);
+    // Gets the activation of a certain layer
     return this.layers[layer].getActivation();
   }
   activate() {
-    //let counter = 0;
+    // Activates all layers (and thus, neurons) within the neural network according to the
+    // activation formula using the input weights, bias, activation of input neurons and
+    // activation function
     for (let layer of this) {
-      //console.log(`Layer: ${counter}`);
-      //counter++;
       layer.activate();
     }
     return this;
   }
 
   addTool(tool) {
+    // Adds a tool to the neural network
     if (tool.__proto__.__proto__.constructor.name !== "Tool") {
       console.log("Uncompatible. No tool was added.");
       return this;
     }
     tool.network = this;
     this.tools[tool.name] = tool;
-    /*console.log(
-      `Tool added! Name: ${tool.name}, Type: ${tool.__proto__.constructor.name}`
-    );*/
     return this;
   }
   toString() {
+    // Returns the object's string representation
     let string = `Neural Network with ${this.layers.length} layers\n`;
     for (let layer of this) {
       string += layer.toString();

@@ -1,8 +1,9 @@
 import Tool from "./Tool";
 
 class Activator extends Tool {
+  // Contains the method to evaluate a neural network
   evaluate(inputList) {
-    // list of input activators for the first layer
+    // Returns the output of a neural netork upon feedforwarding of a specific input vector
     return this.network
       .loadActivation(inputList, 0)
       .activate()

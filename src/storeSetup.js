@@ -26,6 +26,8 @@ const initialReducers = {
 };
 
 const setupStore = () => {
+  // Sets up the store and provides a method to inject reducers dynamically to the store
+  // in case it is needed
   const store = createStore(combineReducers({ ...initialReducers }));
 
   store.newReducers = {};

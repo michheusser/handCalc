@@ -10,21 +10,22 @@ import Grid from "../Grid/Grid";
 class Scaler extends Tool {
   // Decorator for grids, adding additional functionalities (scaling)
 
-  isCorner(x, y, position) {
-    let positionC = [
+  _isCorner(x, y, position) {
+    // Identifies if a field in a grid at the given position is a corner pixel
+    const positionC = [
       Math.floor((position[0] - position[1]) / 2),
       Math.floor((position[0] + position[1]) / 2),
     ];
-    let positionCC = [
+    const positionCC = [
       Math.floor((position[1] + position[0]) / 2),
       Math.floor((position[1] - position[0]) / 2),
     ];
-    let xNextC = x + positionC[1];
-    let yNextC = y + positionC[0];
-    let xNextCC = x + positionCC[1];
-    let yNextCC = y + positionCC[0];
-    let shapeX = this.grid.xFields;
-    let shapeY = this.grid.yFields;
+    const xNextC = x + positionC[1];
+    const yNextC = y + positionC[0];
+    const xNextCC = x + positionCC[1];
+    const yNextCC = y + positionCC[0];
+    const shapeX = this.grid.xFields;
+    const shapeY = this.grid.yFields;
     if (
       Math.abs(position[0]) === 1 &&
       Math.abs(position[1]) === 1 &&
@@ -47,26 +48,31 @@ class Scaler extends Tool {
     return false;
   }
   scale(xFields, yFields, scaleStroke = true) {
+    // Scales a grid to fit the given position. If scaleStroke is set to false, it performs a
+    // linear interpolation metho, if it is set to true, only the stroke is scaled, meaning that
+    // each pixel will only be mapped once to the destination. Its position will be scaled but
+    // it's thickness wont. Between non-corner filled pixels there will be a interpolated line
+    // created to keep the stroke continuous.
     let scaledGrid = new Grid(xFields, yFields);
     if (scaleStroke) {
-      let shapeX = this.grid.xFields;
-      let shapeY = this.grid.yFields;
-      let xFieldsAugmented =
+      const shapeX = this.grid.xFields;
+      const shapeY = this.grid.yFields;
+      const xFieldsAugmented =
         shapeX !== 1 ? Math.ceil(((xFields - 1) * shapeX) / (shapeX - 1)) : 0;
-      let yFieldsAugmented =
+      const yFieldsAugmented =
         shapeY !== 1 ? Math.ceil(((yFields - 1) * shapeY) / (shapeY - 1)) : 0;
-      let scalingX = xFieldsAugmented / shapeX;
-      let scalingY = yFieldsAugmented / shapeY;
+      const scalingX = xFieldsAugmented / shapeX;
+      const scalingY = yFieldsAugmented / shapeY;
       for (let y = 0; y < shapeY; y++) {
         for (let x = 0; x < shapeX; x++) {
           if (this.grid.getField(x, y).isFilled) {
-            let xScaled = Math.floor(x * scalingX);
-            let yScaled = Math.floor(y * scalingY);
+            const xScaled = Math.floor(x * scalingX);
+            const yScaled = Math.floor(y * scalingY);
             scaledGrid.getField(xScaled, yScaled).isFilled = this.grid.getField(
               x,
               y
             ).isFilled;
-            let positions = [
+            const positions = [
               [-1, 1],
               [0, 1],
               [1, 1],
@@ -74,29 +80,29 @@ class Scaler extends Tool {
               [-1, -1],
             ];
             for (let position of positions) {
-              let xNext =
+              const xNext =
                 0 <= x + position[1] && x + position[1] < shapeX
                   ? x + position[1]
                   : x;
-              let yNext =
+              const yNext =
                 0 <= y + position[0] && y + position[0] < shapeY
                   ? y + position[0]
                   : y;
               if (
                 this.grid.getField(xNext, yNext).isFilled &&
-                !this.isCorner(x, y, position)
+                !this._isCorner(x, y, position)
               ) {
-                let xScaledNext = Math.floor(xNext * scalingX);
-                let yScaledNext = Math.floor(yNext * scalingY);
-                let tMax = Math.max(
+                const xScaledNext = Math.floor(xNext * scalingX);
+                const yScaledNext = Math.floor(yNext * scalingY);
+                const tMax = Math.max(
                   Math.abs(xScaledNext - xScaled),
                   Math.abs(yScaledNext - yScaled)
                 );
                 for (let t = 1; t < tMax; t++) {
-                  let xP = Math.floor(
+                  const xP = Math.floor(
                     xScaled + (t / tMax) * (xScaledNext - xScaled)
                   );
-                  let yP = Math.floor(
+                  const yP = Math.floor(
                     yScaled + (t / tMax) * (yScaledNext - yScaled)
                   );
                   scaledGrid.getField(xP, yP).isFilled = this.grid.getField(
@@ -110,12 +116,12 @@ class Scaler extends Tool {
         }
       }
     } else {
-      let scalingX = xFields / this.grid.xFields;
-      let scalingY = yFields / this.grid.yFields;
+      const scalingX = xFields / this.grid.xFields;
+      const scalingY = yFields / this.grid.yFields;
       for (let field of this.grid.fields) {
-        let xScaled = Math.floor(field.coordinate.x * scalingX);
+        const xScaled = Math.floor(field.coordinate.x * scalingX);
         let xScaledNext = Math.floor((field.coordinate.x + 1) * scalingX);
-        let yScaled = Math.floor(field.coordinate.y * scalingY);
+        const yScaled = Math.floor(field.coordinate.y * scalingY);
         let yScaledNext = Math.floor((field.coordinate.y + 1) * scalingY);
         if (xScaledNext >= xFields) {
           xScaledNext = xFields;
@@ -141,6 +147,9 @@ class Scaler extends Tool {
     scaleStroke = true,
     initialWrap = true
   ) {
+    // Fits the compound of filled fields on a grid to a grid of specified dimensions
+    // with the given margins (eliminating original marnings if initialWrap === true) keeping the ratio of
+    // the drawing (otherwise stretching the axes)
     if (2 * xMargin >= xFields || 2 * yMargin >= yFields) {
       return this.grid;
     }
@@ -152,10 +161,10 @@ class Scaler extends Tool {
       this.grid.tools.cropper.wrap(xMargin, yMargin);
       return this.grid;
     }
-    let [xMin, xMax, yMin, yMax] = this.grid.tools.aligner.limits();
-    let height = yMax - yMin + 1;
-    let width = xMax - xMin + 1;
-    let scaleRatio = height / width;
+    const [xMin, xMax, yMin, yMax] = this.grid.tools.aligner.limits();
+    const height = yMax - yMin + 1;
+    const width = xMax - xMin + 1;
+    const scaleRatio = height / width;
     if (scaleRatio > (yFields - 2 * yMargin) / (xFields - 2 * xMargin)) {
       this.scale(
         Math.floor((yFields - 2 * yMargin) / scaleRatio),
@@ -178,6 +187,7 @@ class Scaler extends Tool {
     return this.grid;
   }
   makeSquare() {
+    // Adds margins to a drawing of any size such that its overall size has square proportions
     this.fit(
       Math.max(this.grid.xFields, this.grid.yFields),
       Math.max(this.grid.xFields, this.grid.yFields),

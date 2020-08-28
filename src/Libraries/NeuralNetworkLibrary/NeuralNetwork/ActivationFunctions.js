@@ -5,6 +5,7 @@ https://github.com/michheusser
 */
 
 const ActivationFunctions = Object.freeze({
+  // Contains the mathematical form of the activation function
   sigma: (x) => 1 / (1 + Math.exp(-x)),
 });
 

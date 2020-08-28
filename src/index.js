@@ -22,13 +22,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
-
-/*ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={setupStore()}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById("root")
-);
-*/
