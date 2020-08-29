@@ -90,9 +90,9 @@ The folder structure works in the following simple fashion: Each component has i
 |   ├── Reducers.js
 |   |
 |   ├── Child Component 1               
-|   |  └── ...   
+|   |   └── ...   
 |   ├── Child Component 2
-|   |  └── ...   
+|   |   └── ...   
 |   └── ...   
 |
 ├── Child Component 2                               
@@ -103,8 +103,15 @@ The folder structure works in the following simple fashion: Each component has i
 Considering each component has the same structure, I'll present the component hierarchy without showing the files contained in it.
 
 ### Component Hierarchy
-
-
+```
+.App   
+└── Layout
+   ├── About
+   ├── Instructions
+   ├── Header
+   ├── Footer
+   ├── DrawBoard
+   ├── ResultPane
 
 
 ## Library Architecture
