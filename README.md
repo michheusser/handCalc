@@ -133,28 +133,30 @@ Considering each component has the same structure, I'll present the component hi
 
 
 ## Library Architecture
-In this section the structure for the JavaScript image processing (drawing board) and neural network libraries are presented:
+In this section the structure for the JavaScript image processing (drawing board) and neural network libraries are presented.
+
+### Image Processing ("imageTools")
 
 ```
-.imageTools                              # Image processing package
-├── Grid                                 # Datapoint module containing the input-output class to work with the neural network
-|   ├── Coordinate.js                    # Module containing the custom image-data object
-|   ├── Field.js                         # Module containing object for image manipulations transformations
-|   └── Grid.js                          # Module containing object to segment images containing several symbols
-├── Tools                                # Image processing sub-package
-|   ├── Tool.js                          # Sub-package initialization
-|   ├── Cloner.js                        # Module containing the custom image-data object
-|   ├── Aligner.js                       # Sub-package initialization
-|   ├── Cropper.js                       # Module containing the custom image-data object
-|   ├── Manipulator.js                   # Module containing object for image manipulations transformations
-|   ├── Scaler.js                        # Sub-package initialization
-|   └── Segmentator.js                   # Module containing object to segment images containing several symbols
-└── Generator.js                         #
+.imageTools                              
+├── Grid                                 # Contains the main Grid object and the modules containg objects needed for it
+|   ├── Coordinate.js                    # Module containing the immutable coordinate object
+|   ├── Field.js                         # Module containing the field object
+|   └── Grid.js                          # Module containing the main grid object made out of fields and its core methods 
+├── Tools                                # Contains the decorator containing more sophisticated methods for the grid object
+|   ├── Tool.js                          # Contains the abstract class out of which the rest of the decorators are made of
+|   ├── Cloner.js                        # Provides deep copy capabilities on the grid object
+|   ├── Aligner.js                       # Contains the private and public methods to shift and align grids
+|   ├── Cropper.js                       # Contains the private and public methods to crop and wrap grids
+|   ├── Manipulator.js                   # Contains the private and public methods for data manipulation around grids
+|   ├── Scaler.js                        # Contains the private and public methods to scale and fit grids
+|   └── Segmentator.js                   # Contains the private and public methods to segment grids into smaller independent grids
+└── Generator.js                         # Contains the high level API to generate, build and initialize grid. This is the preferred way of creating grids
 ```
-
+### Neural Networks ("nnTools")
 ```
                                          
-.nnTools                                 # Neural Network Training package
+.nnTools                                 
 ├── Data                                 # Initialization of package
 |   ├── NeuronData.js                    # Module containing the object to classify outputs on a neural network
 |   ├── NeuronLayerData.js               # Module containing the object to validate a neural network on a dataset
