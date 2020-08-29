@@ -100,9 +100,9 @@ The folder structure works in the following simple fashion: Each component has i
 |
 └── ...                               
 ```
-Considering each component has the same structure, I'll present the component hierarchy without showing the files contained in it.
 
 ### Component Hierarchy
+Considering each component has the same structure, I'll present the component hierarchy without showing the files contained in it.
 ```
 .App   
 └── Layout
