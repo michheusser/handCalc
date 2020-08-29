@@ -19,6 +19,7 @@ _Unscaled Image (14x14 pixels):_<br/>
 <p align="center">
   <img src="https://github.com/michheusser/symbol-neural-network/blob/master/src/Assets/Media/7_unscaled.png />
 </p>
+            
 ![alt text](https://github.com/michheusser/symbol-neural-network/blob/master/src/Assets/Media/7_unscaled.png)
 
 _Scaled Image (28x28 pixels):_<br/>
