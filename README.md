@@ -176,9 +176,15 @@ In this section the structure for the JavaScript image processing (drawing board
 |   └── Manipulator.js                   # Contains the private and public methods for the manipulation and loading and saving of data objects (within the "Data" subfolder)
 └── Generator.js                         # Contains the high level API to generate, build and initialize a neural network. This is the preferred way of creating neural networks
 ```
-### Main Structure
 
 ## User Interface (UI) / User Experience (UX) Design :
+The user interface and user experience of this project was set up with the Material UI (https://material-ui.com/) framework and inspired with Matrial Design guidelines (https://material.io/design/). User experience and design decisions were made in collaboration with:
+
+**Briana Seiderman**
+https://www.linkedin.com/in/briana-seiderman/
+https://www.brianaseiderman.com/
+
+
 ## Main Project Folder Structure
 ```
 .public
