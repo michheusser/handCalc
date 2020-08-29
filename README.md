@@ -75,6 +75,33 @@ The first one, and more traditional one separates files according to their funct
 
 The second way of organizing the project is through the so called "Ducks" architecture. This concept uses the principle of dealing with components in a modular and hierarchical architecture, where each complete module is self-contained, having all their actions, constants, and reducer-logic within the same folder. The main advantage of this is that one can make working on different components a more structured and independent task, in case, for example, that there are several people or teams working on different separate components. In my opinion it also follows a more consistent philosophy with the trends of web-development in the last decade with frameworks like Angular, and React, which have strived to bundle components and make modular features where components, functionality and styles are together, instead of having components bundled by type, the way it was done at the beginning of the internet (HTML, CSS, and JavaScript all in different files).
 
+### Structure Template:
+
+The folder structure works in the following simple fashion: Each component has it's own folder, which contains one "Index.js" file, containing the react component, if needed, one "Actions.js" file, containing the actions, one "Reducer.js" file containing the corresponding reducer logic and state-slice, and one or more folders containing child components with the same structure:
+```
+                                         #
+.Parent Component                        #
+├── Index.js                             #
+├── Actions.js
+├── Reducer.js
+|
+├── Child Component 1
+|   ├── Index.js                            # Gif images used for the project
+|   ├── Actions.js
+|   ├── Reducers.js
+|   |
+|   ├── Child Component 1
+|   |  └── ...   
+|   ├── Child Component 2
+|   |  └── ...   
+|   └── ...   
+|
+├── Child Component 2                               
+|   └── ...                            
+|
+└── ...                               
+```
+
 ## Library Architecture
 ### Main Structure
 
@@ -94,17 +121,17 @@ The second way of organizing the project is through the so called "Ducks" archit
 │   └── ...                              
 │
 ├── Assets                               # Various data ressources for the project
-│   ├── Media                            # Gif images used for the project
+│   └── Media                            # Gif images used for the project
 │      └── ... 
 │   └── NeuralNetwork                    # Exported neural network data from the training libraries in python
 │      ├── SavedNetwork                  # Contains the .json files containing the numerical data for the neural network
-│         ├── bias.json                  # Neuron bias data
-│         └── weights.json               # Neuron input weights data
+│      |  ├── bias.json                  # Neuron bias data
+│      |  └── weights.json               # Neuron input weights data
 │      └── MatrixData.js                 # File compiling data into a JavaScript
 │
 ├── Libraries                            # Custom Neural Network and Image processing libraries (See Custom Libraries section)
 │   ├── gridTools                        # Grid / Image processing library
-│      └── ... 
+│   |  └── ... 
 │   └── nnTools                          # Neural Network library
 │      └── ...                           
 │
