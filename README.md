@@ -16,10 +16,6 @@ One of the main capabilities of the app is to dynamically render a responsive dr
 The effective recognition of the handwritten signs is greatly due to said image scaling function, which works by resizing the stroke itself: every pixel is mapped only once onto the resized image, and the pixels inbetween (for example in a line) are interpolated. This ensures that the stroke remains thin, containing the purest information about the stroke, even when the image is made bigger. This is important, because the data set used to train the neural network was created using the same algorithm (see section "Data Set Creation and Processing")
 
 _Unscaled Image (14x14 pixels):_<br/>
-<p align="center">
-  <img src="https://github.com/michheusser/symbol-neural-network/blob/master/src/Assets/Media/7_unscaled.png />
-</p>
-            
 ![alt text](https://github.com/michheusser/symbol-neural-network/blob/master/src/Assets/Media/7_unscaled.png)
 
 _Scaled Image (28x28 pixels):_<br/>
