@@ -52,16 +52,18 @@ To find out more details about the training algorithm, the libraries for dataset
 This project was built with an MVC (Model-View-Controller) design pattern in mind. Although there's currently server-side, using Redux as a state management library allowed for a state, and data-flow infrastructure that is consistent to the MVC pattern, and will allow in the future for a straight-forward transfer to a server with it's dedicated database.
 
 ### Model (The Store and State)
-The state in this app is managed by Redux, which handles the state with a so-called store, and its reducers. The store handles the state itself, which is immutable and can only be changed through action dispatchers that are processed by reducers. The advantages of immutability is the ability to have snapchots of the state which are always unambiguously and uniquely mapped to what is shown in the viewer. It allows for a much easier debugging, since the data flows are much more controlled, and the state of the whole application can be found in one place.
+The state in this app is managed by Redux, which handles the state with a so-called store, and its reducers. The store handles the state itself, which is immutable and can only be changed through action dispatchers that are processed by reducers. The advantages of immutability is the ability to have snapchots of the state which are always unambiguously and uniquely mapped to what is shown in the viewer. It makes the behaviour of the application predictable, and allows for a much easier debugging, since the data flows are much more controlled, and the state of the whole application can be found in one place, which makes supervision like logging very easy.
 
 ### View (The App's Components)
-The user interface is handled by the components in React. 
+The user interface is handled by the components in React. React components use declarative code and represent each functional part in the user interface (including static components) which are layed out as a hierarchical tree. Each component can have an internal state and properties which are inherited by the parent component. Analogously, they can pass properties to their child components. React works by updating a virtual DOM, which is a way of circumventing direct updates to the actual DOM, which happen to be computationally expensive. This hierarchical structure inherently allows for updates only to be made on components, when their inherited properties or state change, in which case only their child components are potentially rendered. The main advantage of this is that only components which actually need to be rendered are changed within the DOM, instead of refreshing the website whith every little possible change.
 
-_particular, immutability in the context of a Web app enables sophisticated change detection techniques to be implemented simply and cheaply, ensuring the computationally expensive process of updating the DOM occurs only when it absolutely has to (a cornerstone of React’s performance improvements over other libraries)._
-
+Since the state is immutable sophisticated change detection techniques can simply and cheaply be implemented, ensuring the computationally expensive process of updating the DOM occurs only when it absolutely has to (one of React’s performance improvements that keeps the edge over other libraries). Using Redux enhances this principles by allowing the state of components to be transferred to the store to centralize the data, and also to facilitate the information flow between components that are not directly connected within the tree. 
 
 
 ### Controller (Actions and Reducers)
+The use of "pure" reducer functions makes logic easier to test, and enables useful features like "time-travel debugging".
+
+
 ### Lorem Ipsum
 
 ## Component Architecture
