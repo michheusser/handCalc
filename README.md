@@ -103,33 +103,32 @@ The folder structure works in the following simple fashion: Each component has i
 
 ### Component Hierarchy
 Considering each component has the same structure, I'll present the component hierarchy without showing the files contained in it.
-```
-.App   
-└── Layout
-   ├── About
-   ├── Instructions
-   |   ├── Introduction
-   |   ├── Drawing
-   |   ├── Analysis
-   |   ├── Extra
-   |   └── End
-   ├── Header
-   |   └── Menu
-   ├── Footer
-   ├── DrawBoard
-   |   └── Field
-   └── ResultPane
-       └──DetailedView
-          └── AnalysisPane
-              ├── SymbolList
-              |   └── Item
-              |       └── Segment
-              └── SegmentDetails
-                  ├── ImageDetails
-                  ├── ScaledImage
-                  ├── NeuralNetworkChart
-                  └── NeuralNetworkDetails
-
+```                                         
+.App                                         # High level component setting up the UI theme for all the component hierarchy
+└── Layout                                   # High level component encompassing all main components and contains the layout reducer that renders the drawing
+   ├── About                                 # Dialog showing project information, that can be opened through the menu
+   ├── Instructions                          # Dialog showing the instructions tutorial presented at the opening of the application or through the application's menu
+   |   ├── Introduction                      # Element containing introduction to the application
+   |   ├── Drawing                           # Element containing the drawing instructions to the application
+   |   ├── Analysis                          # Element containing the analysis pane instructions to the application
+   |   ├── Extra                             # Element containing important points when using the application
+   |   └── End                               # Element containing the closing coments of the wizard
+   ├── Header                                # Contains the header element containing the access to the menu, trigger buttons for processing the drawing and clearing the board
+   |   └── Menu                              # 
+   ├── Footer                                # 
+   ├── DrawBoard                             # 
+   |   └── Field                             # 
+   └── ResultPane                            # 
+       └──DetailedView                       # 
+          └── AnalysisPane                   # 
+              ├── SymbolList                 # 
+              |   └── Item                   # 
+              |       └── Segment            # 
+              └── SegmentDetails             # 
+                  ├── ImageDetails           # 
+                  ├── ScaledImage            # 
+                  ├── NeuralNetworkChart     # 
+                  └── NeuralNetworkDetails   # 
 ```
 
 
@@ -142,7 +141,7 @@ Considering each component has the same structure, I'll present the component hi
 .public
 ├── index.html                           # Root html file, where the app is rendered
 └── ...                                  # Further icon files / metadata
-
+                                         # 
 .src
 ├── .gitnore                             # git specific file (git-ignored files)
 ├── package.json                         # npm dependency file
