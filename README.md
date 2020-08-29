@@ -49,7 +49,7 @@ This was by far the most difficult task in the whole project in terms of impleme
 To find out more details about the training algorithm, the libraries for dataset creation, and neural network training please visit the links given above.
 
 ## The Projects Architecture in a Nutshell
-This project was built with an MVC (Model-View-Controller) design pattern in mind. Although there's currently server-side, using Redux as a state management library allowed for a state, and data-flow infrastructure that is consistent to the MVC pattern, and will allow in the future for a straight-forward transfer to a server with it's dedicated database.
+This project was built with an MVC (Model-View-Controller) design pattern in mind. Although there's currently no server-side capabilities, using Redux as a state management library allowed for a state, and data-flow infrastructure that is consistent to the MVC pattern, and will allow in the future for a straight-forward transfer to a server with it's dedicated database.
 
 ### Model (The Store and State)
 The state in this app is managed by Redux, which handles the state with a so-called store, and its reducers. The store handles the state itself, which is immutable and can only be changed through action dispatchers that are processed by reducers. The advantages of immutability is the ability to have snapchots of the state which are always unambiguously and uniquely mapped to what is shown in the viewer. It makes the behaviour of the application predictable, and allows for a much easier debugging, since the data flows are much more controlled, and the state of the whole application can be found in one place, which makes supervision like logging very easy.
