@@ -78,19 +78,18 @@ The second way of organizing the project is through the so called "Ducks" archit
 ### Structure Template:
 
 The folder structure works in the following simple fashion: Each component has it's own folder, which contains one "Index.js" file, containing the react component, if needed, one "Actions.js" file, containing the actions, one "Reducer.js" file containing the corresponding reducer logic and state-slice, and one or more folders containing child components with the same structure:
-```
-                                         #
-.Parent Component                        #
-├── Index.js                             #
-├── Actions.js
-├── Reducer.js
+```                                         
+.Parent Component                        
+├── Index.js                             
+├── Actions.js                           
+├── Reducer.js                           
 |
-├── Child Component 1
-|   ├── Index.js                            # Gif images used for the project
+├── Child Component 1                    
+|   ├── Index.js                             
 |   ├── Actions.js
 |   ├── Reducers.js
 |   |
-|   ├── Child Component 1
+|   ├── Child Component 1               
 |   |  └── ...   
 |   ├── Child Component 2
 |   |  └── ...   
@@ -101,6 +100,12 @@ The folder structure works in the following simple fashion: Each component has i
 |
 └── ...                               
 ```
+Considering each component has the same structure, I'll present the component hierarchy without showing the files contained in it.
+
+### Component Hierarchy
+
+
+
 
 ## Library Architecture
 ### Main Structure
