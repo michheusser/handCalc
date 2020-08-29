@@ -119,14 +119,17 @@ Considering each component has the same structure, I'll present the component hi
    ├── DrawBoard
    |   └── Field
    └── ResultPane
-   |   └──DetailedView
-   |      └── AnalysisPane
-   |          ├── SymbolList
-   |          |   └── Item
-   |          |       └── Segment
-   |          └── SegmentDetails
-   |              ├── End
-   |              └── Item
+       └──DetailedView
+          └── AnalysisPane
+              ├── SymbolList
+              |   └── Item
+              |       └── Segment
+              └── SegmentDetails
+                  ├── ImageDetails
+                  ├── ScaledImage
+                  ├── NeuralNetworkChart
+                  └── NeuralNetworkDetails
+
 ```
 
 
