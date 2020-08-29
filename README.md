@@ -136,41 +136,42 @@ Considering each component has the same structure, I'll present the component hi
 In this section the structure for the JavaScript image processing (drawing board) and neural network libraries are presented:
 
 ```
-.imageTools                           # Image processing package
-├── Grid                             # Datapoint module containing the input-output class to work with the neural network
-|   ├── Coordinate.js                # Module containing the custom image-data object
-|   ├── Field.js                     # Module containing object for image manipulations transformations
-|   └── Grid.js                      # Module containing object to segment images containing several symbols
-├── Tools                            # Image processing sub-package
-|   ├── Tool.js                      # Sub-package initialization
-|   ├── Cloner.js                    # Module containing the custom image-data object
-|   ├── Aligner.js                   # Sub-package initialization
-|   ├── Cropper.js                   # Module containing the custom image-data object
-|   ├── Manipulator.js               # Module containing object for image manipulations transformations
-|   ├── Scaler.js                    # Sub-package initialization
-|   └── Segmentator.js               # Module containing object to segment images containing several symbols
-└── Generator.js                     #
+.imageTools                              # Image processing package
+├── Grid                                 # Datapoint module containing the input-output class to work with the neural network
+|   ├── Coordinate.js                    # Module containing the custom image-data object
+|   ├── Field.js                         # Module containing object for image manipulations transformations
+|   └── Grid.js                          # Module containing object to segment images containing several symbols
+├── Tools                                # Image processing sub-package
+|   ├── Tool.js                          # Sub-package initialization
+|   ├── Cloner.js                        # Module containing the custom image-data object
+|   ├── Aligner.js                       # Sub-package initialization
+|   ├── Cropper.js                       # Module containing the custom image-data object
+|   ├── Manipulator.js                   # Module containing object for image manipulations transformations
+|   ├── Scaler.js                        # Sub-package initialization
+|   └── Segmentator.js                   # Module containing object to segment images containing several symbols
+└── Generator.js                         #
 ```
 
 ```
-.nnTools                              # Neural Network Training package
-├── Data                             # Initialization of package
-|   ├── NeuronData.js                # Module containing the object to classify outputs on a neural network
-|   ├── NeuronLayerData.js           # Module containing the object to validate a neural network on a dataset
-|   └── NeuralNetworkData.js         # Module containing the object to train a natural network on a dataset     
-├── NeuralNetwork                    # API module to provide high-level functionalities
-|   ├── ActivationFunctions.js       # Module containing the object to classify outputs on a neural network
-|   ├── NeuronConnection.js          # Module containing the object to validate a neural network on a dataset
-|   ├── Neuron.js                    # Module containing the object to classify outputs on a neural network
-|   ├── NeuronLayer.js               # Module containing the object to validate a neural network on a dataset
-|   └── NeuralNetwor.js              # Module containing the object to train a natural network on a dataset   
-├── Tools                            # Sub-package with specific modules
-|   ├── Tool.js                      # Initialization of sub-package
-|   ├── Activator.js                 # Module containing the neural-network class
-|   ├── Classifier.js                # Module containing the object to classify outputs on a neural network
-|   ├── Builder.js                   # Module containing the object to validate a neural network on a dataset
-|   └── Manipulator.js               # Module containing the object to train a natural network on a dataset 
-└── Generator.js                     # Sub-package with specific modules
+                                         
+.nnTools                                 # Neural Network Training package
+├── Data                                 # Initialization of package
+|   ├── NeuronData.js                    # Module containing the object to classify outputs on a neural network
+|   ├── NeuronLayerData.js               # Module containing the object to validate a neural network on a dataset
+|   └── NeuralNetworkData.js             # Module containing the object to train a natural network on a dataset     
+├── NeuralNetwork                        # API module to provide high-level functionalities
+|   ├── ActivationFunctions.js           # Module containing the object to classify outputs on a neural network
+|   ├── NeuronConnection.js              # Module containing the object to validate a neural network on a dataset
+|   ├── Neuron.js                        # Module containing the object to classify outputs on a neural network
+|   ├── NeuronLayer.js                   # Module containing the object to validate a neural network on a dataset
+|   └── NeuralNetwor.js                  # Module containing the object to train a natural network on a dataset   
+├── Tools                                # Sub-package with specific modules
+|   ├── Tool.js                          # Initialization of sub-package
+|   ├── Activator.js                     # Module containing the neural-network class
+|   ├── Classifier.js                    # Module containing the object to classify outputs on a neural network
+|   ├── Builder.js                       # Module containing the object to validate a neural network on a dataset
+|   └── Manipulator.js                   # Module containing the object to train a natural network on a dataset 
+└── Generator.js                         # Sub-package with specific modules
 ```
 ### Main Structure
 
