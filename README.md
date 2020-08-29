@@ -10,7 +10,7 @@ You can access the app through the following link: https://www.handcalc.io
 ## The App's Core Functionalities
 In this section the core capabilities of the app will be discussed in depth, to understand better what the most important components are doing in the background.
 
-### Drawing Board Image Processing
+### Drawing Board (Image Processing)
 One of the main capabilities of the app is to dynamically render a responsive drawing board which serves as an input interface for the user to write a mathematical expression. Once the expression is written, the app uses a custom-made grid manipulation library which contains all the basic image processing capabilities (cropping, shifting, etc.), including an image segmentator which recursively agglomerates the different written signs onto independent grids, and a scaling function which resizes each segment to the input dimensions of the machine learning algorithm.
 
 The effective recognition of the handwritten signs is greatly due to said image scaling function, which works by resizing the stroke itself: every pixel is mapped only once onto the resized image, and the pixels inbetween (for example in a line) are interpolated. This ensures that the stroke remains thin, containing the purest information about the stroke, even when the image is made bigger. This is important, because the data set used to train the neural network was created using the same algorithm (see section "Data Set Creation and Processing")
