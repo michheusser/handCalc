@@ -114,21 +114,21 @@ Considering each component has the same structure, I'll present the component hi
    |   ├── Extra                             # Element containing important points when using the application
    |   └── End                               # Element containing the closing coments of the wizard
    ├── Header                                # Contains the header element containing the access to the menu, trigger buttons for processing the drawing and clearing the board
-   |   └── Menu                              # 
-   ├── Footer                                # 
-   ├── DrawBoard                             # 
-   |   └── Field                             # 
-   └── ResultPane                            # 
-       └──DetailedView                       # 
-          └── AnalysisPane                   # 
-              ├── SymbolList                 # 
-              |   └── Item                   # 
-              |       └── Segment            # 
-              └── SegmentDetails             # 
-                  ├── ImageDetails           # 
-                  ├── ScaledImage            # 
-                  ├── NeuralNetworkChart     # 
-                  └── NeuralNetworkDetails   # 
+   |   └── Menu                              # Menu element containing the access to the instructions, about, and GitHub repository
+   ├── Footer                                # Containg the static footer element
+   ├── DrawBoard                             # Contains the high level component that renders the drawing board dynamically made out of field elements
+   |   └── Field                             # Lowest level element of the drawing board, which allow the user to draw on the board
+   └── ResultPane                            # High level dialog containing the results of the processed expression
+       └──DetailedView                       # Renders the accordion showing the predicted result upon drawing that can be expanded to display the details of the predictions 
+          └── AnalysisPane                   # Sets out the overall grid layout for the detailed view in the analysis pane
+              ├── SymbolList                 # Handles the overall layout for the symbol list to select segments.
+              |   └── Item                   # High level element containing the segment image within the symbol list
+              |       └── Segment            # Handles the canvas element that scales the processed image and displays it.
+              └── SegmentDetails             # Sets out the overall grid layout for the detailed information around the selected segments
+                  ├── ImageDetails           # Displays the details around the selected drawn segment
+                  ├── ScaledImage            # Displays the image of the processed version of the selected segment
+                  ├── NeuralNetworkChart     # Displays the output likelihood of the neural network upon feeding of the selected processed image
+                  └── NeuralNetworkDetails   # Displays the prediction details around the selected segment upon feeding it into the neural network
 ```
 
 
