@@ -108,10 +108,26 @@ Considering each component has the same structure, I'll present the component hi
 └── Layout
    ├── About
    ├── Instructions
+   |   ├── Introduction
+   |   ├── Drawing
+   |   ├── Analysis
+   |   ├── Extra
+   |   └── End
    ├── Header
+   |   └── Menu
    ├── Footer
    ├── DrawBoard
-   ├── ResultPane
+   |   └── Field
+   └── ResultPane
+   |   └──DetailedView
+   |      └── AnalysisPane
+   |          ├── SymbolList
+   |          |   └── Item
+   |          |       └── Segment
+   |          └── SegmentDetails
+   |              ├── End
+   |              └── Item
+```
 
 
 ## Library Architecture
