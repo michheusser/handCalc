@@ -133,7 +133,7 @@ Considering each component has the same structure, I'll present the component hi
 
 
 ## Library Architecture
-In this section the structure for the JavaScript image processing (drawing board) and neural network libraries are presented.
+In this section the structure for the JavaScript image processing (drawing board) and neural network libraries are presented, that can be found within the "Libraries" folder within the project folder structure.
 
 ### Image Processing ("imageTools")
 
@@ -154,26 +154,27 @@ In this section the structure for the JavaScript image processing (drawing board
 └── Generator.js                         # Contains the high level API to generate, build and initialize grid. This is the preferred way of creating grids
 ```
 ### Neural Networks ("nnTools")
+
 ```
                                          
 .nnTools                                 
-├── Data                                 # Initialization of package
-|   ├── NeuronData.js                    # Module containing the object to classify outputs on a neural network
-|   ├── NeuronLayerData.js               # Module containing the object to validate a neural network on a dataset
-|   └── NeuralNetworkData.js             # Module containing the object to train a natural network on a dataset     
-├── NeuralNetwork                        # API module to provide high-level functionalities
-|   ├── ActivationFunctions.js           # Module containing the object to classify outputs on a neural network
-|   ├── NeuronConnection.js              # Module containing the object to validate a neural network on a dataset
-|   ├── Neuron.js                        # Module containing the object to classify outputs on a neural network
-|   ├── NeuronLayer.js                   # Module containing the object to validate a neural network on a dataset
-|   └── NeuralNetwor.js                  # Module containing the object to train a natural network on a dataset   
-├── Tools                                # Sub-package with specific modules
-|   ├── Tool.js                          # Initialization of sub-package
-|   ├── Activator.js                     # Module containing the neural-network class
-|   ├── Classifier.js                    # Module containing the object to classify outputs on a neural network
-|   ├── Builder.js                       # Module containing the object to validate a neural network on a dataset
-|   └── Manipulator.js                   # Module containing the object to train a natural network on a dataset 
-└── Generator.js                         # Sub-package with specific modules
+├── Data                                 # Contains the objects to handle neural network data in a serializable manner
+|   ├── NeuronData.js                    # Module containing the object that encapsulates serializable data of a single neuron within a neural network
+|   ├── NeuronLayerData.js               # Module containing the object that encapsulates serializable data a neuron layer within a neural network
+|   └── NeuralNetworkData.js             # Module containing the object that encapsulates serializable data of a neural network
+├── NeuralNetwork                        # Contains the main objects surrounding a neural network
+|   ├── ActivationFunctions.js           # Module containing the possible activation functions to be used within a neuron
+|   ├── NeuronConnection.js              # Module containing the object containing the information about a connection between two neurons (weight and references)
+|   ├── Neuron.js                        # Module containing the neuron object within a neuron layer with its core functionalities and methods
+|   ├── NeuronLayer.js                   # Module containing the neuron layer within a neural network with its core functionalities and methods
+|   └── NeuralNetwork.js                 # Module containing the main neural network object containing its core functionalities and methods
+├── Tools                                # Contains the decorator tools to deal efficiently with the neural network object
+|   ├── Tool.js                          # Contains the abstract class out of which the rest of the decorator tools are made of
+|   ├── Activator.js                     # Contains the private and public methods for the activation of neural networks upon a certain input layer 
+|   ├── Classifier.js                    # Contains the private and high-level public methods for the classification of outputs of a neural network upon a certain input
+|   ├── Builder.js                       # Contains the private and public methods for the correct building and initialization neural network instances and their tools 
+|   └── Manipulator.js                   # Contains the private and public methods for the manipulation and loading and saving of data objects (within the "Data" subfolder)
+└── Generator.js                         # Contains the high level API to generate, build and initialize a neural network. This is the preferred way of creating neural networks
 ```
 ### Main Structure
 
