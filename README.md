@@ -68,12 +68,22 @@ As mention before, this approach allows for very easy tracking of dataflow betwe
 
 Immutable changes to the state, depending on the application, may sound like an unnecessary computationally intensive process, in case of small changes (e.g. when changing one field in the drawing board, the state of the whole drawing board changes and seems to having to be cloned, changed and updated to the state), but shallow copies for variables that are unchanged are enough to keep the immutability satisfied, and thus, no significant performance leaks are created in this approach.
 
-### Lorem Ipsum
-
 ## Component Architecture
-### Main Structure
+There are two main trends when it comes to structuring a project of this type: 
 
-## Libraries Architecture
+The first one, and more traditional one separates files according to their functional nature within the project, according to the MVC model: reducers, actions, and components are grouped together in different folders. The main advantage of this, is that it is easy to navigate through these parts if one is only dealing with state changes, or optimizing reducer logic, or if one wants to understand all kinds of actions that can happen in an application. Although this might sound very convenient, this technique has been proved to get too complex as the project scales. The more complex the application becomes, and more and more components and pages are addded through routing, one has to navigate through three folders to update a component. The organization between each of those folders also becomes tricky to manage, and the addition of more complex functionalities and action creators, containing middlewear for async operations and API calls makes the overall structure seem very convoluted.
+
+The second way of organizing the project is through the so called "Ducks" architecture. This concept uses the principle of dealing with components in a modular and hierarchical architecture, where each complete module is self-contained, having all their actions, constants, and reducer-logic within the same folder. The main advantage of this is that one can make working on different components a more structured and independent task, in case, for example, that there are several people or teams working on different separate components. In my opinion it also follows a more consistent philosophy with the trends of web-development in the last decade, which has always strived to 
+
+teams can work on modules
+
+think of HTML, CSS web-site development has always tried to make things more modular
+
+
+
+As explained above, the components in react are layered in a hierarchical way. 
+
+## Library Architecture
 ### Main Structure
 
 ## User Interface (UI) / User Experience (UX) Design :
