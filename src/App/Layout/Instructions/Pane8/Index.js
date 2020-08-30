@@ -14,50 +14,33 @@ import { Typography, Card, CardContent } from "@material-ui/core";
 // Material UI (Design)
 import { withStyles } from "@material-ui/core/styles";
 // Diverse
-import writing_big from "../../../../Assets/Media/writing_big.gif";
+import analysis_pane from "../../../../Assets/Media/analysis.gif";
 
 // **************************** STYLING ****************************
 const useStyles = (theme) => ({});
 
 // **************************** COMPONENT ****************************
-class Introduction extends React.Component {
-  // Displays the tutorial part introducing the web-app. There are no functional components,
+class Pane8 extends React.Component {
+  // Displays the tutorial part explaining the analysis pane. There are no functional components,
   // only text and images
   render() {
-    //const { classes } = this.props;
-
+    //  const { classes } = this.props;
     return (
       <Card elevation={0}>
-        <CardContent component="div">
+        <CardContent>
           <Typography component="span" variant="h4" gutterBottom>
-            Welcome to handCalc!
+            Pane 1
             <br />
           </Typography>
           <Typography component="span" variant="h6" gutterBottom>
-            This short tutorial will walk you through all features of this
-            application.
+            Pane 1 Lorem ipsum
             <br />
           </Typography>
-
-          <Typography component="span" variant="body2">
-            handCalc is a simple machine-learning-based educational tool to
-            write easy numerical mathematical expressions by hand and get them
-            evaluated. ...
-            <br />
-            <br />
-          </Typography>
-          <img src={writing_big} height={200} alt="Writing GIF (big)" />
+          <img src={analysis_pane} height={100} alt="Analysis Pane GIF" />
           <Typography component="span" variant="body2">
             <br />
-            If you want to dive right in, feel free to press the "Skip Tutorial"
-            button below. Otherwise, press "Next"!
+            Pane1 lorem ipsum
             <br />
-            <br />
-          </Typography>
-          <Typography component="span" variant="body2">
-            IMPORTANT: This web-app is currently not yet adapted for mobile
-            browsers. So please make sure you're using it on Google Chrome,
-            Firefox, or Safari for MacOS or Windows
           </Typography>
         </CardContent>
       </Card>
@@ -78,4 +61,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(Introduction));
+)(withStyles(useStyles)(Pane8));

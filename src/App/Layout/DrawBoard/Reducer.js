@@ -5,9 +5,9 @@ https://github.com/michheusser
 */
 
 // Custom Image Processing Library
-import GridGenerator from "../../../Libraries/GridLibrary/Generator";
+import GridGenerator from "../../../Libraries/imageTools/Generator";
 // Custom Neural Network Library
-import NeuralNetworkGenerator from "../../../Libraries/NeuralNetworkLibrary/Generator";
+import NeuralNetworkGenerator from "../../../Libraries/nnTools/Generator";
 // Imports data of the trained neural Network
 import neuralNetworkMatrixData from "../../../Assets/NeuralNetwork/MatrixData";
 

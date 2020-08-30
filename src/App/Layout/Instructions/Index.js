@@ -12,11 +12,17 @@ import { connect } from "react-redux";
 // Actions
 import { closeInstructions, nextStep, backStep, resetStep } from "./Actions";
 // Components
-import Introduction from "./Introduction/Index.js";
-import Drawing from "./Drawing/Index.js";
-import Analysis from "./Analysis/Index.js";
-import Extra from "./Extra/Index.js";
-import End from "./End/Index.js";
+import Pane1 from "./Pane1/Index.js";
+import Pane2 from "./Pane2/Index.js";
+import Pane3 from "./Pane3/Index.js";
+import Pane4 from "./Pane4/Index.js";
+import Pane5 from "./Pane5/Index.js";
+import Pane6 from "./Pane6/Index.js";
+import Pane7 from "./Pane7/Index.js";
+import Pane8 from "./Pane8/Index.js";
+import Pane9 from "./Pane9/Index.js";
+import Pane10 from "./Pane10/Index.js";
+
 // Material UI (Components)
 import {
   Dialog,
@@ -26,7 +32,9 @@ import {
   Step,
   StepLabel,
   Button,
+  IconButton,
 } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
 // Material UI (Design)
 import { withStyles } from "@material-ui/core/styles";
 
@@ -39,7 +47,13 @@ const useStyles = (theme) => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
-  dialogActions: {
+  dialogActionsTop: {
+    display: "flex",
+    justifyContent: "flex-end",
+    margin: theme.spacing(0),
+    padding: theme.spacing(0),
+  },
+  dialogActionsBottom: {
     display: "flex",
     justifyContent: "center",
     margin: theme.spacing(1),
@@ -53,6 +67,10 @@ const useStyles = (theme) => ({
     margin: theme.spacing(0),
     padding: theme.spacing(0),
   },
+  stepper: {
+    margin: theme.spacing(0),
+    padding: theme.spacing(0),
+  },
   dialogPaper: {
     minHeight: "80vh",
     maxHeight: "80vh",
@@ -60,20 +78,29 @@ const useStyles = (theme) => ({
 });
 
 // **************************** FUNCTIONS ****************************
-function getSteps() {
-  return ["Introduction", "Drawing", "Analysis", "Extra"];
-}
 
 function getStepContent(stepIndex) {
   switch (stepIndex) {
     case 0:
-      return <Introduction />;
+      return <Pane1 />;
     case 1:
-      return <Drawing />;
+      return <Pane2 />;
     case 2:
-      return <Analysis />;
+      return <Pane3 />;
     case 3:
-      return <Extra />;
+      return <Pane4 />;
+    case 4:
+      return <Pane5 />;
+    case 5:
+      return <Pane6 />;
+    case 6:
+      return <Pane7 />;
+    case 7:
+      return <Pane8 />;
+    case 8:
+      return <Pane9 />;
+    case 9:
+      return <Pane10 />;
     default:
       return "Unknown stepIndex";
   }
@@ -102,27 +129,36 @@ class Instructions extends React.Component {
   }
 
   render() {
-    const steps = getSteps();
+    const steps = new Array(10).fill(null).map((_, index) => `Pane${index}`);
     const { classes } = this.props;
     return (
       <Dialog
         fullWidth={true}
-        maxWidth={"md"}
+        maxWidth={"sm"}
         open={this.props.open}
         onClose={this.handleClose.bind(this)}
         disableBackdropClick={false}
         aria-labelledby="max-width-dialog-title"
         classes={{ paper: classes.dialogPaper }}
       >
+        <DialogActions className={classes.dialogActionsTop}>
+          <IconButton
+            color="primary"
+            aria-label="upload picture"
+            component="span"
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogActions>
         <Stepper activeStep={this.props.activeStep}>
           {steps.map((label) => (
             <Step key={label}>
-              <StepLabel>{label}</StepLabel>
+              <StepLabel>{""}</StepLabel>
             </Step>
           ))}
         </Stepper>
         <DialogContent>{getStepContent(this.props.activeStep)}</DialogContent>
-        <DialogActions className={classes.dialogActions}>
+        <DialogActions className={classes.dialogActionsBottom}>
           <Button
             variant="outlined"
             disabled={this.props.activeStep === 0}
