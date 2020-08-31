@@ -108,11 +108,9 @@ Considering each component has the same structure, I'll present the component hi
 └── Layout                                   # High level component encompassing all main components and contains the layout reducer that renders the drawing
    ├── About                                 # Dialog showing project information, that can be opened through the menu
    ├── Instructions                          # Dialog showing the instructions tutorial presented at the opening of the application or through the application's menu
-   |   ├── Introduction                      # Element containing introduction to the application
-   |   ├── Drawing                           # Element containing the drawing instructions to the application
-   |   ├── Analysis                          # Element containing the analysis pane instructions to the application
-   |   ├── Extra                             # Element containing important points when using the application
-   |   └── End                               # Element containing the closing coments of the wizard
+   |   ├── Pane 1                            # Element containing pane 1 of the instructions tutorial
+   |   ├── Pane 2                            # Element containing pane 1 of the instructions tutorial
+   |   └── ...                               # Rest of the elements containing the instruction tutorial panes
    ├── Header                                # Contains the header element containing the access to the menu, trigger buttons for processing the drawing and clearing the board
    |   └── Menu                              # Menu element containing the access to the instructions, about, and GitHub repository
    ├── Footer                                # Containg the static footer element
