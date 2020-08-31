@@ -32,8 +32,6 @@ import {
   DialogActions,
   DialogContent,
   MobileStepper,
-  Step,
-  StepLabel,
   Button,
   IconButton,
 } from "@material-ui/core";

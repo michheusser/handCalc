@@ -92,7 +92,7 @@ class NeuronLayer {
   }
   toString() {
     // Returns the string representation
-    const string = `  * Neuron Layer with ${this.neurons.length} neurons:\n`;
+    let string = `  * Neuron Layer with ${this.neurons.length} neurons:\n`;
     for (let neuron of this) {
       return (string += `    ** ` + neuron.toString() + `\n`);
     }
