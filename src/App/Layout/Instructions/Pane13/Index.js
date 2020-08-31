@@ -46,7 +46,7 @@ class Pane13 extends React.Component {
           <Typography component="span" variant="body2">
             <br />
             If you want to go through the tutorial again, you can find it in the
-            Menu bar on the top left corner of the screen.
+            Menu bar on the top left corner of the screen under "Instructions"
             <br />
             <br />
           </Typography>
