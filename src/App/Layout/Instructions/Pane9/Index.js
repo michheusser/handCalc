@@ -14,51 +14,38 @@ import { Typography, Card, CardContent } from "@material-ui/core";
 // Material UI (Design)
 import { withStyles } from "@material-ui/core/styles";
 // Diverse
-import writing_big from "../../../../Assets/Media/writing_big.gif";
+import detailed_view from "../../../../Assets/Media/detailed_view.gif";
 
 // **************************** STYLING ****************************
 const useStyles = (theme) => ({});
 
 // **************************** COMPONENT ****************************
 class Pane9 extends React.Component {
-  // Displays the tutorial part introducing the web-app. There are no functional components,
-  // only text and images
+  // Displays the a tutorial pane. There are no functional components, only text and images.
   render() {
     //const { classes } = this.props;
 
     return (
-      <Card elevation={0}>
+      <Card align="center" elevation={0}>
         <CardContent component="div">
-          <Typography component="span" variant="h4" gutterBottom>
-            Welcome to handCalc!
+          <Typography component="span" variant="h4">
+            Using the analysis pane (1/3)
             <br />
           </Typography>
           <Typography component="span" variant="h6" gutterBottom>
-            This short tutorial will walk you through all features of this
-            application.
             <br />
-          </Typography>
-
-          <Typography component="span" variant="body2">
-            handCalc is a simple machine-learning-based educational tool to
-            write easy numerical mathematical expressions by hand and get them
-            evaluated. ...
-            <br />
-            <br />
-          </Typography>
-          <img src={writing_big} height={200} alt="Writing GIF (big)" />
-          <Typography component="span" variant="body2">
-            <br />
-            If you want to dive right in, feel free to press the "Skip Tutorial"
-            button below. Otherwise, press "Next"!
-            <br />
+            Get nerdy. Analyse the prediction details!
             <br />
           </Typography>
           <Typography component="span" variant="body2">
-            IMPORTANT: This web-app is currently not yet adapted for mobile
-            browsers. So please make sure you're using it on Google Chrome,
-            Firefox, or Safari for MacOS or Windows
+            <br />
+            Once your expression has been evaluated, you can view the details of
+            the prediction using the detailed view. To access it, click on the
+            expansion arrow below the predicted expression
+            <br />
+            <br />
           </Typography>
+          <img src={detailed_view} height={300} alt="Detailed View GIF" />
         </CardContent>
       </Card>
     );

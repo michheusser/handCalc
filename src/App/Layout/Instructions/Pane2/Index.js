@@ -21,8 +21,7 @@ const useStyles = (theme) => ({});
 
 // **************************** COMPONENT ****************************
 class Pane2 extends React.Component {
-  // Displays the tutorial part explaining the analysis pane. There are no functional components,
-  // only text and images
+  // Displays the a tutorial pane. There are no functional components, only text and images.
   render() {
     //  const { classes } = this.props;
     return (
@@ -34,13 +33,16 @@ class Pane2 extends React.Component {
           <Typography component="span" variant="h6" gutterBottom>
             <br />
             <br />
-            At its core, handCalc is a machine-based interface that allows users
-            to write simple mathematical expressions for them to be and
-            evaluated
+            Simple. Fun. Insightful.
             <br />
           </Typography>
 
           <Typography component="span" variant="body2">
+            <br />
+            handCalc is a machine-learning based interface that allows users to
+            write simple mathematical expressions for them to be evaluated, and
+            analysed.
+            <br />
             <br />
             Any mathematical expression using simple operators can be written on
             the drawing board using the mouse, which will then be processed and
@@ -48,7 +50,7 @@ class Pane2 extends React.Component {
             <br />
             <br />
           </Typography>
-          <img src={writing_big} height={150} alt="Writing Big GIF" />
+          <img src={writing_big} height={160} alt="Writing Big GIF" />
         </CardContent>
       </Card>
     );

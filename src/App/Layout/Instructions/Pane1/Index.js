@@ -21,8 +21,7 @@ const useStyles = (theme) => ({});
 
 // **************************** COMPONENT ****************************
 class Pane1 extends React.Component {
-  // Displays the tutorial part introducing the web-app. There are no functional components,
-  // only text and images
+  // Displays the a tutorial pane. There are no functional components, only text and images.
   render() {
     //const { classes } = this.props;
 
@@ -35,19 +34,22 @@ class Pane1 extends React.Component {
           <Typography component="span" variant="h6" gutterBottom>
             <br />
             <br />
-            This short tutorial will walk you through all features of this
-            application.
+            ... and welcome to the tutorial.
             <br />
           </Typography>
 
           <Typography component="span" variant="body2">
             <br />
+            This short tutorial will walk you through all features of this
+            application.
+            <br /> <br />
             Before you start, it is highly recommended to resize your browser
             window to be full-screen for a better user experience!
             <br />
             <br /> If you want to dive right in, feel free to skip the tutorial
             by press the close button on the top right (or just click outside
             the pane). Otherwise, press "Next"!
+            <br />
             <br />
             <br />
           </Typography>

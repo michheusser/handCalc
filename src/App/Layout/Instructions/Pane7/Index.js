@@ -21,8 +21,7 @@ const useStyles = (theme) => ({});
 
 // **************************** COMPONENT ****************************
 class Pane7 extends React.Component {
-  // Displays the tutorial part introducing the web-app. There are no functional components,
-  // only text and images
+  // Displays the a tutorial pane. There are no functional components, only text and images.
   render() {
     //const { classes } = this.props;
 
@@ -35,7 +34,7 @@ class Pane7 extends React.Component {
           </Typography>
           <Typography component="span" variant="h6" gutterBottom>
             <br />
-            Make sure you have enough space to write your expression!
+            Resize the drawing board to your liking!
             <br />
           </Typography>
           <Typography component="span" variant="body2">
@@ -48,9 +47,10 @@ class Pane7 extends React.Component {
           <img src={resize} height={150} alt="Resize GIF" />
           <Typography component="span" variant="body2">
             <br />
-            You can resize the browser window to any size you want, but be aware
-            that everytime a window-resize happens, the drawing board is
-            recalculated, and you may lose part of your drawing if the board
+            <br />
+            You can resize the browser window anytime, to any size you want, but
+            be aware that everytime a window-resize happens, the drawing board
+            is recalculated, and you may lose part of your drawing if the board
             becomes smaller.
             <br />
           </Typography>

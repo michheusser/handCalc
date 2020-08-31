@@ -14,13 +14,13 @@ import { Typography, Card, CardContent } from "@material-ui/core";
 // Material UI (Design)
 import { withStyles } from "@material-ui/core/styles";
 // Diverse
-import writing from "../../../../Assets/Media/writing.gif";
+import similar from "../../../../Assets/Media/similar.png";
 
 // **************************** STYLING ****************************
 const useStyles = (theme) => ({});
 
 // **************************** COMPONENT ****************************
-class Pane4 extends React.Component {
+class Pane12 extends React.Component {
   // Displays the a tutorial pane. There are no functional components, only text and images.
   render() {
     //const { classes } = this.props;
@@ -29,30 +29,33 @@ class Pane4 extends React.Component {
       <Card align="center" elevation={0}>
         <CardContent component="div">
           <Typography component="span" variant="h4">
-            Using the drawing board (2/5)
+            Using the analysis pane (4/4)
             <br />
           </Typography>
           <Typography component="span" variant="h6" gutterBottom>
             <br />
-            Draw your numbers and symbols!
+            Be nice to the algorithms!
             <br />
           </Typography>
-
           <Typography component="span" variant="body2">
             <br />
-            To write accross the drawing board, press the left click on your
-            mouse and drag it through the board.
+            Make sure you write the symbols in a way that identifies them best
+            from similar ones, where the neural network is more prone confuse
+            them (e.g. always crossing the "7", not forgetting the head of a
+            "1", not forgetting the square head and tail of the square brackets
+            "[" and "]")
             <br />
             <br />
           </Typography>
-          <img src={writing} height={150} alt="Writing GIF" />
+          <img src={similar} height={100} alt="Similar PNG" />
           <Typography component="span" variant="body2">
             <br />
             <br />
-            If you're using a track-pad on a portable computer use the main
-            click. If this doesn't seem to work, you might want to try to draw
-            as if you were dragging and dropping a file on the desktop.
-            <br />
+            In general, be aware that the way we understand certain handwritten
+            signs may different than a neural network with a tiny fraction of
+            the capacity of a human brain. In some cases it might require small
+            changes in a drawing to completely change the prediction. In case a
+            sign might not be recognized, go back and try to make it clearer.
             <br />
           </Typography>
         </CardContent>
@@ -74,4 +77,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(Pane4));
+)(withStyles(useStyles)(Pane12));

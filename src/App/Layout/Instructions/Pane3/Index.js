@@ -21,8 +21,7 @@ const useStyles = (theme) => ({});
 
 // **************************** COMPONENT ****************************
 class Pane3 extends React.Component {
-  // Displays the tutorial part introducing the web-app. There are no functional components,
-  // only text and images
+  // Displays the a tutorial pane. There are no functional components, only text and images.
   render() {
     //const { classes } = this.props;
 
@@ -35,20 +34,23 @@ class Pane3 extends React.Component {
           </Typography>
           <Typography component="span" variant="h6" gutterBottom>
             <br />
-            The drawing board is the interface for you to write mathematical
-            expressions to be processed and evaluated by the image processing
-            and machine learning algorithms.
+            Introducing... the drawing board.
             <br />
           </Typography>
 
           <Typography component="span" variant="body2">
+            <br />
+            The drawing board is the interface for you to write mathematical
+            expressions to be processed and evaluated by the image processing
+            and machine learning algorithms.
+            <br />
             <br />
             To start, draw any mathematical expression using the following
             symbols: 0-9 (numbers), + (plus), - (minus), * (times), / (divided),
             [ (open parenthesis), ] (close paranthesis). <br />
             <br />
           </Typography>
-          <img src={writing_small} height={100} alt="Writing Small GIF" />
+          <img src={writing_small} height={150} alt="Writing Small GIF" />
         </CardContent>
       </Card>
     );

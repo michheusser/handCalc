@@ -22,13 +22,16 @@ import Pane7 from "./Pane7/Index.js";
 import Pane8 from "./Pane8/Index.js";
 import Pane9 from "./Pane9/Index.js";
 import Pane10 from "./Pane10/Index.js";
+import Pane11 from "./Pane11/Index.js";
+import Pane12 from "./Pane12/Index.js";
+import Pane13 from "./Pane13/Index.js";
 
 // Material UI (Components)
 import {
   Dialog,
   DialogActions,
   DialogContent,
-  Stepper,
+  MobileStepper,
   Step,
   StepLabel,
   Button,
@@ -47,6 +50,7 @@ const useStyles = (theme) => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
+
   dialogActionsTop: {
     display: "flex",
     justifyContent: "flex-end",
@@ -101,6 +105,12 @@ function getStepContent(stepIndex) {
       return <Pane9 />;
     case 9:
       return <Pane10 />;
+    case 10:
+      return <Pane11 />;
+    case 11:
+      return <Pane12 />;
+    case 12:
+      return <Pane13 />;
     default:
       return "Unknown stepIndex";
   }
@@ -129,7 +139,7 @@ class Instructions extends React.Component {
   }
 
   render() {
-    const steps = new Array(10).fill(null).map((_, index) => `Pane${index}`);
+    const steps = new Array(13).fill(null).map((_, index) => `Pane${index}`);
     const { classes } = this.props;
     return (
       <Dialog
@@ -146,17 +156,18 @@ class Instructions extends React.Component {
             color="primary"
             aria-label="upload picture"
             component="span"
+            onClick={this.handleClose.bind(this)}
           >
             <CloseIcon />
           </IconButton>
         </DialogActions>
-        <Stepper activeStep={this.props.activeStep}>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>{""}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
+        <MobileStepper
+          activeStep={this.props.activeStep}
+          variant="dots"
+          steps={steps.length}
+          position="static"
+          style={{ justifyContent: "center" }}
+        ></MobileStepper>
         <DialogContent>{getStepContent(this.props.activeStep)}</DialogContent>
         <DialogActions className={classes.dialogActionsBottom}>
           <Button

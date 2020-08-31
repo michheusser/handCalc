@@ -21,8 +21,7 @@ const useStyles = (theme) => ({});
 
 // **************************** COMPONENT ****************************
 class Pane6 extends React.Component {
-  // Displays the tutorial part introducing the web-app. There are no functional components,
-  // only text and images
+  // Displays the a tutorial pane. There are no functional components, only text and images.
   render() {
     //const { classes } = this.props;
 
@@ -35,7 +34,7 @@ class Pane6 extends React.Component {
           </Typography>
           <Typography component="span" variant="h6" gutterBottom>
             <br />
-            Erasing / Resetting the whole drawing board
+            Want to start over? Clear the whole drawing board.
             <br />
           </Typography>
           <Typography component="span" variant="body2">
@@ -47,6 +46,7 @@ class Pane6 extends React.Component {
           </Typography>
           <img src={clear_board} height={200} alt="Clear Board GIF" />
           <Typography component="span" variant="body2">
+            <br />
             <br />
             Be aware that once you clear the board, you're drawing will be lost
             and you will not be able to retrieve it!

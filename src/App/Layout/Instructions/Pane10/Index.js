@@ -14,32 +14,43 @@ import { Typography, Card, CardContent } from "@material-ui/core";
 // Material UI (Design)
 import { withStyles } from "@material-ui/core/styles";
 // Diverse
-import analysis_pane from "../../../../Assets/Media/analysis.gif";
+import segments from "../../../../Assets/Media/segments.gif";
 
 // **************************** STYLING ****************************
 const useStyles = (theme) => ({});
 
 // **************************** COMPONENT ****************************
 class Pane10 extends React.Component {
-  // Displays the tutorial part explaining the analysis pane. There are no functional components,
-  // only text and images
+  // Displays the a tutorial pane. There are no functional components, only text and images.
   render() {
-    //  const { classes } = this.props;
+    //const { classes } = this.props;
+
     return (
-      <Card elevation={0}>
-        <CardContent>
-          <Typography component="span" variant="h4" gutterBottom>
-            Pane 1
+      <Card align="center" elevation={0}>
+        <CardContent component="div">
+          <Typography component="span" variant="h4">
+            Using the analysis pane (2/3)
             <br />
           </Typography>
           <Typography component="span" variant="h6" gutterBottom>
-            Pane 1 Lorem ipsum
+            <br />
+            Explore the details of each segment.
             <br />
           </Typography>
-          <img src={analysis_pane} height={100} alt="Analysis Pane GIF" />
           <Typography component="span" variant="body2">
             <br />
-            Pane1 lorem ipsum
+            Everytime you write a new expression, every symbol is segmented, and
+            processed to fit the input dimensions of the pre-trained neural
+            network that recognizes symbols. By clicking on the different
+            segments you can get a detailed prediction view for each of them
+            <br />
+            <br />
+          </Typography>
+          <img src={segments} height={100} alt="Segments GIF" />
+          <Typography component="span" variant="body2">
+            <br />
+            Make sure that every part of each symbol is connected to each other,
+            so it gets recognized as a single segment.
             <br />
           </Typography>
         </CardContent>

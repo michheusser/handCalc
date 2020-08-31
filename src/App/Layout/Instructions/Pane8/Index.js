@@ -14,32 +14,46 @@ import { Typography, Card, CardContent } from "@material-ui/core";
 // Material UI (Design)
 import { withStyles } from "@material-ui/core/styles";
 // Diverse
-import analysis_pane from "../../../../Assets/Media/analysis.gif";
+import process from "../../../../Assets/Media/process.gif";
 
 // **************************** STYLING ****************************
 const useStyles = (theme) => ({});
 
 // **************************** COMPONENT ****************************
 class Pane8 extends React.Component {
-  // Displays the tutorial part explaining the analysis pane. There are no functional components,
-  // only text and images
+  // Displays the a tutorial pane. There are no functional components, only text and images.
   render() {
-    //  const { classes } = this.props;
+    //const { classes } = this.props;
+
     return (
-      <Card elevation={0}>
-        <CardContent>
-          <Typography component="span" variant="h4" gutterBottom>
-            Pane 1
+      <Card align="center" elevation={0}>
+        <CardContent component="div">
+          <Typography component="span" variant="h4">
+            Processing your expression
             <br />
           </Typography>
           <Typography component="span" variant="h6" gutterBottom>
-            Pane 1 Lorem ipsum
+            <br />
+            Happy with your expression? Time to process it!
             <br />
           </Typography>
-          <img src={analysis_pane} height={100} alt="Analysis Pane GIF" />
           <Typography component="span" variant="body2">
             <br />
-            Pane1 lorem ipsum
+            To continue with the segmentation, recognition and evaluation of
+            your expression, click on the "START" button at the top right of the
+            screen (on the green menu bar) to start the process.
+            <br />
+            <br />
+          </Typography>
+          <img src={process} height={120} alt="Process GIF" />
+          <Typography component="span" variant="body2">
+            <br />
+            <br />
+            Normally the processing should take only a couple of seconds, but
+            depending on the complexity of your drawing, the size of the drawing
+            board, the amount of independent symbols written, and your
+            computer's speed, this process might take longer to finish. In any
+            case, please be patient.
             <br />
           </Typography>
         </CardContent>

@@ -101,8 +101,8 @@ class ScaledImage extends React.Component {
           width={1}
         >
           <canvas
-            width={140}
-            height={140}
+            width={150}
+            height={150}
             style={{ border: "none" }}
             ref={(canvas) => {
               this.updateCanvas(canvas);

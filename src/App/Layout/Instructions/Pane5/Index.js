@@ -21,8 +21,7 @@ const useStyles = (theme) => ({});
 
 // **************************** COMPONENT ****************************
 class Pane5 extends React.Component {
-  // Displays the tutorial part introducing the web-app. There are no functional components,
-  // only text and images
+  // Displays the a tutorial pane. There are no functional components, only text and images.
   render() {
     //const { classes } = this.props;
 
@@ -35,19 +34,17 @@ class Pane5 extends React.Component {
           </Typography>
           <Typography component="span" variant="h6" gutterBottom>
             <br />
-            Erasing your drawings
+            Polish your drawings with erase!
             <br />
           </Typography>
           <Typography component="span" variant="body2">
             <br />
-            To write accross the drawing board, press the left click on your
-            mouse and drag it through the board. To erase a stroke on the
-            drawing board, press the right click on your mouse and drag it
-            through the strokes you want do delete.
+            To erase a stroke on the drawing board, press the right click on
+            your mouse and drag it through the strokes you want do delete.
             <br />
             <br />
           </Typography>
-          <img src={erase} height={100} alt="Writing GIF" />
+          <img src={erase} height={150} alt="Writing GIF" />
           <Typography component="span" variant="body2">
             <br />
             <br />

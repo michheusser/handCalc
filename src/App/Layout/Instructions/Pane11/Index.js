@@ -14,13 +14,13 @@ import { Typography, Card, CardContent } from "@material-ui/core";
 // Material UI (Design)
 import { withStyles } from "@material-ui/core/styles";
 // Diverse
-import writing from "../../../../Assets/Media/writing.gif";
+import prediction from "../../../../Assets/Media/prediction.gif";
 
 // **************************** STYLING ****************************
 const useStyles = (theme) => ({});
 
 // **************************** COMPONENT ****************************
-class Pane4 extends React.Component {
+class Pane11 extends React.Component {
   // Displays the a tutorial pane. There are no functional components, only text and images.
   render() {
     //const { classes } = this.props;
@@ -29,32 +29,26 @@ class Pane4 extends React.Component {
       <Card align="center" elevation={0}>
         <CardContent component="div">
           <Typography component="span" variant="h4">
-            Using the drawing board (2/5)
+            Using the analysis pane (3/4)
             <br />
           </Typography>
           <Typography component="span" variant="h6" gutterBottom>
             <br />
-            Draw your numbers and symbols!
+            Interpret the prediction statistics
             <br />
           </Typography>
-
           <Typography component="span" variant="body2">
             <br />
-            To write accross the drawing board, press the left click on your
-            mouse and drag it through the board.
+            Every neural network has its limitations, and may not always
+            recognize a specific symbol or confuse it with a different one. In
+            one or more of your handwritten symbols were not correctly
+            recognized, you can use the analysis pane to infer the type of
+            confusion by seeing if there are other prediction candidates with
+            similar likelihood.
             <br />
             <br />
           </Typography>
-          <img src={writing} height={150} alt="Writing GIF" />
-          <Typography component="span" variant="body2">
-            <br />
-            <br />
-            If you're using a track-pad on a portable computer use the main
-            click. If this doesn't seem to work, you might want to try to draw
-            as if you were dragging and dropping a file on the desktop.
-            <br />
-            <br />
-          </Typography>
+          <img src={prediction} height={200} alt="Prediction GIF" />
         </CardContent>
       </Card>
     );
@@ -74,4 +68,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(useStyles)(Pane4));
+)(withStyles(useStyles)(Pane11));
