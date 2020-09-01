@@ -44,10 +44,10 @@ class Pane12 extends React.Component {
             confuse them.
             <br />
             <br />
-            Always cross the "7", don't forget the head of a "1", nor the square
-            head and tail of the brackets "[" and "]". Also, The number 9 has a
-            lot of overlap with other digits, so write it as distinctive as
-            possible!
+            Always cross the "7", and don't forget the head of a "1" nor the
+            square head and tail of the brackets "[" and "]". Also, The number
+            "9" has a lot of overlap with other digits, so write it as
+            distinctive as possible!
             <br />
             <br />
           </Typography>
@@ -55,11 +55,11 @@ class Pane12 extends React.Component {
           <Typography component="span" variant="body2">
             <br />
             <br />
-            In general, be aware that the way we understand certain handwritten
-            signs may different than a neural network with a tiny fraction of
-            the capacity of a human brain. In some cases it might require small
-            changes in a drawing to completely change the prediction. In case a
-            sign might not be recognized, go back and try to make it clearer.
+            Be aware that the way we understand certain handwritten signs may
+            different than a neural network with a tiny fraction of the capacity
+            of a human brain. In some cases it might require small changes in a
+            drawing to completely change the prediction. If a sign is not
+            recognized, go back and try to make it clearer.
             <br />
           </Typography>
         </CardContent>
