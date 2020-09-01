@@ -39,7 +39,7 @@ class Pane8 extends React.Component {
           </Typography>
           <Typography component="span" variant="body2">
             <br />
-            To continue with the segmentation, recognition and evaluation of
+            To continue with the segmentation, recognition, and evaluation of
             your expression, click on the "START" button at the top right of the
             screen (on the green menu bar) to start the process.
             <br />

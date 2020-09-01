@@ -38,7 +38,6 @@ class ImageDetails extends React.Component {
       this.props.originalSegmentsInfo[this.props.selectedSegment].yFields
     } pixels, out of which ${
       this.props.originalSegmentsInfo[this.props.selectedSegment].filledFields
-        .length
     } are non-empty. If the dimensions are too small, the neural network might have difficulties identifying the symbol with precision`;
     return message;
   }

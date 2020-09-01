@@ -49,9 +49,9 @@ class Pane4 extends React.Component {
           <Typography component="span" variant="body2">
             <br />
             <br />
-            If you're using a track-pad on a portable computer use the main
-            click. If this doesn't seem to work, you might want to try to draw
-            as if you were dragging and dropping a file on the desktop.
+            If you're using a track-pad on a portable computer, use the main
+            click. If this doesn't seem to work, try to draw as if you were
+            dragging and dropping a file on the desktop.
             <br />
             <br />
           </Typography>

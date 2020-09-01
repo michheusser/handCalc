@@ -49,9 +49,9 @@ class Pane7 extends React.Component {
             <br />
             <br />
             You can resize the browser window anytime, to any size you want, but
-            be aware that everytime a window-resize happens, the drawing board
-            is recalculated, and you may lose part of your drawing if the board
-            becomes smaller.
+            be aware that each time, the drawing board will be recalculated, and
+            you may lose part of your drawing for ever if the board becomes
+            smaller.
             <br />
           </Typography>
         </CardContent>

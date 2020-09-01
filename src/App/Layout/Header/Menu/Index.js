@@ -96,8 +96,10 @@ class Menu extends React.Component {
             button
             key={"GitHub"}
             onClick={(event) =>
-              (window.location.href =
-                "https://github.com/michheusser/symbol-neural-network")
+              window.open(
+                "https://github.com/michheusser/symbol-neural-network",
+                "_blank"
+              )
             }
           >
             <ListItemIcon>

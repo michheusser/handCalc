@@ -34,7 +34,7 @@ class Pane9 extends React.Component {
           </Typography>
           <Typography component="span" variant="h6" gutterBottom>
             <br />
-            Get nerdy. Analyse the prediction details!
+            Get nerdy. Analyse the prediction details.
             <br />
           </Typography>
           <Typography component="span" variant="body2">

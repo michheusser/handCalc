@@ -47,7 +47,7 @@ class Pane1 extends React.Component {
             window to be full-screen for a better user experience!
             <br />
             <br /> If you want to dive right in, feel free to skip the tutorial
-            by press the close button on the top right (or just click outside
+            by pressing the close button on the top right (or just click outside
             the pane). Otherwise, press "Next"!
             <br />
             <br />

@@ -18,7 +18,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  Link,
 } from "@material-ui/core/";
 import CloseIcon from "@material-ui/icons/Close";
 // Material UI (Design)
@@ -110,38 +109,58 @@ class About extends React.Component {
             <br />
             Project's Main Repository:
             <br />
-            <Link href="https://github.com/michheusser/symbol-neural-network">
+            <a
+              href="https://github.com/michheusser/symbol-neural-network"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               https://github.com/michheusser/symbol-neural-network
-            </Link>
+            </a>
             <br />
             <br />
             Machine Learning, Image Processing, and Dataset Creation libraries:
             <br />
-            <Link href="https://github.com/michheusser/neural-network-training">
+            <a
+              href="https://github.com/michheusser/neural-network-training"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               https://github.com/michheusser/neural-network-training
-            </Link>
+            </a>
             <br />
             <br />
             Handwritten symbol dataset:
             <br />
-            <Link href="https://www.kaggle.com/michelheusser/handwritten-digits-and-operators">
+            <a
+              href="https://www.kaggle.com/michelheusser/handwritten-digits-and-operators"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               https://www.kaggle.com/michelheusser/handwritten-digits-and-operators
-            </Link>
+            </a>
             <br />
             <br />
             Author's GitHub Profile:
             <br />
-            <Link href="https://github.com/michheusser">
+            <a
+              href="https://github.com/michheusser"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               https://github.com/michheusser
-            </Link>
+            </a>
             <br />
             <br />
             Special thanks to Briana Seiderman for her collaboration and
             improvement of the User Design and User Experience:
             <br />
-            <Link href="https://www.brianaseiderman.com/">
+            <a
+              href="https://www.brianaseiderman.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               https://www.brianaseiderman.com/
-            </Link>
+            </a>
             <br />
             <br />
             <br />

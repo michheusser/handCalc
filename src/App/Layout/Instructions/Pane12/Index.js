@@ -40,14 +40,18 @@ class Pane12 extends React.Component {
           <Typography component="span" variant="body2">
             <br />
             Make sure you write the symbols in a way that identifies them best
-            from similar ones, where the neural network is more prone confuse
-            them (e.g. always crossing the "7", not forgetting the head of a
-            "1", not forgetting the square head and tail of the square brackets
-            "[" and "]")
+            from similar ones, where the neural network is more likely to
+            confuse them.
+            <br />
+            <br />
+            Always cross the "7", don't forget the head of a "1", nor the square
+            head and tail of the brackets "[" and "]". Also, The number 9 has a
+            lot of overlap with other digits, so write it as distinctive as
+            possible!
             <br />
             <br />
           </Typography>
-          <img src={similar} height={100} alt="Similar PNG" />
+          <img src={similar} height={90} alt="Similar PNG" />
           <Typography component="span" variant="body2">
             <br />
             <br />

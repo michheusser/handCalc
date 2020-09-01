@@ -40,7 +40,7 @@ class Pane5 extends React.Component {
           <Typography component="span" variant="body2">
             <br />
             To erase a stroke on the drawing board, press the right click on
-            your mouse and drag it through the strokes you want do delete.
+            your mouse and drag it through the stroke you want do delete.
             <br />
             <br />
           </Typography>
@@ -48,11 +48,11 @@ class Pane5 extends React.Component {
           <Typography component="span" variant="body2">
             <br />
             <br />
-            If you're using a track-pad on a portable computer use the secondary
-            click of the track-pad. If this doesn't seem to work, you might want
-            to try to draw as if you were dragging and dropping a file on the
-            desktop, but using the secondary click. Be aware that a secondary
-            click might not always be configured.
+            If you're using a track-pad on a portable computer, use the
+            secondary click of the track-pad. If this doesn't seem to work, try
+            to draw as if you were dragging and dropping a file on the desktop,
+            but using the secondary click. Be aware that a secondary click might
+            not always be configured.
             <br />
             <br />
           </Typography>

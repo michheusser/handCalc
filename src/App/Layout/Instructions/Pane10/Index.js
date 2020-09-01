@@ -34,15 +34,15 @@ class Pane10 extends React.Component {
           </Typography>
           <Typography component="span" variant="h6" gutterBottom>
             <br />
-            Explore the details of each segment.
+            To each segment, its own.
             <br />
           </Typography>
           <Typography component="span" variant="body2">
             <br />
-            Everytime you write a new expression, every symbol is segmented, and
-            processed to fit the input dimensions of the pre-trained neural
-            network that recognizes symbols. By clicking on the different
-            segments you can get a detailed prediction view for each of them
+            By clicking on each different segment, you can get a detailed
+            prediction view for each of them. Everytime you write a new
+            expression, every symbol is segmented, and processed to fit the
+            input dimensions of the neural network that recognizes symbols.
             <br />
             <br />
           </Typography>

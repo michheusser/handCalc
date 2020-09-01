@@ -40,7 +40,7 @@ class Pane11 extends React.Component {
           <Typography component="span" variant="body2">
             <br />
             Every neural network has its limitations, and may not always
-            recognize a specific symbol or confuse it with a different one. In
+            recognize a specific symbol, or confuse it with a different one. In
             one or more of your handwritten symbols were not correctly
             recognized, you can use the analysis pane to infer the type of
             confusion by seeing if there are other prediction candidates with

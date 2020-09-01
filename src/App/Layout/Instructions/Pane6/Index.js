@@ -48,7 +48,7 @@ class Pane6 extends React.Component {
           <Typography component="span" variant="body2">
             <br />
             <br />
-            Be aware that once you clear the board, you're drawing will be lost
+            Be aware that once you clear the board, your drawing will be lost
             and you will not be able to retrieve it!
             <br />
           </Typography>

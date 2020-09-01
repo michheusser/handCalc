@@ -41,8 +41,8 @@ class Pane3 extends React.Component {
           <Typography component="span" variant="body2">
             <br />
             The drawing board is the interface for you to write mathematical
-            expressions to be processed and evaluated by the image processing
-            and machine learning algorithms.
+            expressions that will be evaluated by the image processing and
+            machine learning algorithms.
             <br />
             <br />
             To start, draw any mathematical expression using the following
