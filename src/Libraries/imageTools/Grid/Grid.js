@@ -61,15 +61,10 @@ class Grid {
     }
     return this;
   }
-  addTool(tool) {
+  addTool(toolName, tool) {
     // adds a tool to the grid
-    if (tool.__proto__.__proto__.constructor.name !== "Tool") {
-      // Checks if the tool is of the right subclass
-      console.log("Uncompatible. No tool was added.");
-      return this;
-    }
     tool.grid = this;
-    this.tools[tool.name] = tool;
+    this.tools[toolName] = tool;
     return this;
   }
   replaceFields(grid) {

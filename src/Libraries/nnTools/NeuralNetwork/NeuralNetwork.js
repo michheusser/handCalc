@@ -63,15 +63,10 @@ class NeuralNetwork {
     }
     return this;
   }
-
-  addTool(tool) {
+  addTool(toolName, tool) {
     // Adds a tool to the neural network
-    if (tool.__proto__.__proto__.constructor.name !== "Tool") {
-      console.log("Uncompatible. No tool was added.");
-      return this;
-    }
     tool.network = this;
-    this.tools[tool.name] = tool;
+    this.tools[toolName] = tool;
     return this;
   }
   toString() {

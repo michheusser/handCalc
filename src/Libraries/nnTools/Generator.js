@@ -14,7 +14,7 @@ class Generator {
   // Provides a high level API to deal with neural network creation. Since it requires complex
   // building and initialization this is the recommended way of creating neural networks
   constructor() {
-    this.tools = [];
+    this.tools = {};
   }
   createNeuralNetwork(size, data = null) {
     // Creates and initializates a neural network object with all its tools
@@ -26,18 +26,18 @@ class Generator {
   }
   _loadTools() {
     // Loads all the necessary tools to the generator object
-    this.tools.push(
-      new Builder(),
-      new Manipulator(),
-      new Activator(),
-      new Classifier()
-    );
+    this.tools = {
+      builder: new Builder(),
+      manipulator: new Manipulator(),
+      activator: new Activator(),
+      classifier: new Classifier(),
+    };
     return this;
   }
   _addTools(network) {
     // Adds the tools of the object to the neural network and connects them accordingly
-    for (let tool of this.tools) {
-      network.addTool(tool);
+    for (let entry of Object.entries(this.tools)) {
+      network.addTool(entry[0], entry[1]);
     }
     return network;
   }

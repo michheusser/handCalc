@@ -9,9 +9,6 @@ class Tool {
   //copy of the original grid.
   constructor() {
     this.grid = null;
-    this.name =
-      this.__proto__.constructor.name.charAt(0).toLowerCase() +
-      this.__proto__.constructor.name.substring(1);
   }
 }
 export default Tool;

@@ -16,7 +16,7 @@ class Generator {
   // Main API tool for creating grids. Since grids need to be initiated and their tools added this
   // is the preferred way of dealing with grids
   constructor() {
-    this.tools = [];
+    this.tools = {};
   }
   createGrid(xFields, yFields, fields = []) {
     // Creates and initializates a grid object with all its tools
@@ -28,24 +28,24 @@ class Generator {
   }
   _loadTools() {
     // Loads all the necessary tools to the generator object
-    this.tools.push(
-      new Cloner(),
-      new Aligner(),
-      new Cropper(),
-      new Scaler(),
-      new Segmentator(),
-      new Manipulator()
-    );
+    this.tools = {
+      cloner: new Cloner(),
+      aligner: new Aligner(),
+      cropper: new Cropper(),
+      scaler: new Scaler(),
+      segmentator: new Segmentator(),
+      manipulator: new Manipulator(),
+    };
     return this;
   }
   _addTools(grid) {
     // Adds the tools of the object to the grid object and connects them accordingly
-    for (let tool of this.tools) {
-      grid.addTool(tool);
+    for (let entry of Object.entries(this.tools)) {
+      grid.addTool(entry[0], entry[1]);
     }
-
     return grid;
   }
+
   _fillFields(grid, fields) {
     // fils the grid fields with the active fields given during the creation of the grid
     for (let field of fields) {
