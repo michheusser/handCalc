@@ -165,16 +165,23 @@ class Scaler extends Tool {
     const height = yMax - yMin + 1;
     const width = xMax - xMin + 1;
     const scaleRatio = height / width;
+    console.log("********");
+    console.log("xFields = " + xFields);
+    console.log("yFields = " + yFields);
+    console.log("scaleRatio = " + scaleRatio);
+    console.log("height = " + height);
+    console.log("width = " + width);
+
     if (scaleRatio > (yFields - 2 * yMargin) / (xFields - 2 * xMargin)) {
       this.scale(
-        Math.floor((yFields - 2 * yMargin) / scaleRatio),
+        Math.ceil((yFields - 2 * yMargin) / scaleRatio),
         yFields - 2 * yMargin,
         scaleStroke
       );
     } else {
       this.scale(
         xFields - 2 * xMargin,
-        Math.floor((xFields - 2 * xMargin) * scaleRatio),
+        Math.ceil((xFields - 2 * xMargin) * scaleRatio),
         scaleStroke
       );
     }
