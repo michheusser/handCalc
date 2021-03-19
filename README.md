@@ -2,7 +2,7 @@
 
 handCalc is a handwritten calculator for simple numerical expressions.
 
-- **Machine Learning based:** handCalc works with a 4-layered neural-network kernel, which has been trained with more than 200'000 handwritten symbols. Since the recognition algorithm is not perfect, this tool provides the analysis tools to play and understand better how a neural network may react and change its decision pattern depending on its different inputs and their variations.
+- **Machine Learning based:** handCalc works with a 4-layered neural-network kernel, which has been trained with more than 200'000 handwritten symbols. Since the recognition algorithm is not always perfect, this tool provides the analysis tools to play and understand better how a neural network may react and change its decision pattern depending on its different inputs and their variations.
 - **Custom-made libraries and dataset:** The main goal of this project was not to build a complex and sophisticated tool with existing libraries like TensorFlow, Keras, or PyTorch, but rather to create a simple, but functional custom-made tool, using image-processing and neural-network libraries built from scratch in JavaScript and Python, that are easy to understand and to adapt to other projects. The handwritten dataset itself was created specifically for this project and is available for download, along with the used libraries (see below).
 - **Based in React:** The tool was created using React (https://reactjs.org/) on JavaScript, using a straight-forward project structure and component hierarchy, as well as an uncomplicated state management structure and data-flow using Redux (https://redux.js.org/), and a design powered by Material UI (https://material-ui.com/).
 - **Future versions:** Currently, handCalc renders components and performs data-processing and machine-learning algorithms directly on the browser, considering they're not particularly resource-intensive. However for future versions, a server-side API, based on Java Spring Boot, will be added. This will include, among others, the saving of inputted symbols (dataset augmentation) to a database, and further server-side training of the neural network. Furthermore, a mobile version will be available, optimized for iOS and Android (since currently, the drawing board is not optimized for touch-screens).
@@ -25,6 +25,9 @@ _Unscaled Image (14x14 pixels):_<br/>
 
 _Scaled Image (28x28 pixels):_<br/>
 ![alt text](https://github.com/michheusser/symbol-neural-network/blob/master/src/Assets/Media/7_scaled.png)
+
+To understand deeper the motivation and implementation of the scaling algorithm please refer to my publication in Medium:
+https://medium.com/@michheusser/handwritten-recognition-resizing-strokes-instead-of-images-b787af9935fc?sk=2d607131245f4b1850cc781492ed83b7
 
 ### Machine Learning Kernel
 
